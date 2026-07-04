@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/ADMIN/OneDrive/Desktop/**)",
+      "Read(//c/Users/ADMIN/**)",
+      "Read(//c/Users/ADMIN/Documents/**)",
+      "Bash(find \"/c/Users/ADMIN/OneDrive/Desktop/gogoo\" -maxdepth 3 2>&1 | head -200)",
+      "Read(//c/Users/ADMIN/OneDrive/Desktop/gogoo/**)",
+      "Bash(ls app *)",
+      "Bash(ls services *)",
+      "Bash(ls components *)",
+      "Read(//c/Users/ADMIN/OneDrive/Desktop/gogoo/backend/internal/api/handlers/**)",
+      "Bash(cd \"c:\\\\Users\\\\ADMIN\\\\OneDrive\\\\Desktop\\\\gogoo\\\\user-app\" && echo \"---app/\\(app\\)---\" && ls \"app/\\(app\\)\" && echo \"---app/\\(auth\\)---\" && ls \"app/\\(auth\\)\")",
+      "Read(//c/Users/ADMIN/OneDrive/Desktop/gogoo/user-app/**)",
+      "Bash(npm -v)",
+      "Bash(npx --yes create-next-app@latest . --typescript --tailwind --eslint --app --src-dir=false --import-alias \"@/*\" --use-npm --no-turbopack)"
+    ]
+  }
+}
