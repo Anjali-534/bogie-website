@@ -175,11 +175,12 @@ export default async function AmbulancePage() {
                 Need an ambulance?
               </h2>
               <p className="mt-3 text-neutral-600">
-                Full in-browser booking is on its way — for now, get in touch and
-                we&apos;ll help you book directly.
+                Request a BLS/ALS ambulance or a free NGO ambulance right here in
+                your browser. For life-threatening emergencies, always call 108
+                first.
               </p>
               <Link
-                href="/#contact"
+                href="/book/ambulance"
                 className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-3 text-sm font-semibold text-white shadow-sm transition-all hover:bg-primary-dark hover:scale-[1.02] active:scale-[0.98]"
               >
                 Request an ambulance

@@ -20,7 +20,7 @@ export default function FareEstimatorForm({ services }: { services: ServiceType[
   const [drop, setDrop] = useState<SelectedLocation | null>(null);
 
   const bothSelected = Boolean(pickup && drop);
-  const bookHref = user ? "/book" : "/login?redirect=/book";
+  const bookHref = user ? "/book/cab" : "/login?redirect=/book/cab";
 
   return (
     <div className="flex flex-col gap-8">

@@ -200,12 +200,12 @@ export default function Navbar() {
             Become a Driver
           </a>
 
-          <a
-            href="/#services"
+          <Link
+            href="/book"
             className="hidden sm:inline-flex items-center rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-primary-dark hover:scale-[1.03] active:scale-[0.98]"
           >
             Book Now
-          </a>
+          </Link>
 
           {!isLoading && !user && (
             <Link
@@ -289,13 +289,13 @@ export default function Navbar() {
               Become a Driver
             </a>
 
-            <a
-              href="/#services"
+            <Link
+              href="/book"
               onClick={() => setOpen(false)}
               className="mt-1 inline-flex items-center justify-center rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-white"
             >
               Book Now
-            </a>
+            </Link>
 
             {!isLoading && !user && (
               <Link
