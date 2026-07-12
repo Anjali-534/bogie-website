@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import dynamic from "next/dynamic";
 import {
   Loader2,
   MapPin,
@@ -14,6 +15,10 @@ import {
 } from "lucide-react";
 import { useAuth } from "../../../lib/AuthContext";
 import { getBooking, type BookingDetails } from "../../../lib/api";
+import { olaDirections, decodePolyline } from "../../../lib/olaMaps";
+
+// maplibre-gl touches window at init — keep it out of the server render.
+const TrackingMap = dynamic(() => import("./TrackingMap"), { ssr: false });
 
 const POLL_MS = 4000;
 const TERMINAL_STATUSES = ["completed", "cancelled"];
@@ -52,6 +57,22 @@ const SUB_TYPE_LABELS: Record<string, string> = {
   als: "Advanced Life Support (ALS)",
 };
 
+const BEFORE_PICKUP_STATUSES = ["accepted", "arriving"];
+
+function haversineKm(aLat: number, aLng: number, bLat: number, bLng: number) {
+  const R = 6371,
+    dLat = ((bLat - aLat) * Math.PI) / 180,
+    dLng = ((bLng - aLng) * Math.PI) / 180;
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos((aLat * Math.PI) / 180) * Math.cos((bLat * Math.PI) / 180) * Math.sin(dLng / 2) ** 2;
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+}
+
+function fmtDist(km: number) {
+  return km < 1 ? `${Math.round(km * 1000)} m` : `${km.toFixed(1)} km`;
+}
+
 function formatScheduled(iso: string) {
   return new Date(iso).toLocaleString("en-IN", {
     day: "numeric",
@@ -69,7 +90,11 @@ export default function TrackingView({ bookingId }: { bookingId: string }) {
   const [booking, setBooking] = useState<BookingDetails | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [routeCoords, setRouteCoords] = useState<{ lat: number; lng: number }[]>([]);
+  const [routeDistText, setRouteDistText] = useState("");
+  const [routeDurText, setRouteDurText] = useState("");
   const pollRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const lastRouteKeyRef = useRef("");
 
   useEffect(() => {
     if (!authLoading && !user) {
@@ -114,6 +139,45 @@ export default function TrackingView({ bookingId }: { bookingId: string }) {
     };
   }, [authLoading, user, bookingId]);
 
+  // Route polyline — mirrors the mobile app: driver→pickup while the driver
+  // is heading over (dashed), pickup→drop otherwise. Deduped by origin
+  // rounded to ~100m so we only re-ask Ola when the driver actually moves.
+  const bDriverLat = booking?.driver?.lat;
+  const bDriverLng = booking?.driver?.lng;
+  const bStatus = booking?.status;
+  useEffect(() => {
+    if (!booking) return;
+    const bp = BEFORE_PICKUP_STATUSES.includes(booking.status);
+    let origin: { lat: number; lng: number } | null = null;
+    let dest: { lat: number; lng: number } | null = null;
+    if (bp && booking.driver?.lat && booking.driver?.lng && booking.pickup) {
+      origin = { lat: booking.driver.lat, lng: booking.driver.lng };
+      dest = { lat: booking.pickup.lat, lng: booking.pickup.lng };
+    } else if (!bp && booking.pickup && booking.drop) {
+      origin = { lat: booking.pickup.lat, lng: booking.pickup.lng };
+      dest = { lat: booking.drop.lat, lng: booking.drop.lng };
+    }
+    if (!origin || !dest) return;
+    const key = `${origin.lat.toFixed(3)},${origin.lng.toFixed(3)}-${dest.lat},${dest.lng}-${booking.status}`;
+    if (key === lastRouteKeyRef.current) return;
+    lastRouteKeyRef.current = key;
+    const o = origin;
+    const d = dest;
+    olaDirections(o.lat, o.lng, d.lat, d.lng).then((r) => {
+      if (r && r.polyline) {
+        setRouteCoords(decodePolyline(r.polyline));
+        setRouteDistText(fmtDist(r.distanceKm));
+        setRouteDurText(`${r.durationMins} mins`);
+      } else {
+        // Straight line fallback so the map still shows the connection.
+        setRouteCoords([o, d]);
+        setRouteDistText("");
+        setRouteDurText("");
+      }
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [bDriverLat, bDriverLng, bStatus]);
+
   if (authLoading || !user || (loading && !booking && !error)) {
     return (
       <div className="flex min-h-[50vh] items-center justify-center">
@@ -142,8 +206,52 @@ export default function TrackingView({ bookingId }: { bookingId: string }) {
   const showOtp = booking.status === "arriving" && booking.ride_otp;
   const isTerminal = TERMINAL_STATUSES.includes(booking.status);
 
+  const beforePickup = BEFORE_PICKUP_STATUSES.includes(booking.status);
+  const driverPos =
+    booking.driver?.lat && booking.driver?.lng
+      ? { lat: booking.driver.lat, lng: booking.driver.lng, heading: booking.driver.heading }
+      : null;
+  const mapCategory =
+    booking.vehicle_category === "truck" || booking.vehicle_category === "ambulance"
+      ? booking.vehicle_category
+      : "cab";
+
+  let distLabel = "";
+  if (routeDistText) distLabel = routeDistText + (routeDurText ? ` · ${routeDurText}` : "");
+  else if (driverPos && booking.pickup) {
+    const target = beforePickup ? booking.pickup : booking.drop ?? booking.pickup;
+    distLabel = fmtDist(haversineKm(driverPos.lat, driverPos.lng, target.lat, target.lng));
+  }
+  const showDistPill = Boolean(driverPos && distLabel && !isTerminal);
+
   return (
-    <div className="mx-auto max-w-md">
+    <div className="mx-auto grid max-w-5xl gap-6 lg:grid-cols-[minmax(0,1fr)_400px] lg:items-start">
+      <div className="relative overflow-hidden rounded-3xl shadow-sm ring-1 ring-neutral-100">
+        <TrackingMap
+          pickup={booking.pickup}
+          drop={booking.drop}
+          driver={driverPos}
+          routeCoords={routeCoords}
+          beforePickup={beforePickup}
+          category={mapCategory}
+          className="h-[320px] w-full sm:h-[420px] lg:h-[560px]"
+        />
+        {showDistPill && (
+          <div
+            className={`absolute left-1/2 top-4 -translate-x-1/2 rounded-full px-4 py-1.5 text-xs font-bold text-white shadow-md ${
+              beforePickup ? "bg-emerald-500" : "bg-primary"
+            }`}
+          >
+            {beforePickup ? `Driver is ${distLabel} away` : `${distLabel} to destination`}
+          </div>
+        )}
+        {booking.status === "searching" && (
+          <div className="absolute left-1/2 top-4 -translate-x-1/2 rounded-full bg-neutral-900/75 px-4 py-1.5 text-xs font-semibold text-white shadow-md">
+            Looking for nearby drivers…
+          </div>
+        )}
+      </div>
+
       <div className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-neutral-100 sm:p-8">
         <div className="flex items-start gap-3">
           <div className="flex-1">

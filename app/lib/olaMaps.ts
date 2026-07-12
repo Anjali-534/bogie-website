@@ -41,6 +41,66 @@ export async function olaAutocomplete(
   }
 }
 
+export type OlaRoute = {
+  polyline: string;
+  distanceKm: number;
+  durationMins: number;
+};
+
+export async function olaDirections(
+  oLat: number,
+  oLng: number,
+  dLat: number,
+  dLng: number
+): Promise<OlaRoute | null> {
+  if (!OLA_KEY) return null;
+  try {
+    const res = await fetch(
+      `${BASE}/routing/v1/directions?origin=${oLat},${oLng}&destination=${dLat},${dLng}&api_key=${OLA_KEY}`,
+      { method: "POST" }
+    );
+    if (!res.ok) return null;
+    const data = await res.json();
+    const route = data?.routes?.[0];
+    if (!route) return null;
+    return {
+      polyline: route?.overview_polyline || "",
+      distanceKm: (route?.legs?.[0]?.distance ?? 0) / 1000,
+      durationMins: Math.round((route?.legs?.[0]?.duration ?? 0) / 60),
+    };
+  } catch {
+    return null;
+  }
+}
+
+export function decodePolyline(encoded: string): { lat: number; lng: number }[] {
+  const poly: { lat: number; lng: number }[] = [];
+  let i = 0,
+    lat = 0,
+    lng = 0;
+  while (i < encoded.length) {
+    let s = 0,
+      r = 0,
+      b: number;
+    do {
+      b = encoded.charCodeAt(i++) - 63;
+      r |= (b & 0x1f) << s;
+      s += 5;
+    } while (b >= 0x20);
+    lat += r & 1 ? ~(r >> 1) : r >> 1;
+    s = 0;
+    r = 0;
+    do {
+      b = encoded.charCodeAt(i++) - 63;
+      r |= (b & 0x1f) << s;
+      s += 5;
+    } while (b >= 0x20);
+    lng += r & 1 ? ~(r >> 1) : r >> 1;
+    poly.push({ lat: lat / 1e5, lng: lng / 1e5 });
+  }
+  return poly;
+}
+
 export async function olaPlaceDetails(
   placeId: string
 ): Promise<{ lat: number; lng: number } | null> {

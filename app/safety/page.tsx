@@ -63,13 +63,13 @@ export default function SafetyPage() {
         <section className="pb-16">
           <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
             <AnimatedSection>
-              <div className="flex flex-col gap-4 rounded-3xl bg-neutral-950 p-8 text-white sm:flex-row sm:items-center">
+              <div className="flex flex-col gap-4 rounded-3xl bg-cream-deep ring-1 ring-cream-line p-8 text-neutral-800 sm:flex-row sm:items-center">
                 <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl bg-primary text-white">
                   <ShieldCheck size={26} />
                 </div>
                 <div>
-                  <h2 className="text-xl font-bold">Emergency SOS</h2>
-                  <p className="mt-2 text-neutral-300">
+                  <h2 className="text-xl font-bold text-neutral-900">Emergency SOS</h2>
+                  <p className="mt-2 text-neutral-600">
                     Every ride includes an SOS option, reachable in one tap from the
                     active-ride tracking screen or from Help &amp; Safety in the app. It
                     gives you four immediate actions: call Police (112) or Ambulance
@@ -78,7 +78,7 @@ export default function SafetyPage() {
                     instantly notifies our team with your location and ride details so
                     a real person follows up.
                   </p>
-                  <p className="mt-3 text-sm text-neutral-400">
+                  <p className="mt-3 text-sm text-neutral-500">
                     This page is informational — the live SOS button itself appears
                     on the active-ride tracking screen in the app, not here.
                   </p>

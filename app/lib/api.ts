@@ -137,6 +137,33 @@ export async function getNearbyHospitals(
   return (body?.hospitals as NearbyHospital[]) ?? [];
 }
 
+export type PublicStats = {
+  total_riders: number;
+  total_drivers: number;
+  total_completed_rides: number;
+};
+
+// Aggregate platform counts for the public marketing site. Server-fetched with
+// hourly revalidation; returns null on any failure so the caller can hide the
+// section rather than render a broken/zero state.
+export async function getPublicStats(): Promise<PublicStats | null> {
+  try {
+    const res = await fetch(`${API_BASE}/gogoo/stats/public`, {
+      next: { revalidate: 3600 },
+    });
+    if (!res.ok) return null;
+    const body = await parseJsonSafe(res);
+    if (!body) return null;
+    return {
+      total_riders: Number(body.total_riders) || 0,
+      total_drivers: Number(body.total_drivers) || 0,
+      total_completed_rides: Number(body.total_completed_rides) || 0,
+    };
+  } catch {
+    return null;
+  }
+}
+
 export type ReferralInfo = {
   referral_code: string;
   share_link: string;
@@ -256,6 +283,8 @@ export type BookingDriver = {
   rating?: number;
   lat?: number;
   lng?: number;
+  heading?: number;
+  updated_at?: string;
 };
 
 export type BookingDetails = {

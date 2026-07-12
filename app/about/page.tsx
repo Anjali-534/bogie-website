@@ -184,7 +184,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="bg-neutral-950 py-24 text-white">
+        <section className="border-y border-cream-line bg-cream-deep py-24 text-neutral-900">
           <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
             <AnimatedSection>
               <p className="text-sm font-semibold uppercase tracking-wide text-primary">
@@ -193,13 +193,13 @@ export default function AboutPage() {
               <h2 className="mt-3 text-3xl sm:text-4xl font-extrabold tracking-tight">
                 Zero-commission ambulances, explained.
               </h2>
-              <p className="mt-6 text-neutral-300">
+              <p className="mt-6 text-neutral-600">
                 When you request an ambulance through bogie, we first check for a free
                 ride via our network of registered NGOs and sewa organisations operating
                 in your area. If one's available, that's what you get — no charge, no
                 catch.
               </p>
-              <p className="mt-4 text-neutral-300">
+              <p className="mt-4 text-neutral-600">
                 If none are free at that moment, we connect you to BLS/ALS ambulances via
                 partner hospitals, billed directly by the hospital. Either way, bogie's
                 cut is exactly zero rupees — we don't add a platform fee or a convenience

@@ -6,17 +6,17 @@ export default function DriverCta() {
     <section className="py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <AnimatedSection>
-          <div className="relative overflow-hidden rounded-3xl bg-neutral-900 px-8 py-14 sm:px-16 sm:py-16">
+          <div className="relative overflow-hidden rounded-3xl bg-cream-deep ring-1 ring-cream-line px-8 py-14 sm:px-16 sm:py-16">
             <div className="pointer-events-none absolute -top-16 -right-16 h-72 w-72 rounded-full bg-primary/20 blur-3xl" />
             <div className="relative flex flex-col items-start gap-8 sm:flex-row sm:items-center sm:justify-between">
               <div className="max-w-xl">
                 <p className="text-sm font-semibold uppercase tracking-wide text-primary">
                   Become a driver
                 </p>
-                <h2 className="mt-3 text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
+                <h2 className="mt-3 text-3xl sm:text-4xl font-extrabold tracking-tight text-neutral-900">
                   Drive with bogie. Earn on your terms.
                 </h2>
-                <div className="mt-6 flex flex-wrap gap-6 text-sm text-neutral-300">
+                <div className="mt-6 flex flex-wrap gap-6 text-sm text-neutral-600">
                   <span className="flex items-center gap-2">
                     <Wallet size={16} className="text-primary" />
                     Daily payouts

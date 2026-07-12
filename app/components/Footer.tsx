@@ -161,24 +161,18 @@ const supportLinks = [
   { label: "Zero Tolerance Policy", href: "#" },
 ];
 
-const panelLinks = [
-  "Admin Panel",
-  "Driver Panel",
-  "Hospital Panel",
-  "NGO Panel",
-  "Support Panel",
-];
+
 
 export default function Footer() {
   return (
-    <footer className="bg-neutral-950 text-neutral-400">
+    <footer className="border-t border-cream-line bg-cream text-neutral-600">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 gap-14 lg:grid-cols-[320px_1fr]">
           {/* Left block */}
           <div>
             <a
               href="/#home"
-              className="inline-flex items-baseline text-4xl font-extrabold tracking-tight text-white"
+              className="inline-flex items-baseline text-4xl font-extrabold tracking-tight text-neutral-900"
             >
               bo<span className="text-primary">g</span>ie
             </a>
@@ -186,15 +180,15 @@ export default function Footer() {
               Delivering more than just parcels
             </p>
 
-            <div className="mt-8 border-t border-dashed border-neutral-800 pt-8">
-              <p className="text-sm font-semibold text-white">Follow us on</p>
+            <div className="mt-8 border-t border-dashed border-cream-line pt-8">
+              <p className="text-sm font-semibold text-neutral-900">Follow us on</p>
               <div className="mt-4 flex items-center gap-3">
                 {socialLinks.map(({ name, href, Icon }) => (
                   <a
                     key={name}
                     href={href}
                     aria-label={`Follow bogie on ${name}`}
-                    className="flex h-9 w-9 items-center justify-center rounded-full bg-neutral-900 text-neutral-400 transition-colors hover:bg-primary hover:text-white"
+                    className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-neutral-600 ring-1 ring-cream-line transition-colors hover:bg-primary hover:text-white hover:ring-primary"
                   >
                     <Icon className="h-4 w-4" />
                   </a>
@@ -202,8 +196,8 @@ export default function Footer() {
               </div>
             </div>
 
-            <div className="mt-8 border-t border-dashed border-neutral-800 pt-8">
-              <p className="text-sm font-semibold text-white">
+            <div className="mt-8 border-t border-dashed border-cream-line pt-8">
+              <p className="text-sm font-semibold text-neutral-900">
                 Download our app now!
               </p>
               <div className="mt-4 flex items-center gap-4">
@@ -211,7 +205,7 @@ export default function Footer() {
                   <Smartphone size={20} />
                 </div>
                 <div>
-                  <div className="flex items-center gap-1 text-sm font-semibold text-white">
+                  <div className="flex items-center gap-1 text-sm font-semibold text-neutral-900">
                     <Star size={14} className="fill-primary text-primary" />
                     4.8
                   </div>
@@ -222,7 +216,7 @@ export default function Footer() {
                 <a
                   href={DRIVER_APP_URL}
                   aria-label="Scan the QR code to download the bogie app"
-                  className="ml-auto shrink-0 overflow-hidden rounded-lg ring-1 ring-neutral-800"
+                  className="ml-auto shrink-0 overflow-hidden rounded-lg ring-1 ring-cream-line"
                 >
                   <QrPlaceholder />
                 </a>
@@ -239,7 +233,7 @@ export default function Footer() {
           {/* Right columns */}
           <div className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-4">
             <nav aria-label="Company">
-              <h3 className="text-sm font-semibold text-white">Company</h3>
+              <h3 className="text-sm font-semibold text-neutral-900">Company</h3>
               <ul className="mt-4 space-y-2.5">
                 {companyLinks.map((l) => (
                   <li key={l.label}>
@@ -255,7 +249,7 @@ export default function Footer() {
             </nav>
 
             <nav aria-label="Quick Links">
-              <h3 className="text-sm font-semibold text-white">
+              <h3 className="text-sm font-semibold text-neutral-900">
                 Quick Links
               </h3>
               <ul className="mt-4 space-y-2.5">
@@ -273,7 +267,7 @@ export default function Footer() {
             </nav>
 
             <nav aria-label="Support">
-              <h3 className="text-sm font-semibold text-white">Support</h3>
+              <h3 className="text-sm font-semibold text-neutral-900">Support</h3>
               <ul className="mt-4 space-y-2.5">
                 {supportLinks.map((l) => (
                   <li key={l.label}>
@@ -292,7 +286,7 @@ export default function Footer() {
               aria-label="Areas we serve"
               className="col-span-2 sm:col-span-1"
             >
-              <h3 className="text-sm font-semibold text-white">
+              <h3 className="text-sm font-semibold text-neutral-900">
                 Areas We Serve
               </h3>
               <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2.5">
@@ -314,23 +308,13 @@ export default function Footer() {
         {/* Partner / admin panels — de-emphasized */}
         <nav
           aria-label="Partner and admin panels"
-          className="mt-14 border-t border-neutral-900 pt-6"
+          className="mt-14 border-t border-cream-line pt-6"
         >
-          <div className="flex flex-wrap gap-x-5 gap-y-2">
-            {panelLinks.map((l) => (
-              <a
-                key={l}
-                href="#"
-                className="text-[11px] text-neutral-500 transition-colors hover:text-primary"
-              >
-                {l}
-              </a>
-            ))}
-          </div>
+          
         </nav>
 
         {/* Copyright + NAP */}
-        <div className="mt-8 flex flex-col gap-3 border-t border-neutral-900 pt-6 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-8 flex flex-col gap-3 border-t border-cream-line pt-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs text-neutral-500">
             &copy; {new Date().getFullYear()} Aggarwal Publicity and Marketing
             Pvt. Ltd. All rights reserved.

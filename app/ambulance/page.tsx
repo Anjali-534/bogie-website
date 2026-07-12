@@ -70,10 +70,10 @@ export default async function AmbulancePage() {
             </AnimatedSection>
 
             <AnimatedSection delay={0.1}>
-              <div className="mt-6 inline-flex items-center gap-2 rounded-2xl bg-neutral-950 px-5 py-3 text-sm font-semibold text-white">
+              <div className="mt-6 inline-flex items-center gap-2 rounded-2xl bg-primary-light px-5 py-3 text-sm font-semibold text-neutral-900 ring-1 ring-primary/20">
                 <PhoneCall size={16} className="text-primary" />
                 Life-threatening emergency? Call{" "}
-                <a href="tel:108" className="underline">
+                <a href="tel:108" className="text-primary underline">
                   108
                 </a>{" "}
                 first.
@@ -150,7 +150,7 @@ export default async function AmbulancePage() {
           </div>
         </section>
 
-        <section className="bg-neutral-950 py-16 text-white">
+        <section className="border-y border-cream-line bg-cream-deep py-16 text-neutral-900">
           <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
             <AnimatedSection>
               <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-primary text-white">
@@ -159,7 +159,7 @@ export default async function AmbulancePage() {
               <h2 className="mt-5 text-2xl font-extrabold tracking-tight">
                 Every crew is verified.
               </h2>
-              <p className="mt-3 text-neutral-300">
+              <p className="mt-3 text-neutral-600">
                 Ambulance crews on bogie go through the same document verification
                 as every driver — plus EMT certification — before they&apos;re
                 allowed to take a booking.

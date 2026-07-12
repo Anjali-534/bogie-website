@@ -6,6 +6,10 @@
   --color-primary: #ff6b2b;
   --color-primary-dark: #e2551c;
   --color-primary-light: #fff1ea;
+  /* Warm cream palette for light contrast sections (Stats band, Footer) */
+  --color-cream: #faf6f0;
+  --color-cream-deep: #f4ebe0;
+  --color-cream-line: #e9ddcc;
 }
 
 @theme inline {
@@ -14,6 +18,9 @@
   --color-primary: var(--color-primary);
   --color-primary-dark: var(--color-primary-dark);
   --color-primary-light: var(--color-primary-light);
+  --color-cream: var(--color-cream);
+  --color-cream-deep: var(--color-cream-deep);
+  --color-cream-line: var(--color-cream-line);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
