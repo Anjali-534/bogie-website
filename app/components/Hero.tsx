@@ -1,7 +1,39 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "motion/react";
-import { Car, Truck, Ambulance, ArrowRight, Download, MapPin } from "lucide-react";
+import { ArrowRight, Download, MapPin } from "lucide-react";
+
+const heroCards = [
+  {
+    src: "/hero-cab.jpg",
+    alt: "Cab ride through Delhi NCR city traffic",
+    caption: "City Rides & Cabs",
+    position: "sm:absolute sm:top-0 sm:left-0",
+    bob: { y: [0, -12, 0], duration: 4, delay: 0 },
+  },
+  {
+    src: "/hero-truck.jpg",
+    alt: "Truck carrying freight for logistics booking",
+    caption: "Logistics & Freight",
+    position: "sm:absolute sm:top-0 sm:right-0",
+    bob: { y: [0, 10, 0], duration: 4.5, delay: 0.4 },
+  },
+  {
+    src: "/hero-ambulance.jpg",
+    alt: "Ambulance responding to an emergency",
+    caption: "Emergency Medical",
+    position: "sm:absolute sm:bottom-0 sm:left-0",
+    bob: { y: [0, -10, 0], duration: 3.5, delay: 0.8 },
+  },
+  {
+    src: "/hero-delivery.jpg",
+    alt: "Delivery van moving parcels via bogie truck booking",
+    caption: "Parcel Delivery",
+    position: "sm:absolute sm:bottom-0 sm:right-0",
+    bob: { y: [0, 12, 0], duration: 5, delay: 1.2 },
+  },
+];
 
 export default function Hero() {
   return (
@@ -70,35 +102,65 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.92 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.15 }}
-          className="relative mx-auto flex h-80 w-full max-w-md items-center justify-center sm:h-96"
+          className="relative mx-auto grid w-full max-w-md grid-cols-2 gap-4 sm:block sm:h-[30rem] sm:max-w-lg"
         >
-          <div className="absolute h-64 w-64 rounded-[2.5rem] bg-primary/15 sm:h-80 sm:w-80" />
-
-          <motion.div
-            animate={{ y: [0, -14, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute -top-2 left-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-white shadow-xl sm:h-24 sm:w-24"
+          {/* dotted connector lines, center pin → each card (hidden on mobile) */}
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 512 480"
+            preserveAspectRatio="none"
+            className="pointer-events-none absolute inset-0 hidden h-full w-full sm:block"
           >
-            <Car className="text-primary" size={36} />
-          </motion.div>
+            {[
+              "M256 240 Q 180 200 118 118",
+              "M256 240 Q 332 200 394 118",
+              "M256 240 Q 180 280 118 362",
+              "M256 240 Q 332 280 394 362",
+            ].map((d) => (
+              <path
+                key={d}
+                d={d}
+                fill="none"
+                stroke="#FF6B2B"
+                strokeWidth={2.5}
+                strokeLinecap="round"
+                strokeDasharray="1 10"
+                opacity={0.55}
+              />
+            ))}
+          </svg>
 
-          <motion.div
-            animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
-            className="absolute bottom-4 right-2 flex h-24 w-24 items-center justify-center rounded-2xl bg-white shadow-xl sm:h-28 sm:w-28"
-          >
-            <Truck className="text-primary" size={42} />
-          </motion.div>
+          {heroCards.map((card) => (
+            <motion.div
+              key={card.caption}
+              animate={{ y: card.bob.y }}
+              transition={{
+                duration: card.bob.duration,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: card.bob.delay,
+              }}
+              className={`w-full sm:w-44 ${card.position}`}
+            >
+              <div className="overflow-hidden rounded-2xl bg-white p-1.5 shadow-xl shadow-neutral-900/10 ring-1 ring-neutral-100">
+                <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
+                  <Image
+                    src={card.src}
+                    alt={card.alt}
+                    fill
+                    sizes="(max-width: 640px) 45vw, 176px"
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+              <p className="mt-2 text-center text-[11px] font-extrabold uppercase tracking-widest text-neutral-800">
+                {card.caption}
+              </p>
+            </motion.div>
+          ))}
 
-          <motion.div
-            animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
-            className="absolute bottom-16 left-0 flex h-16 w-16 items-center justify-center rounded-2xl bg-white shadow-xl sm:h-20 sm:w-20"
-          >
-            <Ambulance className="text-primary" size={28} />
-          </motion.div>
-
-          <div className="flex h-28 w-28 items-center justify-center rounded-full bg-primary text-white shadow-2xl shadow-primary/40 sm:h-32 sm:w-32">
+          {/* center pin (hidden on mobile) */}
+          <div className="absolute top-1/2 left-1/2 hidden h-24 w-24 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-primary text-white shadow-2xl shadow-primary/40 ring-8 ring-white sm:flex sm:h-28 sm:w-28">
             <MapPin size={44} strokeWidth={2.25} className="text-white" />
           </div>
         </motion.div>

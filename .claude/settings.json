@@ -190,7 +190,13 @@
       "Bash(node \"C:/Users/ADMIN/AppData/Local/Temp/claude/c--Users-ADMIN-OneDrive-Desktop-bogie/0aeb660c-4ecc-4eba-b1b4-fa370dc4f1c8/scratchpad/verify-tracking.js\")",
       "Bash(SP=\"/c/Users/ADMIN/AppData/Local/Temp/claude/c--Users-ADMIN-OneDrive-Desktop-bogie/0aeb660c-4ecc-4eba-b1b4-fa370dc4f1c8/scratchpad\"; rm -f \"$SP/rider-token.txt\" \"$SP/debug-login.js\"; echo cleaned)",
       "Bash(node -e \"console.log\\(require\\('c:/Users/ADMIN/OneDrive/Desktop/bogie/node_modules/next/package.json'\\).version\\)\")",
-      "Bash(echo \"tsc exit: $?\")"
+      "Bash(echo \"tsc exit: $?\")",
+      "Bash(node \"C:/Users/ADMIN/AppData/Local/Temp/claude/c--Users-ADMIN-OneDrive-Desktop-bogie/0aeb660c-4ecc-4eba-b1b4-fa370dc4f1c8/scratchpad/hero-shots.js\")",
+      "Read(//c/Users/ADMIN/Downloads/**)",
+      "PowerShell($dirs = @\\(\"$env:USERPROFILE\\\\Pictures\",\"$env:USERPROFILE\\\\Pictures\\\\Screenshots\",\"$env:USERPROFILE\\\\OneDrive\\\\Pictures\",\"$env:USERPROFILE\\\\OneDrive\\\\Pictures\\\\Screenshots\",\"$env:USERPROFILE\\\\Desktop\"\\); foreach \\($d in $dirs\\) { if \\(Test-Path $d\\) { Get-ChildItem $d -File -ErrorAction SilentlyContinue | Where-Object { $_.Extension -match \"jpe?g|png|webp\" -and $_.LastWriteTime -gt \\(Get-Date\\).AddDays\\(-2\\) } | Select-Object FullName,LastWriteTime } })",
+      "Read(//c/Users/ADMIN/OneDrive/Pictures/Screenshots/**)",
+      "Bash(sed -i \"s/localhost:3001/localhost:3002/g\" \"C:/Users/ADMIN/AppData/Local/Temp/claude/c--Users-ADMIN-OneDrive-Desktop-bogie/0aeb660c-4ecc-4eba-b1b4-fa370dc4f1c8/scratchpad/hero-shots.js\")",
+      "Bash(sed -i 's/waitUntil: \"load\"/waitUntil: \"domcontentloaded\"/g' \"C:/Users/ADMIN/AppData/Local/Temp/claude/c--Users-ADMIN-OneDrive-Desktop-bogie/0aeb660c-4ecc-4eba-b1b4-fa370dc4f1c8/scratchpad/hero-shots.js\")"
     ],
     "additionalDirectories": [
       "c:\\Users\\ADMIN\\OneDrive\\Desktop\\gogoo\\backend\\internal\\api\\handlers",
