@@ -319,16 +319,7 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} Aggarwal Publicity and Marketing
             Pvt. Ltd. All rights reserved.
           </p>
-          <address className="text-xs not-italic text-neutral-500">
-            Delhi NCR, India &middot;{" "}
-            <a href="tel:+9198XXXXXXXX" className="hover:text-primary">
-              +91 98XXX XXXXX
-            </a>{" "}
-            &middot;{" "}
-            <a href="mailto:support@bogie.in" className="hover:text-primary">
-              support@bogie.in
-            </a>
-          </address>
+          
         </div>
       </div>
     </footer>
