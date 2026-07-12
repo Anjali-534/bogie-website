@@ -126,7 +126,7 @@ export default function LoginForm() {
     <div className="w-full max-w-md">
       <div className="mb-8 text-center">
         <p className="text-sm font-semibold uppercase tracking-wide text-primary">
-          {tab === "login" ? "Welcome back" : "Join bogie"}
+          {tab === "login" ? "Welcome back" : "Join Bogie"}
         </p>
         <h1 className="mt-2 text-3xl font-extrabold tracking-tight text-neutral-900">
           {tab === "login" ? "Log in to your account" : "Create your account"}

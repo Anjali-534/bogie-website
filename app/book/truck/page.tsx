@@ -3,8 +3,8 @@ import TruckBookingFlow from "./TruckBookingFlow";
 import { getServices } from "../../lib/api";
 
 export const metadata: Metadata = {
-  title: "Book a Truck — bogie",
-  description: "Book a truck for city or outstation logistics with real-time fare estimates on bogie.",
+  title: "Book a Truck — Bogie",
+  description: "Book a truck for city or outstation logistics with real-time fare estimates on Bogie.",
   robots: { index: false, follow: false },
 };
 

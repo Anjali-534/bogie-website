@@ -5,21 +5,21 @@ import Footer from "../components/Footer";
 import ReferralHub from "./ReferralHub";
 
 export const metadata: Metadata = {
-  title: "Refer & Earn — bogie",
+  title: "Refer & Earn — Bogie",
   description:
-    "Invite friends to bogie, Delhi NCR's cab, truck & ambulance app — earn ₹50 when they take their first ride, plus ₹25 more when they refer someone too.",
+    "Invite friends to Bogie, Delhi NCR's cab, truck & ambulance app — earn ₹50 when they take their first ride, plus ₹25 more when they refer someone too.",
 };
 
 const steps = [
   {
     icon: Share2,
     title: "Share your code",
-    text: "Every bogie account gets a unique referral code — GU for riders, GD for drivers. Share it with friends any way you like.",
+    text: "Every Bogie account gets a unique referral code — GU for riders, GD for drivers. Share it with friends any way you like.",
   },
   {
     icon: UserPlus,
     title: "They sign up & ride",
-    text: "Your friend creates a bogie account using your code and completes their first ride or trip.",
+    text: "Your friend creates a Bogie account using your code and completes their first ride or trip.",
   },
   {
     icon: Wallet,

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import TrackingView from "./TrackingView";
 
 export const metadata: Metadata = {
-  title: "Track your ride — bogie",
+  title: "Track your ride — Bogie",
   robots: { index: false, follow: false },
 };
 

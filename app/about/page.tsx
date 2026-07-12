@@ -15,9 +15,9 @@ import AnimatedSection from "../components/AnimatedSection";
 import Footer from "../components/Footer";
 
 export const metadata: Metadata = {
-  title: "About Us — bogie | Delhi NCR's Ride & Logistics App",
+  title: "About Us — Bogie | Delhi NCR's Ride & Logistics App",
   description:
-    "bogie is Delhi NCR's ride hailing and logistics app — cab booking, truck logistics, and zero-commission ambulances, run by Aggarwal Publicity and Marketing Pvt. Ltd.",
+    "Bogie is Delhi NCR's ride hailing and logistics app — cab booking, truck logistics, and zero-commission ambulances, run by Aggarwal Publicity and Marketing Pvt. Ltd.",
 };
 
 const differentiators = [
@@ -75,7 +75,7 @@ export default function AboutPage() {
           <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
             <AnimatedSection>
               <span className="inline-flex items-center gap-2 rounded-full bg-primary-light px-4 py-1.5 text-xs font-semibold text-primary-dark">
-                About bogie
+                About Bogie
               </span>
               <h1 className="mt-6 text-4xl sm:text-5xl font-extrabold tracking-tight text-neutral-900 leading-[1.05]">
                 Built in Delhi NCR.
@@ -83,7 +83,7 @@ export default function AboutPage() {
                 Made for how the city actually <span className="text-primary">moves.</span>
               </h1>
               <p className="mt-6 text-lg text-neutral-600">
-                bogie is an all-in-one ride and logistics app — cabs when you need to get
+                Bogie is an all-in-one ride and logistics app — cabs when you need to get
                 somewhere, trucks when you need to move something, and ambulances when
                 every second counts. One login, one app, three services that actually
                 talk to each other.
@@ -117,7 +117,7 @@ export default function AboutPage() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <AnimatedSection className="max-w-2xl">
               <p className="text-sm font-semibold uppercase tracking-wide text-primary">
-                Why bogie
+                Why Bogie
               </p>
               <h2 className="mt-3 text-3xl sm:text-4xl font-extrabold tracking-tight text-neutral-900">
                 Three things we do differently.
@@ -194,14 +194,14 @@ export default function AboutPage() {
                 Zero-commission ambulances, explained.
               </h2>
               <p className="mt-6 text-neutral-600">
-                When you request an ambulance through bogie, we first check for a free
+                When you request an ambulance through Bogie, we first check for a free
                 ride via our network of registered NGOs and sewa organisations operating
                 in your area. If one's available, that's what you get — no charge, no
                 catch.
               </p>
               <p className="mt-4 text-neutral-600">
                 If none are free at that moment, we connect you to BLS/ALS ambulances via
-                partner hospitals, billed directly by the hospital. Either way, bogie's
+                partner hospitals, billed directly by the hospital. Either way, Bogie's
                 cut is exactly zero rupees — we don't add a platform fee or a convenience
                 charge to emergency transport, ever.
               </p>
@@ -213,7 +213,7 @@ export default function AboutPage() {
           <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
             <AnimatedSection>
               <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-neutral-900">
-                Questions about bogie?
+                Questions about Bogie?
               </h2>
               <p className="mt-3 text-neutral-600">
                 We&apos;re a small team based in Delhi NCR — reach out and a real person

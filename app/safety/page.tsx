@@ -13,9 +13,9 @@ import AnimatedSection from "../components/AnimatedSection";
 import Footer from "../components/Footer";
 
 export const metadata: Metadata = {
-  title: "Ride Safety in Delhi NCR — bogie",
+  title: "Ride Safety in Delhi NCR — Bogie",
   description:
-    "How bogie keeps cab, truck, and ambulance trips in Delhi NCR safe: emergency SOS, driver OTP verification, live tracking, verified documents, and trip sharing.",
+    "How Bogie keeps cab, truck, and ambulance trips in Delhi NCR safe: emergency SOS, driver OTP verification, live tracking, verified documents, and trip sharing.",
 };
 
 const emergencyNumbers = [
@@ -52,7 +52,7 @@ export default function SafetyPage() {
                 Your safety is our priority.
               </h1>
               <p className="mt-6 text-lg text-neutral-600">
-                Every cab, truck, and ambulance ride on bogie is backed by the same
+                Every cab, truck, and ambulance ride on Bogie is backed by the same
                 safety net — emergency help, verified drivers, and live visibility into
                 where you are, every time.
               </p>
@@ -74,7 +74,7 @@ export default function SafetyPage() {
                     active-ride tracking screen or from Help &amp; Safety in the app. It
                     gives you four immediate actions: call Police (112) or Ambulance
                     (108) directly, share your live location with a saved emergency
-                    contact or via any messaging app, or alert bogie support — which
+                    contact or via any messaging app, or alert Bogie support — which
                     instantly notifies our team with your location and ride details so
                     a real person follows up.
                   </p>
@@ -197,7 +197,7 @@ export default function SafetyPage() {
                 >
                   <span className="flex items-center gap-3 text-sm font-semibold text-neutral-900">
                     <Phone size={16} className="text-primary" />
-                    bogie Support
+                    Bogie Support
                   </span>
                   <span className="text-sm font-bold text-primary">
                     support@bogie.in

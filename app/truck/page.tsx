@@ -8,9 +8,9 @@ import { getServices } from "../lib/api";
 import { SITE_URL } from "../lib/serviceAreas";
 
 export const metadata: Metadata = {
-  title: "Truck Booking & Logistics in Delhi NCR — bogie",
+  title: "Truck Booking & Logistics in Delhi NCR — Bogie",
   description:
-    "Book a truck in Delhi NCR with bogie — mini trucks to containers for parcel delivery and logistics, within-city or outstation, with loading add-ons.",
+    "Book a truck in Delhi NCR with Bogie — mini trucks to containers for parcel delivery and logistics, within-city or outstation, with loading add-ons.",
 };
 
 const features = [
@@ -41,7 +41,7 @@ export default async function TruckPage() {
     "@context": "https://schema.org",
     "@type": "Service",
     serviceType: "Truck logistics booking",
-    name: "bogie Truck",
+    name: "Bogie Truck",
     provider: {
       "@type": "Organization",
       name: "Aggarwal Publicity and Marketing Pvt. Ltd.",
@@ -82,7 +82,7 @@ export default async function TruckPage() {
               </h1>
               <p className="mt-6 text-lg text-neutral-600">
                 From a mini truck for a parcel across town to an outstation
-                container, bogie moves your goods with upfront pricing and real
+                container, Bogie moves your goods with upfront pricing and real
                 delivery updates.
               </p>
             </AnimatedSection>

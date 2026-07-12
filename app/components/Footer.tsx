@@ -187,7 +187,7 @@ export default function Footer() {
                   <a
                     key={name}
                     href={href}
-                    aria-label={`Follow bogie on ${name}`}
+                    aria-label={`Follow Bogie on ${name}`}
                     className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-neutral-600 ring-1 ring-cream-line transition-colors hover:bg-primary hover:text-white hover:ring-primary"
                   >
                     <Icon className="h-4 w-4" />
@@ -215,7 +215,7 @@ export default function Footer() {
                 </div>
                 <a
                   href={DRIVER_APP_URL}
-                  aria-label="Scan the QR code to download the bogie app"
+                  aria-label="Scan the QR code to download the Bogie app"
                   className="ml-auto shrink-0 overflow-hidden rounded-lg ring-1 ring-cream-line"
                 >
                   <QrPlaceholder />

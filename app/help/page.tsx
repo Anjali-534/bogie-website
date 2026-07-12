@@ -7,7 +7,7 @@ import FaqAccordion from "./FaqAccordion";
 import { FAQ_DATA } from "./data";
 
 export const metadata: Metadata = {
-  title: "Help & FAQ — Cab, Truck & Ambulance Booking — bogie",
+  title: "Help & FAQ — Cab, Truck & Ambulance Booking — Bogie",
   description:
     "Answers to common questions about cab, truck, and ambulance booking in Delhi NCR — payments, cancellations, free vs. paid ambulances, and ride safety.",
 };
@@ -51,7 +51,7 @@ export default function HelpPage() {
               </h1>
               <p className="mt-6 text-lg text-neutral-600">
                 Everything you need to know about booking, payments, cancellations,
-                ambulances, and staying safe on bogie.
+                ambulances, and staying safe on Bogie.
               </p>
             </AnimatedSection>
           </div>

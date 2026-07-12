@@ -3,9 +3,9 @@ import AmbulanceBookingFlow from "./AmbulanceBookingFlow";
 import { getServices } from "../../lib/api";
 
 export const metadata: Metadata = {
-  title: "Book an Ambulance — bogie",
+  title: "Book an Ambulance — Bogie",
   description:
-    "Book a BLS/ALS ambulance or request a free NGO ambulance with zero platform commission on bogie.",
+    "Book a BLS/ALS ambulance or request a free NGO ambulance with zero platform commission on Bogie.",
   robots: { index: false, follow: false },
 };
 

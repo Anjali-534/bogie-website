@@ -97,7 +97,7 @@ const BOOKING_RULES = [
   "For dead body transfer, proper documentation may be required.",
   "Free ambulances are subject to government/NGO availability.",
   "In case of emergency, also call 108 (National Ambulance Service).",
-  "bogie charges ZERO commission on ambulance services.",
+  "Bogie charges ZERO commission on ambulance services.",
 ];
 
 function haversineKm(aLat: number, aLng: number, bLat: number, bLng: number) {
@@ -485,7 +485,7 @@ export default function AmbulanceBookingFlow({
                 <p className="font-bold text-neutral-900">Paid Ambulance</p>
                 <p className="text-xs text-neutral-500">
                   BLS/ALS transport from partner hospitals. Pay the hospital
-                  directly — bogie charges zero commission.
+                  directly — Bogie charges zero commission.
                 </p>
               </div>
               {isFree === false && (
@@ -1016,7 +1016,7 @@ export default function AmbulanceBookingFlow({
                 </div>
                 <p className="mt-4 rounded-xl bg-emerald-50 p-3 text-xs leading-relaxed text-emerald-800">
                   Payment is made directly to{" "}
-                  {selectedHospital?.name || "the ambulance provider"}. bogie
+                  {selectedHospital?.name || "the ambulance provider"}. Bogie
                   charges zero commission on ambulance services.
                 </p>
               </>

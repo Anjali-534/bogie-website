@@ -9,7 +9,7 @@ import { getServices } from "../lib/api";
 import { SITE_URL } from "../lib/serviceAreas";
 
 export const metadata: Metadata = {
-  title: "Ambulance Booking in Delhi NCR — 0% Commission — bogie",
+  title: "Ambulance Booking in Delhi NCR — 0% Commission — Bogie",
   description:
     "Book an emergency ambulance in Delhi NCR — free ambulance rides via registered NGOs, or paid BLS/ALS ambulances from partner hospitals. Zero commission, always.",
 };
@@ -22,7 +22,7 @@ export default async function AmbulancePage() {
     "@context": "https://schema.org",
     "@type": "Service",
     serviceType: "Ambulance booking",
-    name: "bogie Ambulance",
+    name: "Bogie Ambulance",
     provider: {
       "@type": "Organization",
       name: "Aggarwal Publicity and Marketing Pvt. Ltd.",
@@ -65,7 +65,7 @@ export default async function AmbulancePage() {
               </h1>
               <p className="mt-6 text-lg text-neutral-600">
                 Free ambulance rides via registered NGOs, or paid BLS/ALS transport
-                via partner hospitals across Delhi NCR — bogie never takes a cut of
+                via partner hospitals across Delhi NCR — Bogie never takes a cut of
                 either.
               </p>
             </AnimatedSection>
@@ -106,7 +106,7 @@ export default async function AmbulancePage() {
                 <p className="mt-3 text-sm text-neutral-600">
                   If no free ride is available, we connect you to BLS/ALS-equipped
                   ambulances dispatched directly by partner hospitals, billed by the
-                  hospital. Either way, bogie&apos;s cut is exactly zero rupees — we
+                  hospital. Either way, Bogie&apos;s cut is exactly zero rupees — we
                   don&apos;t add a platform fee or convenience charge to emergency
                   transport, ever.
                 </p>
@@ -161,7 +161,7 @@ export default async function AmbulancePage() {
                 Every crew is verified.
               </h2>
               <p className="mt-3 text-neutral-600">
-                Ambulance crews on bogie go through the same document verification
+                Ambulance crews on Bogie go through the same document verification
                 as every driver — plus EMT certification — before they&apos;re
                 allowed to take a booking.
               </p>

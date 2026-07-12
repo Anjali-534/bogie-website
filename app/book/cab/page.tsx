@@ -3,8 +3,8 @@ import CabBookingFlow from "./CabBookingFlow";
 import { getServices } from "../../lib/api";
 
 export const metadata: Metadata = {
-  title: "Book a Cab — bogie",
-  description: "Book a cab ride with real-time fare estimates on bogie.",
+  title: "Book a Cab — Bogie",
+  description: "Book a cab ride with real-time fare estimates on Bogie.",
   robots: { index: false, follow: false },
 };
 

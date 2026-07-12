@@ -5,9 +5,9 @@ import AnimatedSection from "../components/AnimatedSection";
 import Footer from "../components/Footer";
 
 export const metadata: Metadata = {
-  title: "Blog — bogie",
+  title: "Blog — Bogie",
   description:
-    "The bogie blog is coming soon — stories on rides, logistics, and moving Delhi NCR.",
+    "The Bogie blog is coming soon — stories on rides, logistics, and moving Delhi NCR.",
   robots: { index: false, follow: true },
 };
 
@@ -30,7 +30,7 @@ export default function BlogPage() {
                 Coming soon
               </span>
               <h1 className="mt-6 text-4xl sm:text-5xl font-extrabold tracking-tight text-neutral-900 leading-[1.05]">
-                We&apos;re working on the bogie blog.
+                We&apos;re working on the Bogie blog.
               </h1>
               <p className="mt-6 text-lg text-neutral-600">
                 Stories on rides, logistics, safety, and what it takes to move Delhi

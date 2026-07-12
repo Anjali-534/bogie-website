@@ -158,7 +158,7 @@ export default function Navbar() {
         <a href="/#home" className="flex items-center">
           <Image
             src="/logo-mark.png"
-            alt="bogie"
+            alt="Bogie"
             width={1075}
             height={408}
             priority

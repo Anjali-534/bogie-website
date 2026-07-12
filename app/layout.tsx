@@ -15,9 +15,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "bogie — Cab, Truck & Ambulance App in Delhi NCR",
+  title: "Bogie — Cab, Truck & Ambulance App in Delhi NCR",
   description:
-    "bogie is Delhi NCR's ride hailing and logistics app — book cabs, trucks, and zero-commission ambulances in one place, with live tracking and upfront fares.",
+    "Bogie is Delhi NCR's ride hailing and logistics app — book cabs, trucks, and zero-commission ambulances in one place, with live tracking and upfront fares.",
 };
 
 export default function RootLayout({

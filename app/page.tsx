@@ -11,7 +11,7 @@ import Footer from "./components/Footer";
 const orgJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "bogie",
+  name: "Bogie",
   legalName: "Aggarwal Publicity and Marketing Pvt. Ltd.",
   url: SITE_URL,
   description:

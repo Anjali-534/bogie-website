@@ -7,11 +7,11 @@ export const FAQ_DATA: FaqSection[] = [
     items: [
       {
         q: "How do I book a ride?",
-        a: "Open the bogie app, tap Cab, Truck, or Ambulance on the home screen, enter your pickup and drop location, select your vehicle type, and confirm. You'll see the fare upfront before you book.",
+        a: "Open the Bogie app, tap Cab, Truck, or Ambulance on the home screen, enter your pickup and drop location, select your vehicle type, and confirm. You'll see the fare upfront before you book.",
       },
       {
         q: "Can I schedule a ride in advance?",
-        a: "Right now bogie supports instant bookings only. Scheduled rides are coming soon.",
+        a: "Right now Bogie supports instant bookings only. Scheduled rides are coming soon.",
       },
       {
         q: "Why can't I find a driver?",
@@ -41,7 +41,7 @@ export const FAQ_DATA: FaqSection[] = [
     items: [
       {
         q: "What payment methods are accepted?",
-        a: "Cash, UPI (Google Pay, PhonePe, Paytm), credit/debit cards, and bogie Wallet.",
+        a: "Cash, UPI (Google Pay, PhonePe, Paytm), credit/debit cards, and Bogie Wallet.",
       },
       {
         q: "I was charged incorrectly. What do I do?",
@@ -54,11 +54,11 @@ export const FAQ_DATA: FaqSection[] = [
     items: [
       {
         q: "Is the free ambulance option really free?",
-        a: "Yes. Free ambulance rides are routed through our network of registered NGOs and sewa organisations, subject to availability — bogie never charges a fee on top. Response time isn't guaranteed the way a paid ride is, so for life-threatening emergencies, always call 108 (India's national emergency number) first, then use bogie for follow-up transport.",
+        a: "Yes. Free ambulance rides are routed through our network of registered NGOs and sewa organisations, subject to availability — Bogie never charges a fee on top. Response time isn't guaranteed the way a paid ride is, so for life-threatening emergencies, always call 108 (India's national emergency number) first, then use Bogie for follow-up transport.",
       },
       {
         q: "What's the difference between the free and paid options?",
-        a: "Free rides come from NGO and sewa organisation ambulances and depend on what's available nearby. Paid rides are dispatched directly by partner hospitals with BLS/ALS-equipped ambulances, billed by the hospital — bogie takes zero commission on either option.",
+        a: "Free rides come from NGO and sewa organisation ambulances and depend on what's available nearby. Paid rides are dispatched directly by partner hospitals with BLS/ALS-equipped ambulances, billed by the hospital — Bogie takes zero commission on either option.",
       },
       {
         q: "What's included in a paid BLS ambulance?",
@@ -70,7 +70,7 @@ export const FAQ_DATA: FaqSection[] = [
     section: "Driver verification",
     items: [
       {
-        q: "How are bogie drivers verified?",
+        q: "How are Bogie drivers verified?",
         a: "Every driver submits their license, vehicle registration, and identity documents when they sign up. Our team reviews and verifies each document before a driver is allowed to go online and accept rides.",
       },
       {
@@ -92,7 +92,7 @@ export const FAQ_DATA: FaqSection[] = [
       },
       {
         q: "What if something feels wrong during a ride?",
-        a: "Use the in-app SOS button to instantly alert bogie support with your live location. It works for both riders and drivers.",
+        a: "Use the in-app SOS button to instantly alert Bogie support with your live location. It works for both riders and drivers.",
       },
     ],
   },

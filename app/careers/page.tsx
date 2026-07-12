@@ -5,9 +5,9 @@ import AnimatedSection from "../components/AnimatedSection";
 import Footer from "../components/Footer";
 
 export const metadata: Metadata = {
-  title: "Careers — bogie",
+  title: "Careers — Bogie",
   description:
-    "Careers at bogie is coming soon. Want to be part of the story early? Get in touch.",
+    "Careers at Bogie is coming soon. Want to be part of the story early? Get in touch.",
   robots: { index: false, follow: true },
 };
 
@@ -33,9 +33,9 @@ export default function CareersPage() {
                 We&apos;re building our careers page.
               </h1>
               <p className="mt-6 text-lg text-neutral-600">
-                bogie is a small, fast-growing team based in Delhi NCR — and we&apos;re
+                Bogie is a small, fast-growing team based in Delhi NCR — and we&apos;re
                 not quite ready to list open roles yet. But if you want to be part of
-                the bogie story early, we&apos;d genuinely like to hear from you.
+                the Bogie story early, we&apos;d genuinely like to hear from you.
               </p>
 
               <div className="mt-9 flex flex-wrap items-center justify-center gap-4">

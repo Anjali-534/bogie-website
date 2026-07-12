@@ -14,7 +14,7 @@ export default function DriverCta() {
                   Become a driver
                 </p>
                 <h2 className="mt-3 text-3xl sm:text-4xl font-extrabold tracking-tight text-neutral-900">
-                  Drive with bogie. Earn on your terms.
+                  Drive with Bogie. Earn on your terms.
                 </h2>
                 <div className="mt-6 flex flex-wrap gap-6 text-sm text-neutral-600">
                   <span className="flex items-center gap-2">

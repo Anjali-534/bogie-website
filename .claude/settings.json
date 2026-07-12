@@ -196,7 +196,18 @@
       "PowerShell($dirs = @\\(\"$env:USERPROFILE\\\\Pictures\",\"$env:USERPROFILE\\\\Pictures\\\\Screenshots\",\"$env:USERPROFILE\\\\OneDrive\\\\Pictures\",\"$env:USERPROFILE\\\\OneDrive\\\\Pictures\\\\Screenshots\",\"$env:USERPROFILE\\\\Desktop\"\\); foreach \\($d in $dirs\\) { if \\(Test-Path $d\\) { Get-ChildItem $d -File -ErrorAction SilentlyContinue | Where-Object { $_.Extension -match \"jpe?g|png|webp\" -and $_.LastWriteTime -gt \\(Get-Date\\).AddDays\\(-2\\) } | Select-Object FullName,LastWriteTime } })",
       "Read(//c/Users/ADMIN/OneDrive/Pictures/Screenshots/**)",
       "Bash(sed -i \"s/localhost:3001/localhost:3002/g\" \"C:/Users/ADMIN/AppData/Local/Temp/claude/c--Users-ADMIN-OneDrive-Desktop-bogie/0aeb660c-4ecc-4eba-b1b4-fa370dc4f1c8/scratchpad/hero-shots.js\")",
-      "Bash(sed -i 's/waitUntil: \"load\"/waitUntil: \"domcontentloaded\"/g' \"C:/Users/ADMIN/AppData/Local/Temp/claude/c--Users-ADMIN-OneDrive-Desktop-bogie/0aeb660c-4ecc-4eba-b1b4-fa370dc4f1c8/scratchpad/hero-shots.js\")"
+      "Bash(sed -i 's/waitUntil: \"load\"/waitUntil: \"domcontentloaded\"/g' \"C:/Users/ADMIN/AppData/Local/Temp/claude/c--Users-ADMIN-OneDrive-Desktop-bogie/0aeb660c-4ecc-4eba-b1b4-fa370dc4f1c8/scratchpad/hero-shots.js\")",
+      "PowerShell(node \"C:\\\\Users\\\\ADMIN\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-ADMIN-OneDrive-Desktop-bogie\\\\0aeb660c-4ecc-4eba-b1b4-fa370dc4f1c8\\\\scratchpad\\\\rebrand.js\")",
+      "PowerShell(node \"C:\\\\Users\\\\ADMIN\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-ADMIN-OneDrive-Desktop-bogie\\\\0aeb660c-4ecc-4eba-b1b4-fa370dc4f1c8\\\\scratchpad\\\\make-ico.js\")",
+      "PowerShell(npx tsc --noEmit)",
+      "PowerShell(node \"C:\\\\Users\\\\ADMIN\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-ADMIN-OneDrive-Desktop-bogie\\\\0aeb660c-4ecc-4eba-b1b4-fa370dc4f1c8\\\\scratchpad\\\\favicon-check.js\")",
+      "PowerShell(node -e \"const { chromium } = require\\('c:/Users/ADMIN/OneDrive/Desktop/bogie/node_modules/playwright/index.js'\\); \\(async \\(\\) => { const b = await chromium.launch\\(\\); const p = await b.newPage\\({ viewport: { width: 300, height: 120 } }\\); await p.setContent\\('<body style=\\\\\"background:#f5f5f5)",
+      "PowerShell(display:flex)",
+      "PowerShell(gap:20px)",
+      "PowerShell(align-items:center)",
+      "PowerShell(padding:20px\\\\\"><img src=\\\\\"http://localhost:3000/favicon.ico\\\\\" width=16 height=16><img src=\\\\\"http://localhost:3000/favicon.ico\\\\\" width=32 height=32><img src=\\\\\"http://localhost:3000/icon.png\\\\\" width=64 height=64></body>'\\); await p.waitForTimeout\\(1500\\); await p.screenshot\\({ path: 'C:/Users/ADMIN/AppData/Local/Temp/claude/c--Users-ADMIN-OneDrive-Desktop-bogie/0aeb660c-4ecc-4eba-b1b4-fa370dc4f1c8/scratchpad/favicon-render.png' }\\); await b.close\\(\\); }\\)\\(\\)\")",
+      "PowerShell(node \"C:\\\\Users\\\\ADMIN\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-ADMIN-OneDrive-Desktop-bogie\\\\0aeb660c-4ecc-4eba-b1b4-fa370dc4f1c8\\\\scratchpad\\\\favicon-render.js\")",
+      "Bash(node \"C:/Users/ADMIN/AppData/Local/Temp/claude/c--Users-ADMIN-OneDrive-Desktop-bogie/0aeb660c-4ecc-4eba-b1b4-fa370dc4f1c8/scratchpad/hero-polish.js\")"
     ],
     "additionalDirectories": [
       "c:\\Users\\ADMIN\\OneDrive\\Desktop\\gogoo\\backend\\internal\\api\\handlers",

@@ -77,7 +77,7 @@ export default function ReferralHub() {
 
   async function shareCode() {
     if (!info) return;
-    const message = `Join me on bogie! Use my referral code ${info.referral_code} when signing up. ${info.share_link}`;
+    const message = `Join me on Bogie! Use my referral code ${info.referral_code} when signing up. ${info.share_link}`;
     if (typeof navigator !== "undefined" && "share" in navigator) {
       try {
         await navigator.share({ text: message, url: info.share_link });
@@ -105,7 +105,7 @@ export default function ReferralHub() {
           Log in to get your referral code
         </h2>
         <p className="mt-2 text-sm text-neutral-600">
-          Every bogie account gets its own code the moment you sign in.
+          Every Bogie account gets its own code the moment you sign in.
         </p>
         <Link
           href="/login?redirect=/refer"

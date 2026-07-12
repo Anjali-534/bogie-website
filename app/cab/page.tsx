@@ -8,9 +8,9 @@ import { getServices } from "../lib/api";
 import { SITE_URL } from "../lib/serviceAreas";
 
 export const metadata: Metadata = {
-  title: "Cab Booking in Delhi NCR — bogie",
+  title: "Cab Booking in Delhi NCR — Bogie",
   description:
-    "Book a cab online in Delhi NCR with bogie — bike, auto, mini, and SUV rides plus hourly rentals, with live tracking and upfront fares.",
+    "Book a cab online in Delhi NCR with Bogie — bike, auto, mini, and SUV rides plus hourly rentals, with live tracking and upfront fares.",
 };
 
 const features = [
@@ -39,7 +39,7 @@ export default async function CabPage() {
     "@context": "https://schema.org",
     "@type": "Service",
     serviceType: "Cab booking",
-    name: "bogie Cab",
+    name: "Bogie Cab",
     provider: {
       "@type": "Organization",
       name: "Aggarwal Publicity and Marketing Pvt. Ltd.",
@@ -79,7 +79,7 @@ export default async function CabPage() {
                 Wherever you&apos;re headed, <span className="text-primary">whenever</span> you need it.
               </h1>
               <p className="mt-6 text-lg text-neutral-600">
-                From a quick auto hop across town to an hourly SUV rental, bogie
+                From a quick auto hop across town to an hourly SUV rental, Bogie
                 gets you moving across Delhi NCR with upfront fares and live
                 tracking.
               </p>

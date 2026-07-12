@@ -25,13 +25,13 @@ export default function About() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="max-w-2xl">
           <p className="text-sm font-semibold uppercase tracking-wide text-primary">
-            About bogie
+            About Bogie
           </p>
           <h2 className="mt-3 text-3xl sm:text-4xl font-extrabold tracking-tight text-neutral-900">
             Delhi NCR&apos;s ride hailing &amp; logistics app, built to actually help.
           </h2>
           <p className="mt-5 text-lg text-neutral-600">
-            bogie is run by <strong>Aggarwal Publicity and Marketing Pvt.
+            Bogie is run by <strong>Aggarwal Publicity and Marketing Pvt.
             Ltd.</strong>, based in Delhi NCR. We bring cabs, truck logistics,
             and ambulance access together in one place — because switching
             between five apps for five different rides makes no sense.

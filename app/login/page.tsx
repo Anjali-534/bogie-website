@@ -3,8 +3,8 @@ import { Suspense } from "react";
 import LoginForm from "./LoginForm";
 
 export const metadata: Metadata = {
-  title: "Log In or Sign Up — bogie",
-  description: "Log in or create a bogie account to book cabs, trucks, and ambulances.",
+  title: "Log In or Sign Up — Bogie",
+  description: "Log in or create a Bogie account to book cabs, trucks, and ambulances.",
   robots: { index: false, follow: false },
 };
 

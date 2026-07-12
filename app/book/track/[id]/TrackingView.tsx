@@ -28,7 +28,7 @@ const STATUS_COPY: Record<string, { title: string; sub: string }> = {
   accepted: { title: "Driver assigned", sub: "Your driver is getting ready to head your way." },
   arriving: { title: "Driver arriving", sub: "Your driver is on the way to your pickup." },
   in_progress: { title: "On the way", sub: "Enjoy your ride!" },
-  completed: { title: "Ride completed", sub: "Thanks for riding with bogie." },
+  completed: { title: "Ride completed", sub: "Thanks for riding with Bogie." },
   cancelled: { title: "Ride cancelled", sub: "This ride was cancelled." },
   scheduled: { title: "Ride scheduled", sub: "We'll find your driver closer to pickup time." },
 };

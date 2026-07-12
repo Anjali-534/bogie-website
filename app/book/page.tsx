@@ -4,9 +4,9 @@ import { Car, Truck, Ambulance, ArrowRight, BadgeCheck, type LucideIcon } from "
 import Footer from "../components/Footer";
 
 export const metadata: Metadata = {
-  title: "Book a Ride — bogie",
+  title: "Book a Ride — Bogie",
   description:
-    "Book a cab, truck, or ambulance in your browser — live fares, live tracking, zero drama. bogie moves Delhi NCR.",
+    "Book a cab, truck, or ambulance in your browser — live fares, live tracking, zero drama. Bogie moves Delhi NCR.",
 };
 
 type BookOption = {

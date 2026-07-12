@@ -6,9 +6,9 @@ import { getServices } from "../lib/api";
 import { SITE_URL } from "../lib/serviceAreas";
 
 export const metadata: Metadata = {
-  title: "Fare Estimator — bogie",
+  title: "Fare Estimator — Bogie",
   description:
-    "Estimate your bogie cab fare in Delhi NCR — enter your pickup and drop location and compare base pricing across 2 wheeler, auto, car, and SUV.",
+    "Estimate your Bogie cab fare in Delhi NCR — enter your pickup and drop location and compare base pricing across 2 wheeler, auto, car, and SUV.",
 };
 
 export default async function FareEstimatorPage() {
@@ -18,7 +18,7 @@ export default async function FareEstimatorPage() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    name: "bogie Fare Estimator",
+    name: "Bogie Fare Estimator",
     url: `${SITE_URL}/fare-estimator`,
     description: metadata.description,
   };
@@ -46,7 +46,7 @@ export default async function FareEstimatorPage() {
               </h1>
               <p className="mt-6 text-lg text-neutral-600">
                 Enter your pickup and drop to compare cab pricing across every vehicle
-                type bogie offers in Delhi NCR.
+                type Bogie offers in Delhi NCR.
               </p>
             </AnimatedSection>
           </div>
