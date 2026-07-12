@@ -13,9 +13,9 @@ import AnimatedSection from "../components/AnimatedSection";
 import Footer from "../components/Footer";
 
 export const metadata: Metadata = {
-  title: "Safety — bogie",
+  title: "Ride Safety in Delhi NCR — bogie",
   description:
-    "How bogie keeps every ride and ambulance trip safe: emergency SOS, driver OTP verification, live tracking, verified driver documents, and trip sharing.",
+    "How bogie keeps cab, truck, and ambulance trips in Delhi NCR safe: emergency SOS, driver OTP verification, live tracking, verified documents, and trip sharing.",
 };
 
 const emergencyNumbers = [

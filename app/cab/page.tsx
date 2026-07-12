@@ -10,7 +10,7 @@ import { SITE_URL } from "../lib/serviceAreas";
 export const metadata: Metadata = {
   title: "Cab Booking in Delhi NCR — bogie",
   description:
-    "Book a cab in Delhi NCR with bogie — 2 wheeler, auto, mini, and SUV options with live tracking and upfront fares.",
+    "Book a cab online in Delhi NCR with bogie — bike, auto, mini, and SUV rides plus hourly rentals, with live tracking and upfront fares.",
 };
 
 const features = [
@@ -79,8 +79,9 @@ export default async function CabPage() {
                 Wherever you&apos;re headed, <span className="text-primary">whenever</span> you need it.
               </h1>
               <p className="mt-6 text-lg text-neutral-600">
-                From a quick hop across town to an hourly rental, bogie gets you
-                moving across Delhi NCR with upfront fares and live tracking.
+                From a quick auto hop across town to an hourly SUV rental, bogie
+                gets you moving across Delhi NCR with upfront fares and live
+                tracking.
               </p>
             </AnimatedSection>
           </div>

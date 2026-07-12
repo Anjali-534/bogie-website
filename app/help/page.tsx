@@ -7,9 +7,9 @@ import FaqAccordion from "./FaqAccordion";
 import { FAQ_DATA } from "./data";
 
 export const metadata: Metadata = {
-  title: "Help & FAQ — bogie",
+  title: "Help & FAQ — Cab, Truck & Ambulance Booking — bogie",
   description:
-    "Answers to common bogie questions: booking, cancellations, payments, the free vs. paid ambulance option, driver verification, and safety features.",
+    "Answers to common questions about cab, truck, and ambulance booking in Delhi NCR — payments, cancellations, free vs. paid ambulances, and ride safety.",
 };
 
 const faqJsonLd = {

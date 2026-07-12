@@ -9,9 +9,9 @@ import { getServices } from "../lib/api";
 import { SITE_URL } from "../lib/serviceAreas";
 
 export const metadata: Metadata = {
-  title: "Ambulance Booking — Zero-Commission — bogie",
+  title: "Ambulance Booking in Delhi NCR — 0% Commission — bogie",
   description:
-    "Book an ambulance in Delhi NCR through bogie — free rides via registered NGOs, or paid BLS/ALS via partner hospitals. Zero commission, always.",
+    "Book an emergency ambulance in Delhi NCR — free ambulance rides via registered NGOs, or paid BLS/ALS ambulances from partner hospitals. Zero commission, always.",
 };
 
 export default async function AmbulancePage() {
@@ -65,7 +65,8 @@ export default async function AmbulancePage() {
               </h1>
               <p className="mt-6 text-lg text-neutral-600">
                 Free ambulance rides via registered NGOs, or paid BLS/ALS transport
-                via partner hospitals — bogie never takes a cut of either.
+                via partner hospitals across Delhi NCR — bogie never takes a cut of
+                either.
               </p>
             </AnimatedSection>
 
@@ -175,9 +176,9 @@ export default async function AmbulancePage() {
                 Need an ambulance?
               </h2>
               <p className="mt-3 text-neutral-600">
-                Request a BLS/ALS ambulance or a free NGO ambulance right here in
-                your browser. For life-threatening emergencies, always call 108
-                first.
+                Request an emergency BLS/ALS ambulance or a free NGO ambulance
+                right here in your browser. For life-threatening emergencies,
+                always call 108 first.
               </p>
               <Link
                 href="/book/ambulance"

@@ -15,9 +15,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "bogie — Cab, Truck & Ambulance. One App.",
+  title: "bogie — Cab, Truck & Ambulance App in Delhi NCR",
   description:
-    "bogie is Delhi NCR's all-in-one ride and logistics app — book cabs, trucks, and ambulances (zero-commission) in one place. By Aggarwal Publicity and Marketing Pvt. Ltd.",
+    "bogie is Delhi NCR's ride hailing and logistics app — book cabs, trucks, and zero-commission ambulances in one place, with live tracking and upfront fares.",
 };
 
 export default function RootLayout({

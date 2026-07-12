@@ -7,7 +7,7 @@ import ReferralHub from "./ReferralHub";
 export const metadata: Metadata = {
   title: "Refer & Earn — bogie",
   description:
-    "Invite friends to bogie and earn ₹50 when they take their first ride — plus ₹25 more when they refer someone too.",
+    "Invite friends to bogie, Delhi NCR's cab, truck & ambulance app — earn ₹50 when they take their first ride, plus ₹25 more when they refer someone too.",
 };
 
 const steps = [

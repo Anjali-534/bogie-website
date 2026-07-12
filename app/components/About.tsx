@@ -28,7 +28,7 @@ export default function About() {
             About bogie
           </p>
           <h2 className="mt-3 text-3xl sm:text-4xl font-extrabold tracking-tight text-neutral-900">
-            Delhi NCR&apos;s ride &amp; logistics app, built to actually help.
+            Delhi NCR&apos;s ride hailing &amp; logistics app, built to actually help.
           </h2>
           <p className="mt-5 text-lg text-neutral-600">
             bogie is run by <strong>Aggarwal Publicity and Marketing Pvt.

@@ -188,7 +188,9 @@
       "Bash(timeout 90 bash -c 'until curl -sf -o /dev/null http://localhost:3000; do sleep 3; done')",
       "Bash(curl -s -o /dev/null -w \"track page \\(unauth, should still 200 shell\\): %{http_code}\\\\n\" --max-time 60 http://localhost:3000/book/track/test-id)",
       "Bash(node \"C:/Users/ADMIN/AppData/Local/Temp/claude/c--Users-ADMIN-OneDrive-Desktop-bogie/0aeb660c-4ecc-4eba-b1b4-fa370dc4f1c8/scratchpad/verify-tracking.js\")",
-      "Bash(SP=\"/c/Users/ADMIN/AppData/Local/Temp/claude/c--Users-ADMIN-OneDrive-Desktop-bogie/0aeb660c-4ecc-4eba-b1b4-fa370dc4f1c8/scratchpad\"; rm -f \"$SP/rider-token.txt\" \"$SP/debug-login.js\"; echo cleaned)"
+      "Bash(SP=\"/c/Users/ADMIN/AppData/Local/Temp/claude/c--Users-ADMIN-OneDrive-Desktop-bogie/0aeb660c-4ecc-4eba-b1b4-fa370dc4f1c8/scratchpad\"; rm -f \"$SP/rider-token.txt\" \"$SP/debug-login.js\"; echo cleaned)",
+      "Bash(node -e \"console.log\\(require\\('c:/Users/ADMIN/OneDrive/Desktop/bogie/node_modules/next/package.json'\\).version\\)\")",
+      "Bash(echo \"tsc exit: $?\")"
     ],
     "additionalDirectories": [
       "c:\\Users\\ADMIN\\OneDrive\\Desktop\\gogoo\\backend\\internal\\api\\handlers",

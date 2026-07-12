@@ -8,9 +8,9 @@ import { getServices } from "../lib/api";
 import { SITE_URL } from "../lib/serviceAreas";
 
 export const metadata: Metadata = {
-  title: "Truck & Logistics Booking — bogie",
+  title: "Truck Booking & Logistics in Delhi NCR — bogie",
   description:
-    "Book a truck for within-city or outstation logistics with bogie — mini trucks to containers, with loading add-ons and delivery updates.",
+    "Book a truck in Delhi NCR with bogie — mini trucks to containers for parcel delivery and logistics, within-city or outstation, with loading add-ons.",
 };
 
 const features = [
@@ -81,8 +81,9 @@ export default async function TruckPage() {
                 Logistics that keep your <span className="text-primary">business</span> moving.
               </h1>
               <p className="mt-6 text-lg text-neutral-600">
-                From a mini truck across town to an outstation container, bogie
-                moves your goods with upfront pricing and real delivery updates.
+                From a mini truck for a parcel across town to an outstation
+                container, bogie moves your goods with upfront pricing and real
+                delivery updates.
               </p>
             </AnimatedSection>
           </div>
