@@ -311,6 +311,8 @@ export default function TruckBookingFlow({ services }: { services: ServiceType[]
         source: "website",
         receiver_name: receiverName.trim(),
         receiver_phone: receiverPhone,
+        loading_addon: loadingService,
+        unloading_addon: unloadingService,
       });
 
       router.push(`/book/track/${res.booking_id}`);

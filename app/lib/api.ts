@@ -250,6 +250,9 @@ export type CreateBookingFields = {
   contact_phone?: string | null;
   medical_notes?: string | null;
   promo_code?: string | null;
+  // Truck addons
+  loading_addon?: boolean;
+  unloading_addon?: boolean;
 };
 
 export type CreateBookingResponse = {

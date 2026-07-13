@@ -207,7 +207,21 @@
       "PowerShell(align-items:center)",
       "PowerShell(padding:20px\\\\\"><img src=\\\\\"http://localhost:3000/favicon.ico\\\\\" width=16 height=16><img src=\\\\\"http://localhost:3000/favicon.ico\\\\\" width=32 height=32><img src=\\\\\"http://localhost:3000/icon.png\\\\\" width=64 height=64></body>'\\); await p.waitForTimeout\\(1500\\); await p.screenshot\\({ path: 'C:/Users/ADMIN/AppData/Local/Temp/claude/c--Users-ADMIN-OneDrive-Desktop-bogie/0aeb660c-4ecc-4eba-b1b4-fa370dc4f1c8/scratchpad/favicon-render.png' }\\); await b.close\\(\\); }\\)\\(\\)\")",
       "PowerShell(node \"C:\\\\Users\\\\ADMIN\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-ADMIN-OneDrive-Desktop-bogie\\\\0aeb660c-4ecc-4eba-b1b4-fa370dc4f1c8\\\\scratchpad\\\\favicon-render.js\")",
-      "Bash(node \"C:/Users/ADMIN/AppData/Local/Temp/claude/c--Users-ADMIN-OneDrive-Desktop-bogie/0aeb660c-4ecc-4eba-b1b4-fa370dc4f1c8/scratchpad/hero-polish.js\")"
+      "Bash(node \"C:/Users/ADMIN/AppData/Local/Temp/claude/c--Users-ADMIN-OneDrive-Desktop-bogie/0aeb660c-4ecc-4eba-b1b4-fa370dc4f1c8/scratchpad/hero-polish.js\")",
+      "Bash(ls \"c:/Users/ADMIN/OneDrive/Desktop/\" && ls \"c:/Users/ADMIN/OneDrive/Desktop/bogie\")",
+      "Bash(cd \"c:/Users/ADMIN/OneDrive/Desktop/bogie\" && ls -a && cat .gitignore 2>/dev/null; echo \"---GOGOO---\"; ls -a \"c:/Users/ADMIN/OneDrive/Desktop/gogoo\")",
+      "Read(//c/Users/ADMIN/OneDrive/Desktop/gogoo/backend/internal/services//**)",
+      "Read(//c/Users/ADMIN/OneDrive/Desktop/gogoo/backend/internal//**)",
+      "Bash(cd \"/c/Users/ADMIN/OneDrive/Desktop/gogoo\" && grep -rnil \"gemini\" --include=\"*.ts\" --include=\"*.tsx\" --include=\"*.js\" --include=\"*.go\" . 2>/dev/null | grep -v node_modules | head)",
+      "Read(//c/Users/ADMIN/OneDrive/Desktop/gogoo/backend/internal/api//**)",
+      "Bash(cd \"/c/Users/ADMIN/OneDrive/Desktop/gogoo\" && grep -n \"firebase\" user-app/package.json driver-app/package.json; echo ===DEL===; grep -rn \"DELETE FROM users\\\\|DELETE FROM riders\\\\|DELETE FROM drivers\\\\|DeleteAccount\\\\|delete-account\\\\|deleteAccount\" backend/internal backend/cmd 2>/dev/null; echo ===MAIL===; ls backend/internal/mail)",
+      "Read(//c/Users/ADMIN/OneDrive/Desktop/gogoo/backend/internal/mail/**)",
+      "Bash(cd \"/c/Users/ADMIN/OneDrive/Desktop/gogoo/backend\" && echo ===PASSWORD-HASHING===; grep -rn \"GenerateFromPassword\\\\|CompareHashAndPassword\" internal --include=\"*.go\" | sed 's/:.*bcrypt/: bcrypt/' ; echo; echo ===PASSWORD-IN-LOGS-OR-RESPONSES===; grep -rn \"req.Password\\\\|password_hash\\\\|Password:\" internal --include=\"*.go\" | grep -iv \"bcrypt\\\\|Scan\\\\|SELECT\\\\|INSERT\\\\|UPDATE\\\\|binding\\\\|json:\\\\|var \\\\|passwordHash string\" | head -20)",
+      "Read(//c/Users/ADMIN/OneDrive/Desktop/gogoo/backend/internal/api/middleware/**)",
+      "Bash(cd \"/c/Users/ADMIN/OneDrive/Desktop/gogoo/backend\" && go build ./... && go vet ./... && echo \"BUILD+VET OK\")",
+      "Read(//c/Users/ADMIN/OneDrive/Desktop/gogoo/backend/internal/auth/**)",
+      "Bash(cd \"/c/Users/ADMIN/OneDrive/Desktop/gogoo/backend\" && go build ./... && go vet ./... && echo BUILD+VET-OK)",
+      "Bash(echo \"EXIT=$?\")"
     ],
     "additionalDirectories": [
       "c:\\Users\\ADMIN\\OneDrive\\Desktop\\gogoo\\backend\\internal\\api\\handlers",
@@ -218,7 +232,10 @@
       "C:\\Users\\ADMIN\\OneDrive\\Desktop\\gogoo\\support-panel\\app\\support\\notifications",
       "C:\\Users\\ADMIN\\OneDrive\\Desktop\\gogoo\\backend\\internal\\api\\handlers",
       "C:\\Users\\ADMIN\\OneDrive\\Desktop\\gogoo\\backend\\internal\\api",
-      "C:\\Users\\ADMIN\\AppData\\Local\\Temp\\claude\\c--Users-ADMIN-OneDrive-Desktop-bogie\\0aeb660c-4ecc-4eba-b1b4-fa370dc4f1c8\\scratchpad"
+      "C:\\Users\\ADMIN\\AppData\\Local\\Temp\\claude\\c--Users-ADMIN-OneDrive-Desktop-bogie\\0aeb660c-4ecc-4eba-b1b4-fa370dc4f1c8\\scratchpad",
+      "c:\\Users\\ADMIN\\OneDrive\\Desktop\\gogoo\\backend\\cmd\\server",
+      "c:\\Users\\ADMIN\\OneDrive\\Desktop\\gogoo\\user-app\\app\\(app)\\cab",
+      "c:\\Users\\ADMIN\\OneDrive\\Desktop\\gogoo\\user-app\\app\\(app)\\truck"
     ]
   }
 }
