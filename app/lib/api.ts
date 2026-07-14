@@ -314,6 +314,44 @@ export type BookingDetails = {
   patient_name: string | null;
 };
 
+export type RideMessage = {
+  id: string;
+  sender_type: "rider" | "driver";
+  message: string;
+  is_read: boolean;
+  created_at: string;
+};
+
+export async function getRideMessages(
+  token: string,
+  bookingId: string
+): Promise<RideMessage[]> {
+  const res = await fetch(`${API_BASE}/gogoo/bookings/${bookingId}/messages`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  const body = await parseJsonSafe(res);
+  if (!res.ok) {
+    throw new Error((body?.error as string) || "Couldn't load messages.");
+  }
+  return (body?.messages as RideMessage[]) || [];
+}
+
+export async function sendRideMessage(
+  token: string,
+  bookingId: string,
+  message: string
+): Promise<void> {
+  const res = await fetch(`${API_BASE}/gogoo/bookings/${bookingId}/messages`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+    body: JSON.stringify({ message }),
+  });
+  const body = await parseJsonSafe(res);
+  if (!res.ok) {
+    throw new Error((body?.error as string) || "Failed to send message.");
+  }
+}
+
 export async function getBooking(token: string, id: string): Promise<BookingDetails> {
   const res = await fetch(`${API_BASE}/gogoo/bookings/${id}`, {
     headers: { Authorization: `Bearer ${token}` },

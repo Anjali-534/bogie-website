@@ -12,16 +12,21 @@ import {
   CheckCircle2,
   XCircle,
   Search,
+  MessageCircle,
 } from "lucide-react";
 import { useAuth } from "../../../lib/AuthContext";
 import { getBooking, type BookingDetails } from "../../../lib/api";
 import { olaDirections, decodePolyline } from "../../../lib/olaMaps";
+import RideChat from "./RideChat";
 
 // maplibre-gl touches window at init — keep it out of the server render.
 const TrackingMap = dynamic(() => import("./TrackingMap"), { ssr: false });
 
 const POLL_MS = 4000;
 const TERMINAL_STATUSES = ["completed", "cancelled"];
+// Matches the backend's rideChatActiveStatuses and the mobile app's
+// ACTIVE_STATUSES — chat only exists while a driver is actually en route.
+const CHAT_ACTIVE_STATUSES = ["accepted", "arriving", "in_progress"];
 
 const STATUS_COPY: Record<string, { title: string; sub: string }> = {
   searching: { title: "Finding your driver", sub: "Matching you with a nearby driver…" },
@@ -95,6 +100,7 @@ export default function TrackingView({ bookingId }: { bookingId: string }) {
   const [routeDurText, setRouteDurText] = useState("");
   const pollRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const lastRouteKeyRef = useRef("");
+  const [chatOpen, setChatOpen] = useState(false);
 
   useEffect(() => {
     if (!authLoading && !user) {
@@ -205,6 +211,7 @@ export default function TrackingView({ bookingId }: { bookingId: string }) {
   const displayFare = Math.round(booking.final_fare ?? booking.estimated_fare ?? 0);
   const showOtp = booking.status === "arriving" && booking.ride_otp;
   const isTerminal = TERMINAL_STATUSES.includes(booking.status);
+  const chatEnabled = Boolean(booking.driver) && CHAT_ACTIVE_STATUSES.includes(booking.status);
 
   const beforePickup = BEFORE_PICKUP_STATUSES.includes(booking.status);
   const driverPos =
@@ -306,6 +313,22 @@ export default function TrackingView({ bookingId }: { bookingId: string }) {
                 ) : null}
               </p>
             </div>
+            {chatEnabled && (
+              <button
+                type="button"
+                onClick={() => setChatOpen((v) => !v)}
+                aria-pressed={chatOpen}
+                aria-label={chatOpen ? "Hide chat with driver" : "Chat with driver"}
+                className="relative inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-sky-500 text-white transition-colors hover:bg-sky-600"
+              >
+                <MessageCircle size={17} />
+                {!chatOpen && booking.unread_message_count > 0 && (
+                  <span className="absolute -right-1 -top-1 flex h-[18px] min-w-[18px] items-center justify-center rounded-full border-2 border-white bg-red-500 px-1 text-[10px] font-bold leading-none text-white">
+                    {booking.unread_message_count > 9 ? "9+" : booking.unread_message_count}
+                  </span>
+                )}
+              </button>
+            )}
             {booking.driver.phone && !isTerminal && (
               <a
                 href={`tel:${booking.driver.phone}`}
@@ -317,6 +340,8 @@ export default function TrackingView({ bookingId }: { bookingId: string }) {
             )}
           </div>
         )}
+
+        {chatEnabled && chatOpen && <RideChat bookingId={bookingId} />}
 
         {showOtp && (
           <div className="mt-5 rounded-2xl border-2 border-primary p-4 text-center">
