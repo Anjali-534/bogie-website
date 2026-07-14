@@ -95,7 +95,7 @@ const SUB_TYPES: {
 const BOOKING_RULES = [
   "Ambulance will arrive within 15–30 minutes depending on traffic.",
   "For dead body transfer, proper documentation may be required.",
-  "Free ambulances are subject to government/NGO availability.",
+  "Free/NGO ambulance requests are confirmed by our team by phone — the standard fare shown applies until then.",
   "In case of emergency, also call 108 (National Ambulance Service).",
   "Bogie charges ZERO commission on ambulance services.",
 ];
@@ -364,8 +364,11 @@ export default function AmbulanceBookingFlow({
   const baseFare = service?.base_fare || 0;
   const perKm = service?.per_km_rate || 0;
   const distCharge = Math.round(distanceKm * perKm);
-  const paidFare = Math.round(baseFare + distCharge);
-  const totalFare = isFree ? 0 : paidFare;
+  // Every ambulance booking is created as a normal paid booking — a "Free"
+  // request doesn't zero the fare client-side. Our team confirms NGO/
+  // government coverage after booking and waives the fare on the backend
+  // if eligible; the rider sees and is charged the real fare until then.
+  const totalFare = Math.round(baseFare + distCharge);
 
   const purposeValid = purpose !== "" && (!needsSubType || subType !== "");
   const patientValid = patientName.trim().length > 0 && contactPhone.length === 10;
@@ -399,6 +402,17 @@ export default function AmbulanceBookingFlow({
         return;
       }
 
+      // The backend always creates ambulance bookings as paid and ignores
+      // any client-sent free/NGO flag (see waive-ambulance-fare). We fold the
+      // rider's free/NGO request into medical_notes — the one free-text field
+      // that reaches staff — so it isn't silently lost.
+      const notes = [
+        isFree ? "Requested: Free/NGO ambulance (pending team confirmation)" : null,
+        medNotes.trim() || null,
+      ]
+        .filter(Boolean)
+        .join(" — ");
+
       const res = await createBooking(token, {
         rider_id: riderId,
         service_type_id: service.id,
@@ -414,11 +428,10 @@ export default function AmbulanceBookingFlow({
         hospital_id: selectedHospital?.id || null,
         hospital_name: selectedHospital?.name || null,
         ambulance_sub_type: subType || null,
-        is_free_ambulance: !!isFree,
         purpose_type: purpose,
         patient_name: patientName.trim(),
         contact_phone: contactPhone,
-        medical_notes: medNotes.trim() || null,
+        medical_notes: notes || null,
         promo_code: null,
       });
 
@@ -509,12 +522,13 @@ export default function AmbulanceBookingFlow({
                 <p className="font-bold text-neutral-900">
                   Free Ambulance{" "}
                   <span className="ml-1 rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-emerald-700">
-                    ₹0
+                    NGO Request
                   </span>
                 </p>
                 <p className="text-xs text-neutral-500">
-                  Via registered NGOs and government resources, subject to
-                  availability. No charges at all.
+                  Request coverage via registered NGOs or government
+                  resources. Subject to confirmation by our team — you&apos;ll
+                  see the standard fare until it&apos;s approved.
                 </p>
               </div>
               {isFree === true && (
@@ -525,8 +539,10 @@ export default function AmbulanceBookingFlow({
 
           {isFree === true && (
             <p className="mt-4 rounded-2xl bg-amber-50 p-3.5 text-xs leading-relaxed text-amber-700">
-              Free ambulance availability depends on government/NGO resources in
-              your area. For life-threatening emergencies, always call{" "}
+              This is a request, not a guarantee. You&apos;ll see and be
+              charged the standard fare unless our team confirms NGO/
+              government coverage and waives it — we&apos;ll call you to
+              confirm. For life-threatening emergencies, always call{" "}
               <a href="tel:108" className="font-bold underline">
                 108
               </a>{" "}
@@ -912,8 +928,10 @@ export default function AmbulanceBookingFlow({
 
           {isFree && (
             <div className="mb-4 rounded-2xl border border-amber-200 bg-amber-50 p-4 text-xs leading-relaxed text-amber-700">
-              Free ambulance availability depends on government/NGO resources in
-              your area.
+              You&apos;ve requested a free/NGO ambulance. This isn&apos;t
+              guaranteed yet — the fare below applies unless our team
+              confirms NGO/government coverage and waives it. We&apos;ll call
+              you to confirm.
             </div>
           )}
 
@@ -942,7 +960,11 @@ export default function AmbulanceBookingFlow({
             </p>
             <SummaryRow
               label="Type"
-              value={isFree ? "Free Ambulance (NGO Assigned)" : "Paid Ambulance"}
+              value={
+                isFree
+                  ? "Free Ambulance (Requested — pending confirmation)"
+                  : "Paid Ambulance"
+              }
             />
             <SummaryRow label="Purpose" value={PURPOSE_LABELS[purpose] || ""} />
             {subType && (
@@ -971,22 +993,6 @@ export default function AmbulanceBookingFlow({
                 <Loader2 size={15} className="animate-spin" />
                 Calculating fare…
               </div>
-            ) : isFree ? (
-              <>
-                <div className="flex items-center justify-between py-1.5 text-sm">
-                  <span className="text-neutral-600">Service charge</span>
-                  <span className="font-semibold text-neutral-900">₹0</span>
-                </div>
-                <div className="flex items-center justify-between py-1.5 text-sm">
-                  <span className="text-neutral-600">Government/NGO</span>
-                  <span className="font-semibold text-emerald-600">Covered</span>
-                </div>
-                <div className="my-4 h-px bg-neutral-100" />
-                <div className="flex items-center justify-between">
-                  <span className="text-base font-extrabold text-neutral-900">Total</span>
-                  <span className="text-2xl font-extrabold text-emerald-600">FREE</span>
-                </div>
-              </>
             ) : (
               <>
                 <div className="flex items-center justify-between py-1.5 text-sm">
@@ -1014,11 +1020,19 @@ export default function AmbulanceBookingFlow({
                   <span className="text-base font-extrabold text-neutral-900">Total</span>
                   <span className="text-2xl font-extrabold text-primary">~₹{totalFare}</span>
                 </div>
-                <p className="mt-4 rounded-xl bg-emerald-50 p-3 text-xs leading-relaxed text-emerald-800">
-                  Payment is made directly to{" "}
-                  {selectedHospital?.name || "the ambulance provider"}. Bogie
-                  charges zero commission on ambulance services.
-                </p>
+                {isFree ? (
+                  <p className="mt-4 rounded-xl bg-emerald-50 p-3 text-xs leading-relaxed text-emerald-800">
+                    If our team confirms NGO/government coverage, this fare
+                    will be waived and you&apos;ll be notified — no action
+                    needed from you. Until then, the fare above applies.
+                  </p>
+                ) : (
+                  <p className="mt-4 rounded-xl bg-emerald-50 p-3 text-xs leading-relaxed text-emerald-800">
+                    Payment is made directly to{" "}
+                    {selectedHospital?.name || "the ambulance provider"}. Bogie
+                    charges zero commission on ambulance services.
+                  </p>
+                )}
               </>
             )}
 
@@ -1066,7 +1080,7 @@ export default function AmbulanceBookingFlow({
                 <Loader2 size={16} className="animate-spin" />
               </>
             ) : isFree ? (
-              <>Request Free Ambulance</>
+              <>Request Free Ambulance · ~₹{totalFare}</>
             ) : isEmergency ? (
               <>EMERGENCY REQUEST · ~₹{totalFare}</>
             ) : (

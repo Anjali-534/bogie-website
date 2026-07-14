@@ -221,7 +221,8 @@
       "Bash(cd \"/c/Users/ADMIN/OneDrive/Desktop/gogoo/backend\" && go build ./... && go vet ./... && echo \"BUILD+VET OK\")",
       "Read(//c/Users/ADMIN/OneDrive/Desktop/gogoo/backend/internal/auth/**)",
       "Bash(cd \"/c/Users/ADMIN/OneDrive/Desktop/gogoo/backend\" && go build ./... && go vet ./... && echo BUILD+VET-OK)",
-      "Bash(echo \"EXIT=$?\")"
+      "Bash(echo \"EXIT=$?\")",
+      "Bash(ls \"C:\\\\Users\\\\ADMIN\\\\.claude\\\\projects\\\\c--Users-ADMIN-OneDrive-Desktop-bogie\\\\memory\\\\\")"
     ],
     "additionalDirectories": [
       "c:\\Users\\ADMIN\\OneDrive\\Desktop\\gogoo\\backend\\internal\\api\\handlers",

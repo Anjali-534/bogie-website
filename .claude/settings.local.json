@@ -99,7 +99,13 @@
       "Bash(curl -s -o /tmp/claude/about.html -w \"HTTP %{http_code}\\\\n\" http://localhost:3000/about --max-time 60)",
       "Bash(node test-about.js)",
       "Bash(rm -f test-about.js shot-about-*.png)",
-      "Bash(taskkill //F //PID 15040)"
+      "Bash(taskkill //F //PID 15040)",
+      "Bash(cd \"/c/Users/ADMIN/OneDrive/Desktop/gogoo/backend\" && go build ./... 2>&1)",
+      "Bash(echo \"BUILD_EXIT=$?\")",
+      "Bash(echo \"VET_EXIT=$?\")"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\ADMIN\\OneDrive\\Desktop\\gogoo\\backend\\internal\\api"
     ]
   }
 }

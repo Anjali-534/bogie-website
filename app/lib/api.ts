@@ -244,7 +244,6 @@ export type CreateBookingFields = {
   hospital_id?: string | null;
   hospital_name?: string | null;
   ambulance_sub_type?: string | null;
-  is_free_ambulance?: boolean;
   purpose_type?: string | null;
   patient_name?: string | null;
   contact_phone?: string | null;
