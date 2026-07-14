@@ -1,9 +1,10 @@
 import { Smartphone, Star, X } from "lucide-react";
 import { serviceAreas } from "../lib/serviceAreas";
+import { PRIVACY_POLICY_URL, TERMS_URL } from "../lib/policies";
+import CookieSettingsLink from "./CookieSettingsLink";
 
 const DRIVER_APP_URL =
   "https://gogobackend-production.up.railway.app/driver-app";
-const POLICIES_BASE = "https://gogobackend-production.up.railway.app/policies";
 
 function InstagramIcon({ className }: { className?: string }) {
   return (
@@ -156,8 +157,8 @@ const supportLinks = [
   { label: "Contact Us", href: "/#contact" },
   { label: "Help / FAQ", href: "/help" },
   { label: "Safety", href: "/safety" },
-  { label: "Privacy Policy", href: `${POLICIES_BASE}/privacy-policy.pdf` },
-  { label: "Terms of Service", href: `${POLICIES_BASE}/terms-and-conditions.pdf` },
+  { label: "Privacy Policy", href: PRIVACY_POLICY_URL },
+  { label: "Terms of Service", href: TERMS_URL },
   { label: "Zero Tolerance Policy", href: "#" },
 ];
 
@@ -279,6 +280,9 @@ export default function Footer() {
                     </a>
                   </li>
                 ))}
+                <li>
+                  <CookieSettingsLink />
+                </li>
               </ul>
             </nav>
 
