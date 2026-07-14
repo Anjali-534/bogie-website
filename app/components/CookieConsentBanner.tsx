@@ -25,6 +25,13 @@ export default function CookieConsentBanner() {
             location search and live tracking — required for booking and not
             optional.{" "}
             <a
+              href="/cookies"
+              className="font-semibold text-primary underline underline-offset-2 hover:text-primary-dark"
+            >
+              Cookie Policy
+            </a>{" "}
+            &middot;{" "}
+            <a
               href={PRIVACY_POLICY_URL}
               target="_blank"
               rel="noopener noreferrer"

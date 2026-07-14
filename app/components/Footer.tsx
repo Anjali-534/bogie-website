@@ -158,6 +158,7 @@ const supportLinks = [
   { label: "Help / FAQ", href: "/help" },
   { label: "Safety", href: "/safety" },
   { label: "Privacy Policy", href: PRIVACY_POLICY_URL },
+  { label: "Cookie Policy", href: "/cookies" },
   { label: "Terms of Service", href: TERMS_URL },
   { label: "Zero Tolerance Policy", href: "#" },
 ];
