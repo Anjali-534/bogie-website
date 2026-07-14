@@ -2,6 +2,7 @@ import { SITE_URL } from "./lib/serviceAreas";
 import Hero from "./components/Hero";
 import About from "./components/About";
 import Stats from "./components/Stats";
+import Reviews from "./components/Reviews";
 import Services from "./components/Services";
 import HowItWorks from "./components/HowItWorks";
 import DriverCta from "./components/DriverCta";
@@ -30,6 +31,7 @@ export default function Home() {
         <Hero />
         <About />
         <Stats />
+        <Reviews />
         <Services />
         <HowItWorks />
         <DriverCta />

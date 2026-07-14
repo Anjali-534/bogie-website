@@ -352,6 +352,46 @@ export async function sendRideMessage(
   }
 }
 
+export type PlatformReview = {
+  display_name: string;
+  user_type: "rider" | "driver";
+  rating: number;
+  review_text: string;
+  created_at: string;
+};
+
+// Public platform-review carousel data (distinct from per-ride driver
+// ratings). Hourly revalidation like getPublicStats; returns [] on any
+// failure so the caller can hide the section rather than render broken UI.
+export async function getPlatformReviewsPublic(): Promise<PlatformReview[]> {
+  try {
+    const res = await fetch(`${API_BASE}/gogoo/reviews/platform/public`, {
+      next: { revalidate: 3600 },
+    });
+    if (!res.ok) return [];
+    const body = await parseJsonSafe(res);
+    return (body?.reviews as PlatformReview[]) ?? [];
+  } catch {
+    return [];
+  }
+}
+
+export async function submitPlatformReview(
+  token: string,
+  rating: number,
+  reviewText: string
+): Promise<void> {
+  const res = await fetch(`${API_BASE}/gogoo/reviews/platform`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+    body: JSON.stringify({ rating, review_text: reviewText }),
+  });
+  const body = await parseJsonSafe(res);
+  if (!res.ok) {
+    throw new Error((body?.error as string) || "Couldn't submit your review. Please try again.");
+  }
+}
+
 export async function getBooking(token: string, id: string): Promise<BookingDetails> {
   const res = await fetch(`${API_BASE}/gogoo/bookings/${id}`, {
     headers: { Authorization: `Bearer ${token}` },

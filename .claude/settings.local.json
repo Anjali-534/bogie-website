@@ -102,10 +102,25 @@
       "Bash(taskkill //F //PID 15040)",
       "Bash(cd \"/c/Users/ADMIN/OneDrive/Desktop/gogoo/backend\" && go build ./... 2>&1)",
       "Bash(echo \"BUILD_EXIT=$?\")",
-      "Bash(echo \"VET_EXIT=$?\")"
+      "Bash(echo \"VET_EXIT=$?\")",
+      "Bash(command -v psql)",
+      "Bash(cd \"/c/Users/ADMIN/OneDrive/Desktop/gogoo/backend\" && grep -o \"^[A-Z_]*=\" .env)",
+      "Bash(command -v go)",
+      "Bash(go version *)",
+      "Read(//c/Users/ADMIN/OneDrive/Desktop/gogoo/backend/internal/db/**)",
+      "Bash(go run *)",
+      "Bash(rm -rf \"/c/Users/ADMIN/OneDrive/Desktop/gogoo/backend/cmd/reviewcheck\")",
+      "Bash(sort -t_ -k1 -n)",
+      "Read(//c/Users/ADMIN/OneDrive/Desktop/gogoo/backend/migrations/**)",
+      "Read(//c/Users/ADMIN/OneDrive/Desktop/gogoo/backend/internal/api/**)",
+      "Bash(cd \"/c/Users/ADMIN/OneDrive/Desktop/gogoo/backend\" && go build ./... 2>&1 | head -50)"
     ],
     "additionalDirectories": [
-      "c:\\Users\\ADMIN\\OneDrive\\Desktop\\gogoo\\backend\\internal\\api"
+      "c:\\Users\\ADMIN\\OneDrive\\Desktop\\gogoo\\backend\\internal\\api",
+      "c:\\Users\\ADMIN\\OneDrive\\Desktop\\gogoo\\backend\\cmd\\reviewcheck",
+      "C:\\Users\\ADMIN\\OneDrive\\Desktop\\gogoo\\backend\\cmd\\reviewcheck",
+      "c:\\Users\\ADMIN\\OneDrive\\Desktop\\gogoo\\backend\\migrations",
+      "c:\\Users\\ADMIN\\OneDrive\\Desktop\\gogoo\\backend\\internal\\api\\handlers"
     ]
   }
 }

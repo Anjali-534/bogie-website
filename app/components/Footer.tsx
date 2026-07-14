@@ -151,6 +151,7 @@ const quickLinks = [
   { label: "Fare Estimator", href: "/fare-estimator" },
   { label: "Become a Driver", href: DRIVER_APP_URL },
   { label: "Refer & Earn", href: "/refer" },
+  { label: "Rate Bogie", href: "/review" },
 ];
 
 const supportLinks = [

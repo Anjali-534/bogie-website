@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import dynamic from "next/dynamic";
 import {
   Loader2,
@@ -435,6 +436,16 @@ export default function TrackingView({ bookingId }: { bookingId: string }) {
             A cancellation fee of ₹{Math.round(booking.cancellation_fee)} has been added to your
             next ride.
           </p>
+        )}
+
+        {booking.status === "completed" && (
+          <Link
+            href="/review"
+            className="mt-5 flex items-center justify-center gap-2 rounded-2xl bg-primary px-5 py-3.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-primary-dark hover:scale-[1.01] active:scale-[0.99]"
+          >
+            <Star size={16} className="fill-white" />
+            Rate your experience
+          </Link>
         )}
       </div>
     </div>
