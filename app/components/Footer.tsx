@@ -149,6 +149,7 @@ const quickLinks = [
   { label: "Truck", href: "/truck" },
   { label: "Ambulance", href: "/ambulance" },
   { label: "Fare Estimator", href: "/fare-estimator" },
+  { label: "Bogie Tracker", href: "/bogie-tracker" },
   { label: "Become a Driver", href: DRIVER_APP_URL },
   { label: "Refer & Earn", href: "/refer" },
   { label: "Rate Bogie", href: "/review" },

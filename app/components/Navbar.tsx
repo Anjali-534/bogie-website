@@ -14,8 +14,6 @@ import {
   Info,
   Briefcase,
   Newspaper,
-  HelpCircle,
-  Shield,
   Calculator,
   type LucideIcon,
 } from "lucide-react";
@@ -36,11 +34,6 @@ const serviceLinks = [
   { href: "/truck", label: "Truck", icon: Truck },
   { href: "/ambulance", label: "Ambulance", icon: Ambulance },
   { href: "/fare-estimator", label: "Fare Estimator", icon: Calculator },
-];
-
-const supportLinks = [
-  { href: "/help", label: "Help / FAQ", icon: HelpCircle },
-  { href: "/safety", label: "Safety", icon: Shield },
 ];
 
 const afterServicesLinks = [
@@ -179,7 +172,6 @@ export default function Navbar() {
 
           <NavDropdown label="Company" items={companyLinks} />
           <NavDropdown label="Services" items={serviceLinks} />
-          <NavDropdown label="Support" items={supportLinks} />
 
           {afterServicesLinks.map((link) => (
             <a
@@ -193,6 +185,13 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center gap-3">
+          <Link
+            href="/bogie-tracker"
+            className="hidden lg:inline-flex items-center text-sm font-medium text-neutral-700 hover:text-primary transition-colors"
+          >
+            Bogie Tracker
+          </Link>
+
           <a
             href={DRIVER_APP_URL}
             className="hidden lg:inline-flex items-center text-sm font-medium text-neutral-700 hover:text-primary transition-colors"
@@ -268,7 +267,6 @@ export default function Navbar() {
 
             <MobileLinkGroup label="Company" items={companyLinks} onNavigate={() => setOpen(false)} />
             <MobileLinkGroup label="Services" items={serviceLinks} onNavigate={() => setOpen(false)} />
-            <MobileLinkGroup label="Support" items={supportLinks} onNavigate={() => setOpen(false)} />
 
             {afterServicesLinks.map((link) => (
               <a
@@ -280,6 +278,14 @@ export default function Navbar() {
                 {link.label}
               </a>
             ))}
+
+            <Link
+              href="/bogie-tracker"
+              onClick={() => setOpen(false)}
+              className="rounded-lg px-3 py-2.5 text-sm font-medium text-neutral-700 hover:bg-primary-light hover:text-primary transition-colors"
+            >
+              Bogie Tracker
+            </Link>
 
             <a
               href={DRIVER_APP_URL}

@@ -71,6 +71,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.7,
     },
+    {
+      url: `${SITE_URL}/bogie-tracker`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
     ...serviceAreas.map((area) => ({
       url: `${SITE_URL}/cab?area=${area.slug}`,
       lastModified: now,

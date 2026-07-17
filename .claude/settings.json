@@ -222,7 +222,15 @@
       "Read(//c/Users/ADMIN/OneDrive/Desktop/gogoo/backend/internal/auth/**)",
       "Bash(cd \"/c/Users/ADMIN/OneDrive/Desktop/gogoo/backend\" && go build ./... && go vet ./... && echo BUILD+VET-OK)",
       "Bash(echo \"EXIT=$?\")",
-      "Bash(ls \"C:\\\\Users\\\\ADMIN\\\\.claude\\\\projects\\\\c--Users-ADMIN-OneDrive-Desktop-bogie\\\\memory\\\\\")"
+      "Bash(ls \"C:\\\\Users\\\\ADMIN\\\\.claude\\\\projects\\\\c--Users-ADMIN-OneDrive-Desktop-bogie\\\\memory\\\\\")",
+      "Read(//c/Users/ADMIN/OneDrive/Desktop/gogoo/bogie-tracker-panel/app/blocked/**)",
+      "Bash(cd \"C:\\\\Users\\\\ADMIN\\\\OneDrive\\\\Desktop\\\\gogoo\\\\bogie-tracker-panel\\\\app\\\\tracker\" && find . -type f)",
+      "Read(//c/Users/ADMIN/OneDrive/Desktop/gogoo/bogie-tracker-panel/app/tracker/**)",
+      "Read(//c/Users/ADMIN/OneDrive/Desktop/gogoo/bogie-tracker-panel/lib/**)",
+      "Bash(cd \"C:\\\\Users\\\\ADMIN\\\\OneDrive\\\\Desktop\\\\gogoo\" && cat bogie-tracker-panel/CLAUDE.md 2>/dev/null | head -60)",
+      "Read(//c/Users/ADMIN/OneDrive/Desktop/gogoo/bogie-tracker-panel/**)",
+      "Bash(cd \"C:\\\\Users\\\\ADMIN\\\\OneDrive\\\\Desktop\\\\gogoo\\\\dashboard\" && grep -rn \"tracker\" app/components 2>/dev/null; grep -rln \"Tracker\" app 2>/dev/null)",
+      "Read(//c/Users/ADMIN/OneDrive/Desktop/gogoo/dashboard/**)"
     ],
     "additionalDirectories": [
       "c:\\Users\\ADMIN\\OneDrive\\Desktop\\gogoo\\backend\\internal\\api\\handlers",
