@@ -18,7 +18,7 @@ import {
 const TOKEN_KEY = "tracker_access_token";
 const COMPANY_KEY = "tracker_company";
 
-type AuthResult = { success: boolean; error?: string };
+type AuthResult = { success: boolean; error?: string; token?: string };
 
 type TrackerAuthContextValue = {
   company: TrackerCompany | null;
@@ -87,7 +87,7 @@ export function TrackerAuthProvider({ children }: { children: ReactNode }) {
       persistSession(res.access_token, res.company);
       setCompany(res.company);
       setToken(res.access_token);
-      return { success: true };
+      return { success: true, token: res.access_token };
     } catch (err) {
       return { success: false, error: err instanceof Error ? err.message : "Login failed." };
     }

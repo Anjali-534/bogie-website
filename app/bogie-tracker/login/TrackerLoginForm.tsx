@@ -1,13 +1,16 @@
 "use client";
 
-import { useState, type FormEvent, type ReactNode } from "react";
+import { useRef, useState, type ChangeEvent, type FormEvent, type ReactNode } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Eye, EyeOff, ArrowRight, Loader2 } from "lucide-react";
+import { Eye, EyeOff, ArrowRight, ImagePlus, Loader2 } from "lucide-react";
 import { useTrackerAuth } from "../../lib/TrackerAuthContext";
+import { uploadTrackerLogo } from "../../lib/api";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const MAX_LOGO_BYTES = 2 * 1024 * 1024;
 
 type Tab = "login" | "signup";
+type Step = "form" | "logo";
 type Status = "idle" | "loading" | "error";
 
 const inputClass =
@@ -29,6 +32,7 @@ export default function TrackerLoginForm() {
   const redirectTo = searchParams.get("redirect") || "/bogie-tracker/orders";
 
   const [tab, setTab] = useState<Tab>("login");
+  const [step, setStep] = useState<Step>("form");
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -38,6 +42,13 @@ export default function TrackerLoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
+  const [pendingToken, setPendingToken] = useState<string | null>(null);
+  const [logoFile, setLogoFile] = useState<File | null>(null);
+  const [logoPreview, setLogoPreview] = useState<string | null>(null);
+  const [logoError, setLogoError] = useState("");
+  const [logoStatus, setLogoStatus] = useState<Status>("idle");
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   function switchTab(next: Tab) {
     if (status === "loading") return;
@@ -112,7 +123,127 @@ export default function TrackerLoginForm() {
       setStatus("error");
       return;
     }
+
+    // Logo upload needs an authenticated company, which only exists after
+    // signup + auto-login succeed — so this has to be a step here, not part
+    // of the signup form itself.
+    setPendingToken(result.token || null);
+    setStatus("idle");
+    setStep("logo");
+  }
+
+  function handleLogoSelect(e: ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setLogoError("");
+    if (!file.type.startsWith("image/")) {
+      setLogoError("Please choose an image file.");
+      return;
+    }
+    if (file.size > MAX_LOGO_BYTES) {
+      setLogoError("Image must be under 2MB.");
+      return;
+    }
+    setLogoFile(file);
+    setLogoPreview(URL.createObjectURL(file));
+  }
+
+  async function handleLogoUpload() {
+    if (!pendingToken || !logoFile) return;
+    setLogoStatus("loading");
+    setLogoError("");
+    try {
+      await uploadTrackerLogo(pendingToken, logoFile);
+      router.push(redirectTo);
+    } catch (err) {
+      setLogoError(err instanceof Error ? err.message : "Couldn't upload your logo.");
+      setLogoStatus("error");
+    }
+  }
+
+  function skipLogo() {
     router.push(redirectTo);
+  }
+
+  if (step === "logo") {
+    return (
+      <div className="w-full max-w-md">
+        <div className="mb-8 text-center">
+          <p className="text-sm font-semibold uppercase tracking-wide text-primary">
+            Almost there
+          </p>
+          <h1 className="mt-2 text-3xl font-extrabold tracking-tight text-neutral-900">
+            Add your company logo
+          </h1>
+          <p className="mt-2 text-sm text-neutral-600">
+            Optional — shown on your tracking pages and, if you&apos;d like, on our
+            partners page. You can add or change this anytime later.
+          </p>
+        </div>
+
+        <div className="rounded-3xl bg-white p-7 shadow-sm ring-1 ring-neutral-100 sm:p-8">
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="image/*"
+            onChange={handleLogoSelect}
+            className="hidden"
+          />
+
+          <button
+            type="button"
+            onClick={() => fileInputRef.current?.click()}
+            className="flex w-full flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-neutral-200 py-10 text-neutral-500 transition-colors hover:border-primary hover:text-primary"
+          >
+            {logoPreview ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={logoPreview}
+                alt="Logo preview"
+                className="h-20 w-20 rounded-xl object-contain"
+              />
+            ) : (
+              <ImagePlus size={28} />
+            )}
+            <span className="text-sm font-medium">
+              {logoFile ? "Choose a different image" : "Choose an image"}
+            </span>
+            <span className="text-xs text-neutral-400">PNG or JPG, up to 2MB</span>
+          </button>
+
+          {logoError && <p className="mt-3 text-sm font-medium text-red-600">{logoError}</p>}
+
+          <div className="mt-6 flex flex-col gap-3">
+            <button
+              type="button"
+              onClick={handleLogoUpload}
+              disabled={!logoFile || logoStatus === "loading"}
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-3 text-sm font-semibold text-white shadow-sm transition-all hover:bg-primary-dark hover:scale-[1.02] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:scale-100"
+            >
+              {logoStatus === "loading" ? (
+                <>
+                  Uploading...
+                  <Loader2 size={16} className="animate-spin" />
+                </>
+              ) : (
+                <>
+                  Upload logo
+                  <ArrowRight size={16} />
+                </>
+              )}
+            </button>
+            <button
+              type="button"
+              onClick={skipLogo}
+              disabled={logoStatus === "loading"}
+              className="text-sm font-medium text-neutral-500 hover:text-neutral-700 disabled:opacity-60"
+            >
+              Skip for now
+            </button>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (

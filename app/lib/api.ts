@@ -479,6 +479,52 @@ export async function apiTrackerVerifyEmail(
   return body as unknown as { message: string };
 }
 
+export async function uploadTrackerLogo(token: string, file: File): Promise<{ logo_url: string }> {
+  const form = new FormData();
+  form.append("file", file);
+  const res = await fetch(`${API_BASE}/gogoo/tracker/logo`, {
+    method: "POST",
+    headers: { Authorization: `Bearer ${token}` },
+    body: form,
+  });
+  const body = await parseJsonSafe(res);
+  if (!res.ok) {
+    throw new Error((body?.error as string) || "Couldn't upload your logo. Please try again.");
+  }
+  return body as unknown as { logo_url: string };
+}
+
+export async function deleteTrackerLogo(token: string): Promise<void> {
+  const res = await fetch(`${API_BASE}/gogoo/tracker/logo`, {
+    method: "DELETE",
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  if (!res.ok) {
+    const body = await parseJsonSafe(res);
+    throw new Error((body?.error as string) || "Couldn't remove your logo. Please try again.");
+  }
+}
+
+export type TrackerPartner = {
+  company_name: string;
+  logo_url: string;
+};
+
+// Public logo grid for the marketing page. Hourly revalidation like the
+// other public marketing fetches; returns [] on any failure so the caller
+// can hide the section rather than render broken UI.
+export async function getTrackerPartners(): Promise<TrackerPartner[]> {
+  try {
+    const res = await fetch(`${API_BASE}/gogoo/public/tracker/partners`, {
+      next: { revalidate: 3600 },
+    });
+    if (!res.ok) return [];
+    return (await res.json()) as TrackerPartner[];
+  } catch {
+    return [];
+  }
+}
+
 export async function apiTrackerResendOtp(email: string): Promise<{ message: string }> {
   const res = await fetch(`${API_BASE}/gogoo/tracker/resend-otp`, {
     method: "POST",

@@ -14,6 +14,7 @@ import AnimatedSection from "../components/AnimatedSection";
 import Footer from "../components/Footer";
 import TrackerHero from "./TrackerHero";
 import TrackerPricing from "./TrackerPricing";
+import Partners from "./Partners";
 import { SITE_URL } from "../lib/serviceAreas";
 
 export const metadata: Metadata = {
@@ -203,6 +204,8 @@ export default function BogieTrackerPage() {
             </AnimatedSection>
           </div>
         </section>
+
+        <Partners />
 
         <section className="bg-neutral-50 py-20">
           <div className="mx-auto max-w-2xl px-4 text-center sm:px-6 lg:px-8">
