@@ -75,13 +75,16 @@ export function TrackerAuthProvider({ children }: { children: ReactNode }) {
     }
   }
 
+  // Does not auto-login: the account isn't usable until the email OTP is
+  // verified (login now 403s with email_verified:false until then), so the
+  // caller is responsible for showing the OTP step next.
   async function signup(fields: TrackerSignupFields): Promise<AuthResult> {
     try {
       await apiTrackerSignup(fields);
     } catch (err) {
       return { success: false, error: err instanceof Error ? err.message : "Signup failed." };
     }
-    return login(fields.email, fields.password);
+    return { success: true };
   }
 
   function logout() {

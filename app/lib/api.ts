@@ -442,6 +442,36 @@ export async function apiTrackerSignup(
   return body as unknown as { company_id: string; message: string };
 }
 
+export async function apiTrackerVerifyEmail(
+  email: string,
+  code: string
+): Promise<{ message: string }> {
+  const res = await fetch(`${API_BASE}/gogoo/tracker/verify-email`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, code }),
+  });
+  const body = await parseJsonSafe(res);
+  if (!res.ok) {
+    throw new Error((body?.error as string) || "Verification failed. Please try again.");
+  }
+  return body as unknown as { message: string };
+}
+
+export async function apiTrackerResendOtp(email: string): Promise<{ message: string }> {
+  const res = await fetch(`${API_BASE}/gogoo/tracker/resend-otp`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email }),
+  });
+  const body = await parseJsonSafe(res);
+  if (!res.ok) {
+    const message = (body?.error as string) || "Could not resend code. Please try again.";
+    throw Object.assign(new Error(message), { status: res.status });
+  }
+  return body as unknown as { message: string };
+}
+
 export type TrackerPlanOrderFields = {
   plan_id: string;
   duration: string;
