@@ -128,10 +128,10 @@ export default function CheckoutFlow() {
     setError("");
     try {
       const order = await createTrackerPlanOrder(token, {
-        plan_id: planId,
-        duration,
+        plan: planId,
+        billing_duration: duration,
         billing_name: billingName.trim(),
-        billing_address: address.trim(),
+        billing_address_line: address.trim(),
         billing_city: city.trim(),
         billing_state: state.trim(),
         billing_pincode: pincode.trim(),

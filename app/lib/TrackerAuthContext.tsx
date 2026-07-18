@@ -8,6 +8,7 @@ import {
   type ReactNode,
 } from "react";
 import {
+  apiTrackerCompanyProfile,
   apiTrackerLogin,
   apiTrackerSignup,
   type TrackerCompany,
@@ -54,13 +55,30 @@ export function TrackerAuthProvider({ children }: { children: ReactNode }) {
       return;
     }
 
+    let parsedCompany: TrackerCompany;
     try {
-      setCompany(JSON.parse(storedCompany));
-      setToken(storedToken);
+      parsedCompany = JSON.parse(storedCompany);
     } catch {
       clearSession();
+      setIsLoading(false);
+      return;
     }
-    setIsLoading(false);
+
+    setCompany(parsedCompany);
+    setToken(storedToken);
+
+    // The stored token may be stale, expired, or (as happened during the
+    // "undefined" token bug) never valid in the first place — verify it
+    // against the server rather than trusting localStorage's mere presence,
+    // mirroring AuthContext's apiRiderProfile check.
+    apiTrackerCompanyProfile(storedToken)
+      .then((profile) => setCompany(profile))
+      .catch(() => {
+        clearSession();
+        setCompany(null);
+        setToken(null);
+      })
+      .finally(() => setIsLoading(false));
   }, []);
 
   async function login(email: string, password: string): Promise<AuthResult> {

@@ -429,6 +429,18 @@ export async function apiTrackerLogin(
   };
 }
 
+export async function apiTrackerCompanyProfile(token: string): Promise<TrackerCompany> {
+  const res = await fetch(`${API_BASE}/gogoo/tracker/company/profile`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  const body = await parseJsonSafe(res);
+  if (!res.ok) {
+    throw new Error((body?.error as string) || "Failed to load company profile.");
+  }
+  const data = body as unknown as { id: string; company_name: string; status: string };
+  return { id: data.id, name: data.company_name, status: data.status };
+}
+
 export type TrackerSignupFields = {
   company_name: string;
   email: string;
@@ -482,10 +494,10 @@ export async function apiTrackerResendOtp(email: string): Promise<{ message: str
 }
 
 export type TrackerPlanOrderFields = {
-  plan_id: string;
-  duration: string;
+  plan: string;
+  billing_duration: string;
   billing_name: string;
-  billing_address: string;
+  billing_address_line: string;
   billing_city: string;
   billing_state: string;
   billing_pincode: string;
