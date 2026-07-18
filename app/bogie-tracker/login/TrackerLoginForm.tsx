@@ -35,6 +35,7 @@ export default function TrackerLoginForm() {
 
   const [companyName, setCompanyName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
 
   function switchTab(next: Tab) {
@@ -75,14 +76,20 @@ export default function TrackerLoginForm() {
     }
 
     const trimmedCompanyName = companyName.trim();
+    const trimmedPhone = phone.trim();
 
-    if (!trimmedCompanyName || !trimmedEmail || !password) {
+    if (!trimmedCompanyName || !trimmedEmail || !trimmedPhone || !password) {
       setError("Please fill in all fields.");
       setStatus("error");
       return;
     }
     if (!EMAIL_REGEX.test(trimmedEmail)) {
       setError("Please enter a valid email address.");
+      setStatus("error");
+      return;
+    }
+    if (trimmedPhone.replace(/\D/g, "").length < 10) {
+      setError("Enter a valid 10-digit phone number.");
       setStatus("error");
       return;
     }
@@ -97,6 +104,8 @@ export default function TrackerLoginForm() {
     const result = await signup({
       company_name: trimmedCompanyName,
       email: trimmedEmail,
+      contact_email: trimmedEmail,
+      contact_phone: trimmedPhone,
       password,
     });
     if (!result.success) {
@@ -138,17 +147,30 @@ export default function TrackerLoginForm() {
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4" noValidate>
           {tab === "signup" && (
-            <Field label="Company name">
-              <input
-                required
-                type="text"
-                value={companyName}
-                onChange={(e) => setCompanyName(e.target.value)}
-                placeholder="Acme Logistics Pvt Ltd"
-                disabled={status === "loading"}
-                className={inputClass}
-              />
-            </Field>
+            <>
+              <Field label="Company name">
+                <input
+                  required
+                  type="text"
+                  value={companyName}
+                  onChange={(e) => setCompanyName(e.target.value)}
+                  placeholder="Acme Logistics Pvt Ltd"
+                  disabled={status === "loading"}
+                  className={inputClass}
+                />
+              </Field>
+              <Field label="Phone">
+                <input
+                  required
+                  type="tel"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  placeholder="9876543210"
+                  disabled={status === "loading"}
+                  className={inputClass}
+                />
+              </Field>
+            </>
           )}
 
           <Field label="Email">
