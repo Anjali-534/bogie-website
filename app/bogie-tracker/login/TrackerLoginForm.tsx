@@ -32,11 +32,12 @@ export default function TrackerLoginForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const [companyName, setCompanyName] = useState("");
   const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   function switchTab(next: Tab) {
     if (status === "loading") return;
@@ -76,9 +77,8 @@ export default function TrackerLoginForm() {
     }
 
     const trimmedCompanyName = companyName.trim();
-    const trimmedPhone = phone.trim();
 
-    if (!trimmedCompanyName || !trimmedEmail || !trimmedPhone || !password) {
+    if (!trimmedCompanyName || !trimmedEmail || !password || !confirmPassword) {
       setError("Please fill in all fields.");
       setStatus("error");
       return;
@@ -88,13 +88,13 @@ export default function TrackerLoginForm() {
       setStatus("error");
       return;
     }
-    if (trimmedPhone.replace(/\D/g, "").length < 10) {
-      setError("Enter a valid 10-digit phone number.");
+    if (password.length < 8) {
+      setError("Password must be at least 8 characters.");
       setStatus("error");
       return;
     }
-    if (password.length < 8) {
-      setError("Password must be at least 8 characters.");
+    if (password !== confirmPassword) {
+      setError("Passwords don't match.");
       setStatus("error");
       return;
     }
@@ -105,7 +105,6 @@ export default function TrackerLoginForm() {
       company_name: trimmedCompanyName,
       email: trimmedEmail,
       contact_email: trimmedEmail,
-      contact_phone: trimmedPhone,
       password,
     });
     if (!result.success) {
@@ -147,30 +146,17 @@ export default function TrackerLoginForm() {
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4" noValidate>
           {tab === "signup" && (
-            <>
-              <Field label="Company name">
-                <input
-                  required
-                  type="text"
-                  value={companyName}
-                  onChange={(e) => setCompanyName(e.target.value)}
-                  placeholder="Acme Logistics Pvt Ltd"
-                  disabled={status === "loading"}
-                  className={inputClass}
-                />
-              </Field>
-              <Field label="Phone">
-                <input
-                  required
-                  type="tel"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  placeholder="9876543210"
-                  disabled={status === "loading"}
-                  className={inputClass}
-                />
-              </Field>
-            </>
+            <Field label="Company name">
+              <input
+                required
+                type="text"
+                value={companyName}
+                onChange={(e) => setCompanyName(e.target.value)}
+                placeholder="Acme Logistics Pvt Ltd"
+                disabled={status === "loading"}
+                className={inputClass}
+              />
+            </Field>
           )}
 
           <Field label="Email">
@@ -209,6 +195,32 @@ export default function TrackerLoginForm() {
               </button>
             </div>
           </Field>
+
+          {tab === "signup" && (
+            <Field label="Confirm password">
+              <div className="flex items-center rounded-xl border border-neutral-200 transition-colors focus-within:border-primary">
+                <input
+                  required
+                  type={showConfirmPassword ? "text" : "password"}
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  placeholder="Re-enter your password"
+                  disabled={status === "loading"}
+                  className="w-full rounded-xl px-4 py-2.5 text-sm outline-none disabled:opacity-60"
+                  suppressHydrationWarning
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowConfirmPassword((v) => !v)}
+                  className="px-3 text-neutral-400 hover:text-neutral-600"
+                  tabIndex={-1}
+                  aria-label={showConfirmPassword ? "Hide password" : "Show password"}
+                >
+                  {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                </button>
+              </div>
+            </Field>
+          )}
 
           {status === "error" && (
             <p className="text-sm font-medium text-red-600">{error}</p>

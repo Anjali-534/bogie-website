@@ -424,7 +424,6 @@ export type TrackerSignupFields = {
   company_name: string;
   email: string;
   contact_email: string;
-  contact_phone: string;
   password: string;
 };
 
