@@ -395,13 +395,12 @@ export async function submitPlatformReview(
 export type TrackerCompany = {
   id: string;
   name: string;
-  email: string;
+  status: string;
 };
 
 export type TrackerAuthResponse = {
   company: TrackerCompany;
   access_token: string;
-  expires_in: number;
 };
 
 export async function apiTrackerLogin(
@@ -417,7 +416,17 @@ export async function apiTrackerLogin(
   if (!res.ok) {
     throw new Error((body?.error as string) || "Invalid email or password.");
   }
-  return body as unknown as TrackerAuthResponse;
+  // Backend returns { token, company: { id, company_name, status } } —
+  // remapped here rather than changing the backend response, since
+  // bogie-tracker-panel already consumes that exact shape correctly.
+  const data = body as unknown as {
+    token: string;
+    company: { id: string; company_name: string; status: string };
+  };
+  return {
+    access_token: data.token,
+    company: { id: data.company.id, name: data.company.company_name, status: data.company.status },
+  };
 }
 
 export type TrackerSignupFields = {
