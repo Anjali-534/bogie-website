@@ -392,6 +392,123 @@ export async function submitPlatformReview(
   }
 }
 
+export type TrackerCompany = {
+  id: string;
+  name: string;
+  email: string;
+};
+
+export type TrackerAuthResponse = {
+  company: TrackerCompany;
+  access_token: string;
+  expires_in: number;
+};
+
+export async function apiTrackerLogin(
+  email: string,
+  password: string
+): Promise<TrackerAuthResponse> {
+  const res = await fetch(`${API_BASE}/gogoo/tracker/login`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password }),
+  });
+  const body = await parseJsonSafe(res);
+  if (!res.ok) {
+    throw new Error((body?.error as string) || "Invalid email or password.");
+  }
+  return body as unknown as TrackerAuthResponse;
+}
+
+export type TrackerSignupFields = {
+  company_name: string;
+  email: string;
+  password: string;
+};
+
+export async function apiTrackerSignup(
+  fields: TrackerSignupFields
+): Promise<{ company_id: string; message: string }> {
+  const res = await fetch(`${API_BASE}/gogoo/tracker/signup`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(fields),
+  });
+  const body = await parseJsonSafe(res);
+  if (!res.ok) {
+    throw new Error((body?.error as string) || "Something went wrong. Please try again.");
+  }
+  return body as unknown as { company_id: string; message: string };
+}
+
+export type TrackerPlanOrderFields = {
+  plan_id: string;
+  duration: string;
+  billing_name: string;
+  billing_address: string;
+  billing_city: string;
+  billing_state: string;
+  billing_pincode: string;
+  gstin?: string | null;
+};
+
+export type TrackerPlanOrder = {
+  id: string;
+  plan_id: string;
+  duration: string;
+  base_amount: number;
+  gst_amount: number;
+  total_amount: number;
+  status: "pending" | "paid" | "cancelled";
+  created_at: string;
+  paid_at: string | null;
+};
+
+export async function createTrackerPlanOrder(
+  token: string,
+  fields: TrackerPlanOrderFields
+): Promise<TrackerPlanOrder> {
+  const res = await fetch(`${API_BASE}/gogoo/tracker/plan-orders`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+    body: JSON.stringify(fields),
+  });
+  const body = await parseJsonSafe(res);
+  if (!res.ok) {
+    throw new Error((body?.error as string) || "Couldn't submit your order. Please try again.");
+  }
+  return body as unknown as TrackerPlanOrder;
+}
+
+export async function getTrackerPlanOrders(token: string): Promise<TrackerPlanOrder[]> {
+  const res = await fetch(`${API_BASE}/gogoo/tracker/plan-orders`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  const body = await parseJsonSafe(res);
+  if (!res.ok) {
+    throw new Error((body?.error as string) || "Couldn't load your orders.");
+  }
+  return (body?.orders as TrackerPlanOrder[]) ?? [];
+}
+
+export async function downloadTrackerInvoice(token: string, orderId: string): Promise<void> {
+  const res = await fetch(`${API_BASE}/gogoo/tracker/plan-orders/${orderId}/invoice`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  if (!res.ok) {
+    throw new Error("Couldn't download the invoice. Please try again.");
+  }
+  const blob = await res.blob();
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `invoice-${orderId}.pdf`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
 export async function getBooking(token: string, id: string): Promise<BookingDetails> {
   const res = await fetch(`${API_BASE}/gogoo/bookings/${id}`, {
     headers: { Authorization: `Bearer ${token}` },

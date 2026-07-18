@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "./lib/AuthContext";
+import { TrackerAuthProvider } from "./lib/TrackerAuthContext";
 import { CookieConsentProvider } from "./lib/CookieConsentContext";
 import Navbar from "./components/Navbar";
 import CookieConsentBanner from "./components/CookieConsentBanner";
@@ -34,11 +35,13 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-white text-neutral-900">
         <AuthProvider>
-          <CookieConsentProvider>
-            <Navbar />
-            {children}
-            <CookieConsentBanner />
-          </CookieConsentProvider>
+          <TrackerAuthProvider>
+            <CookieConsentProvider>
+              <Navbar />
+              {children}
+              <CookieConsentBanner />
+            </CookieConsentProvider>
+          </TrackerAuthProvider>
         </AuthProvider>
       </body>
     </html>

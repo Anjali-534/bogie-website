@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import {
   MapPin,
   Users,
@@ -11,22 +12,21 @@ import {
 } from "lucide-react";
 import AnimatedSection from "../components/AnimatedSection";
 import Footer from "../components/Footer";
+import TrackerHero from "./TrackerHero";
+import TrackerPricing from "./TrackerPricing";
 import { SITE_URL } from "../lib/serviceAreas";
 
-const TRACKER_APP_URL = "https://bogie-tracker.bogie.in/";
-const TRACKER_SIGNUP_URL = "https://bogie-tracker.bogie.in/signup";
-
 export const metadata: Metadata = {
-  title: "Bogie Tracker — Live Dispatch Tracking for Business Fleets",
+  title: "Bogie Tracker — Live Shipment Tracking for Business Fleets",
   description:
-    "Bogie Tracker is a dispatch tracking dashboard for companies running their own trucks — live GPS per delivery, shareable customer tracking links, e-way bill capture, and proof of delivery. Sign up and get approved to start tracking.",
+    "Bogie Tracker is a shipment tracking dashboard for companies running their own trucks — live GPS per delivery, shareable customer tracking links, e-way bill capture, and proof of delivery. Sign up and get approved to start tracking.",
 };
 
 const features = [
   {
     icon: MapPin,
-    title: "Live GPS per dispatch",
-    text: "Once a dispatch is on the road, its location updates in real time from your driver's phone — no separate hardware to install.",
+    title: "Live GPS per shipment",
+    text: "Once a shipment is on the road, its location updates in real time from your driver's phone — no separate hardware to install.",
   },
   {
     icon: Users,
@@ -35,13 +35,13 @@ const features = [
   },
   {
     icon: ClipboardCheck,
-    title: "Full dispatch history",
+    title: "Full shipment history",
     text: "Every order is logged from creation through delivery, with a status timeline you and your team can follow.",
   },
   {
     icon: FileCheck,
     title: "E-way bill & GSTIN capture",
-    text: "Attach e-way bill numbers and documents, and capture consignee GSTIN details directly on the dispatch.",
+    text: "Attach e-way bill numbers and documents, and capture consignee GSTIN details directly on the shipment.",
   },
   {
     icon: PenTool,
@@ -65,8 +65,8 @@ const steps = [
     text: "Our team reviews and approves new accounts before access is activated.",
   },
   {
-    title: "Add drivers & dispatch",
-    text: "Add your drivers, create dispatches, and start tracking them live.",
+    title: "Add drivers & shipment",
+    text: "Add your drivers, create shipments, and start tracking them live.",
   },
 ];
 
@@ -74,7 +74,7 @@ export default function BogieTrackerPage() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Service",
-    serviceType: "Fleet dispatch tracking software",
+    serviceType: "Fleet shipment tracking software",
     name: "Bogie Tracker",
     provider: {
       "@type": "Organization",
@@ -96,50 +96,7 @@ export default function BogieTrackerPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <main>
-        <section className="relative overflow-hidden pt-32 pb-16 sm:pt-40">
-          <div className="pointer-events-none absolute inset-0 -z-10">
-            <div className="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-primary/10 blur-3xl" />
-            <div className="absolute top-1/2 -left-32 h-80 w-80 rounded-full bg-primary/5 blur-3xl" />
-          </div>
-
-          <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
-            <AnimatedSection>
-              <span className="inline-flex items-center gap-2 rounded-full bg-primary-light px-4 py-1.5 text-xs font-semibold text-primary-dark">
-                Bogie Tracker · For Business
-              </span>
-              <h1 className="mt-6 text-4xl sm:text-5xl font-extrabold tracking-tight text-neutral-900 leading-[1.05]">
-                Know where every <span className="text-primary">dispatch</span> is, in real time.
-              </h1>
-              <p className="mt-6 text-lg text-neutral-600">
-                Bogie Tracker is a dispatch tracking dashboard built for
-                companies that run their own trucks. Add your drivers, create
-                a dispatch, and follow it live — from loading to delivery.
-              </p>
-              <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-                <a
-                  href={TRACKER_SIGNUP_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-3 text-sm font-semibold text-white shadow-sm transition-all hover:bg-primary-dark hover:scale-[1.02] active:scale-[0.98]"
-                >
-                  Sign up your company
-                  <ArrowRight size={16} />
-                </a>
-                <a
-                  href={TRACKER_APP_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-neutral-200 px-7 py-3 text-sm font-semibold text-neutral-700 transition-colors hover:border-primary hover:text-primary"
-                >
-                  Already signed up? Log in
-                </a>
-              </div>
-              <p className="mt-4 text-xs text-neutral-500">
-                New accounts are reviewed before access is activated.
-              </p>
-            </AnimatedSection>
-          </div>
-        </section>
+        <TrackerHero />
 
         <section className="pb-12">
           <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
@@ -202,6 +159,51 @@ export default function BogieTrackerPage() {
           </div>
         </section>
 
+        <TrackerPricing />
+
+        <section className="py-20">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+            <AnimatedSection>
+              <h2 className="text-center text-2xl font-extrabold tracking-tight text-neutral-900">
+                See it in action
+              </h2>
+              <p className="mx-auto mt-3 max-w-2xl text-center text-neutral-600">
+                A quick look at what dispatch tracking looks like for your
+                team and your customers.
+              </p>
+            </AnimatedSection>
+            <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-2">
+              <AnimatedSection>
+                <video
+                  controls
+                  preload="metadata"
+                  className="w-full rounded-2xl bg-neutral-900 shadow-sm ring-1 ring-neutral-100"
+                  src="/Bogie_Tracker_B2B_video_ad_202607172334.mp4"
+                />
+              </AnimatedSection>
+              <AnimatedSection delay={0.08}>
+                <video
+                  controls
+                  preload="metadata"
+                  className="w-full rounded-2xl bg-neutral-900 shadow-sm ring-1 ring-neutral-100"
+                  src="/bogietrackervideo.mp4"
+                />
+              </AnimatedSection>
+            </div>
+            <AnimatedSection delay={0.16}>
+              <div className="mt-8">
+                <Image
+                  src="/storyboard.jpeg"
+                  alt="Bogie Tracker ad storyboard: from 'Where's my delivery?' to live tracking, proof of delivery, and a shareable link for the customer"
+                  width={2400}
+                  height={1792}
+                  className="w-full rounded-2xl ring-1 ring-neutral-100"
+                />
+              </div>
+            </AnimatedSection>
+          </div>
+        </section>
+
         <section className="bg-neutral-50 py-20">
           <div className="mx-auto max-w-2xl px-4 text-center sm:px-6 lg:px-8">
             <AnimatedSection>
@@ -216,9 +218,7 @@ export default function BogieTrackerPage() {
                 before access is activated.
               </p>
               <a
-                href={TRACKER_SIGNUP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/bogie-tracker#pricing"
                 className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-3 text-sm font-semibold text-white shadow-sm transition-all hover:bg-primary-dark hover:scale-[1.02] active:scale-[0.98]"
               >
                 Sign up your company
