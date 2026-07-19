@@ -89,21 +89,7 @@ export default function TrackerHero() {
           companies that run their own trucks. Add your drivers, create
           a shipment, and follow it live — from loading to delivery.
         </p>
-        <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-          <a
-            href="/bogie-tracker#pricing"
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-3 text-sm font-semibold text-white shadow-sm transition-all hover:bg-primary-dark hover:scale-[1.02] active:scale-[0.98]"
-          >
-            Sign up your company
-            <ArrowRight size={16} />
-          </a>
-          <a
-            href="/bogie-tracker/login"
-            className="inline-flex items-center justify-center gap-2 rounded-full border border-neutral-200 px-7 py-3 text-sm font-semibold text-neutral-700 transition-colors hover:border-primary hover:text-primary"
-          >
-            Already signed up? Log in
-          </a>
-        </div>
+        
         <p className="mt-4 text-xs text-neutral-500">
           New accounts are reviewed before access is activated.
         </p>

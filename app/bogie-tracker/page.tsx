@@ -97,7 +97,9 @@ export default function BogieTrackerPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <main>
+         
         <TrackerHero />
+        <TrackerPricing />
 
         <section className="pb-12">
           <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
@@ -160,7 +162,7 @@ export default function BogieTrackerPage() {
           </div>
         </section>
 
-        <TrackerPricing />
+       
 
         <section className="py-20">
           <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
