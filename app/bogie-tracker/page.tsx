@@ -9,6 +9,7 @@ import {
   PenTool,
   ArrowRight,
   ClipboardCheck,
+  Download,
 } from "lucide-react";
 import AnimatedSection from "../components/AnimatedSection";
 import Footer from "../components/Footer";
@@ -162,7 +163,36 @@ export default function BogieTrackerPage() {
           </div>
         </section>
 
-       
+        <section className="bg-neutral-50 py-16">
+          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+            <AnimatedSection>
+              <div className="flex flex-col items-center gap-6 rounded-2xl bg-white p-8 shadow-sm ring-1 ring-neutral-100 sm:flex-row sm:justify-between">
+                <div className="flex items-center gap-4">
+                  <div className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary-light text-primary">
+                    <Download size={24} />
+                  </div>
+                  <div>
+                    <h2 className="text-lg font-extrabold tracking-tight text-neutral-900">
+                      Install it as an app
+                    </h2>
+                    <p className="mt-1 text-sm text-neutral-600">
+                      Bogie Tracker works right in your browser — add it to
+                      your home screen or desktop for one-tap access, no app
+                      store needed.
+                    </p>
+                  </div>
+                </div>
+                <a
+                  href="/bogie-tracker/login"
+                  className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-primary-dark hover:scale-[1.02] active:scale-[0.98]"
+                >
+                  Open the dashboard
+                  <ArrowRight size={16} />
+                </a>
+              </div>
+            </AnimatedSection>
+          </div>
+        </section>
 
         <section className="py-20">
           <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
