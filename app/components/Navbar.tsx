@@ -20,6 +20,7 @@ import {
 import { useAuth } from "../lib/AuthContext";
 
 const DRIVER_APP_URL = "https://gogobackend-production.up.railway.app/driver-app";
+const DRIVER_PARTNER_PAGE = "/driver-partner";
 
 const links = [{ href: "/#home", label: "Home" }];
 
@@ -79,7 +80,7 @@ function NavDropdown({ label, items }: { label: string; items: DropdownLink[] })
   );
 }
 
-function MobileLinkGroup({
+function MobileAccordion({
   label,
   items,
   onNavigate,
@@ -88,23 +89,40 @@ function MobileLinkGroup({
   items: DropdownLink[];
   onNavigate: () => void;
 }) {
+  const [expanded, setExpanded] = useState(false);
+
   return (
-    <>
-      <p className="mt-2 px-3 text-xs font-semibold uppercase tracking-wide text-neutral-400">
+    <div className="border-t border-neutral-100 first:border-t-0">
+      <button
+        type="button"
+        onClick={() => setExpanded((v) => !v)}
+        aria-expanded={expanded}
+        className="flex w-full min-h-11 items-center justify-between rounded-lg px-3 py-3 text-sm font-semibold text-neutral-900"
+      >
         {label}
-      </p>
-      {items.map((item) => (
-        <a
-          key={item.href}
-          href={item.href}
-          onClick={onNavigate}
-          className="flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm font-medium text-neutral-700 hover:bg-primary-light hover:text-primary transition-colors"
-        >
-          <item.icon size={16} />
-          {item.label}
-        </a>
-      ))}
-    </>
+        <ChevronDown
+          size={18}
+          className={`text-neutral-400 transition-transform ${
+            expanded ? "rotate-180" : ""
+          }`}
+        />
+      </button>
+      {expanded && (
+        <div className="flex flex-col gap-0.5 pb-2">
+          {items.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              onClick={onNavigate}
+              className="flex min-h-11 items-center gap-2.5 rounded-lg px-3 py-3 text-sm font-medium text-neutral-700 hover:bg-primary-light hover:text-primary transition-colors"
+            >
+              <item.icon size={16} />
+              {item.label}
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -139,6 +157,15 @@ export default function Navbar() {
 
   useClickOutside(accountRef, accountOpen, () => setAccountOpen(false));
 
+  useEffect(() => {
+    if (!open) return;
+    const original = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = original;
+    };
+  }, [open]);
+
   return (
     <header
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
@@ -152,8 +179,8 @@ export default function Navbar() {
           <Image
             src="/logo-mark.png"
             alt="Bogie"
-            width={1075}
-            height={408}
+            width={1024}
+            height={308}
             priority
             className="h-8 w-auto sm:h-9"
           />
@@ -192,12 +219,12 @@ export default function Navbar() {
             Bogie Tracker
           </Link>
 
-          <a
-            href={DRIVER_APP_URL}
+          <Link
+            href={DRIVER_PARTNER_PAGE}
             className="hidden lg:inline-flex items-center text-sm font-medium text-neutral-700 hover:text-primary transition-colors"
           >
-            Become a Driver
-          </a>
+            Driver Partner
+          </Link>
 
           <Link
             href="/book"
@@ -243,8 +270,9 @@ export default function Navbar() {
 
           <button
             aria-label="Toggle menu"
+            aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
-            className="md:hidden inline-flex items-center justify-center rounded-full p-2 text-neutral-700 hover:bg-neutral-100"
+            className="md:hidden inline-flex h-11 w-11 items-center justify-center rounded-full text-neutral-700 hover:bg-neutral-100"
           >
             {open ? <X size={22} /> : <Menu size={22} />}
           </button>
@@ -252,81 +280,92 @@ export default function Navbar() {
       </nav>
 
       {open && (
-        <div className="md:hidden bg-white border-t border-neutral-100 shadow-sm">
-          <div className="flex flex-col px-4 py-3 gap-1">
-            {links.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setOpen(false)}
-                className="rounded-lg px-3 py-2.5 text-sm font-medium text-neutral-700 hover:bg-primary-light hover:text-primary transition-colors"
-              >
-                {link.label}
-              </a>
-            ))}
+        <>
+          <div
+            className="fixed inset-0 top-16 z-[60] bg-black/30 md:hidden"
+            onClick={() => setOpen(false)}
+            aria-hidden="true"
+          />
+          <div className="fixed inset-x-0 top-16 z-[60] max-h-[calc(100vh-4rem)] overflow-y-auto overscroll-contain bg-white border-t border-neutral-100 shadow-lg md:hidden">
+            <div className="flex flex-col px-4 py-2">
+              {links.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setOpen(false)}
+                  className="flex min-h-11 items-center rounded-lg px-3 py-3 text-sm font-medium text-neutral-700 hover:bg-primary-light hover:text-primary transition-colors"
+                >
+                  {link.label}
+                </a>
+              ))}
 
-            <MobileLinkGroup label="Company" items={companyLinks} onNavigate={() => setOpen(false)} />
-            <MobileLinkGroup label="Services" items={serviceLinks} onNavigate={() => setOpen(false)} />
+              <MobileAccordion label="Company" items={companyLinks} onNavigate={() => setOpen(false)} />
+              <MobileAccordion label="Services" items={serviceLinks} onNavigate={() => setOpen(false)} />
 
-            {afterServicesLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setOpen(false)}
-                className="mt-2 rounded-lg px-3 py-2.5 text-sm font-medium text-neutral-700 hover:bg-primary-light hover:text-primary transition-colors"
-              >
-                {link.label}
-              </a>
-            ))}
+              <div className="border-t border-neutral-100">
+                {afterServicesLinks.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setOpen(false)}
+                    className="flex min-h-11 items-center rounded-lg px-3 py-3 text-sm font-medium text-neutral-700 hover:bg-primary-light hover:text-primary transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                ))}
 
-            <Link
-              href="/bogie-tracker"
-              onClick={() => setOpen(false)}
-              className="rounded-lg px-3 py-2.5 text-sm font-medium text-neutral-700 hover:bg-primary-light hover:text-primary transition-colors"
-            >
-              Bogie Tracker
-            </Link>
+                <Link
+                  href="/bogie-tracker"
+                  onClick={() => setOpen(false)}
+                  className="flex min-h-11 items-center rounded-lg px-3 py-3 text-sm font-medium text-neutral-700 hover:bg-primary-light hover:text-primary transition-colors"
+                >
+                  Bogie Tracker
+                </Link>
 
-            <a
-              href={DRIVER_APP_URL}
-              onClick={() => setOpen(false)}
-              className="rounded-lg px-3 py-2.5 text-sm font-medium text-neutral-700 hover:bg-primary-light hover:text-primary transition-colors"
-            >
-              Become a Driver
-            </a>
+                <Link
+                  href={DRIVER_PARTNER_PAGE}
+                  onClick={() => setOpen(false)}
+                  className="flex min-h-11 items-center rounded-lg px-3 py-3 text-sm font-medium text-neutral-700 hover:bg-primary-light hover:text-primary transition-colors"
+                >
+                  Become a Driver
+                </Link>
+              </div>
 
-            <Link
-              href="/book"
-              onClick={() => setOpen(false)}
-              className="mt-1 inline-flex items-center justify-center rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-white"
-            >
-              Book Now
-            </Link>
+              <div className="mt-3 flex flex-col gap-2 border-t border-neutral-100 pt-3 pb-3">
+                <Link
+                  href="/book"
+                  onClick={() => setOpen(false)}
+                  className="inline-flex min-h-11 items-center justify-center rounded-full bg-primary px-5 py-3 text-sm font-semibold text-white"
+                >
+                  Book Now
+                </Link>
 
-            {!isLoading && !user && (
-              <Link
-                href="/login"
-                onClick={() => setOpen(false)}
-                className="inline-flex items-center justify-center rounded-full border border-neutral-200 px-5 py-2.5 text-sm font-semibold text-neutral-700"
-              >
-                Log In
-              </Link>
-            )}
+                {!isLoading && !user && (
+                  <Link
+                    href="/login"
+                    onClick={() => setOpen(false)}
+                    className="inline-flex min-h-11 items-center justify-center rounded-full border border-neutral-200 px-5 py-3 text-sm font-semibold text-neutral-700"
+                  >
+                    Log In
+                  </Link>
+                )}
 
-            {!isLoading && user && (
-              <button
-                onClick={() => {
-                  logout();
-                  setOpen(false);
-                }}
-                className="flex items-center justify-center gap-2 rounded-full border border-neutral-200 px-5 py-2.5 text-sm font-semibold text-neutral-700"
-              >
-                <LogOut size={16} />
-                Log Out ({user.name.split(" ")[0]})
-              </button>
-            )}
+                {!isLoading && user && (
+                  <button
+                    onClick={() => {
+                      logout();
+                      setOpen(false);
+                    }}
+                    className="flex min-h-11 items-center justify-center gap-2 rounded-full border border-neutral-200 px-5 py-3 text-sm font-semibold text-neutral-700"
+                  >
+                    <LogOut size={16} />
+                    Log Out ({user.name.split(" ")[0]})
+                  </button>
+                )}
+              </div>
+            </div>
           </div>
-        </div>
+        </>
       )}
     </header>
   );

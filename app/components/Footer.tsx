@@ -1,10 +1,15 @@
-import { Smartphone, Star, X } from "lucide-react";
+"use client";
+
+import { useState } from "react";
+import Image from "next/image";
+import { ChevronDown, Mail, MapPin, Phone, Smartphone, Star, X } from "lucide-react";
 import { serviceAreas } from "../lib/serviceAreas";
 import { PRIVACY_POLICY_URL, TERMS_URL } from "../lib/policies";
 import CookieSettingsLink from "./CookieSettingsLink";
 
 const DRIVER_APP_URL =
   "https://gogobackend-production.up.railway.app/driver-app";
+const DRIVER_PARTNER_PAGE = "/driver-partner";
 
 function InstagramIcon({ className }: { className?: string }) {
   return (
@@ -150,7 +155,7 @@ const quickLinks = [
   { label: "Ambulance", href: "/ambulance" },
   { label: "Fare Estimator", href: "/fare-estimator" },
   { label: "Bogie Tracker", href: "/bogie-tracker" },
-  { label: "Become a Driver", href: DRIVER_APP_URL },
+  { label: "Become a Driver", href: DRIVER_PARTNER_PAGE },
   { label: "Refer & Earn", href: "/refer" },
   { label: "Rate Bogie", href: "/review" },
 ];
@@ -165,20 +170,68 @@ const supportLinks = [
   { label: "Zero Tolerance Policy", href: "#" },
 ];
 
+const officeLocations = ["California", "Australia", "Germany", "India", "Canada"];
 
+function FooterSection({
+  title,
+  ariaLabel,
+  className = "",
+  children,
+}: {
+  title: string;
+  ariaLabel: string;
+  className?: string;
+  children: React.ReactNode;
+}) {
+  const [expanded, setExpanded] = useState(false);
+
+  return (
+    <nav
+      aria-label={ariaLabel}
+      className={`border-t border-cream-line lg:border-0 ${className}`}
+    >
+      <button
+        type="button"
+        onClick={() => setExpanded((v) => !v)}
+        aria-expanded={expanded}
+        className="flex min-h-11 w-full items-center justify-between py-3 text-left lg:hidden"
+      >
+        <h3 className="text-sm font-semibold text-neutral-900">{title}</h3>
+        <ChevronDown
+          size={18}
+          className={`text-neutral-400 transition-transform ${
+            expanded ? "rotate-180" : ""
+          }`}
+        />
+      </button>
+      <h3 className="hidden text-sm font-semibold text-neutral-900 lg:block">
+        {title}
+      </h3>
+      <div className={`${expanded ? "block" : "hidden"} pb-3 lg:block lg:pb-0`}>
+        {children}
+      </div>
+    </nav>
+  );
+}
 
 export default function Footer() {
   return (
-    <footer className="border-t border-cream-line bg-cream text-neutral-600">
+    <footer
+      id="site-footer"
+      className="border-t border-cream-line bg-cream text-neutral-600"
+    >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 gap-14 lg:grid-cols-[320px_1fr]">
           {/* Left block */}
           <div>
-            <a
-              href="/#home"
-              className="inline-flex items-baseline text-4xl font-extrabold tracking-tight text-neutral-900"
-            >
-              bo<span className="text-primary">g</span>ie
+            <a href="/#home" className="inline-flex items-center">
+              <Image
+                src="/logo-mark.png"
+                alt="Bogie"
+                width={1024}
+                height={308}
+                className="h-10 w-auto"
+              />
             </a>
             <p className="mt-2 text-xs uppercase tracking-widest text-neutral-500">
               Delivering more than just parcels
@@ -235,98 +288,112 @@ export default function Footer() {
           </div>
 
           {/* Right columns */}
-          <div className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-4">
-            <nav aria-label="Company">
-              <h3 className="text-sm font-semibold text-neutral-900">Company</h3>
-              <ul className="mt-4 space-y-2.5">
+          <div className="flex flex-col lg:grid lg:grid-cols-5 lg:gap-x-8 lg:gap-y-10">
+            <FooterSection title="Company" ariaLabel="Company">
+              <ul className="mt-2">
                 {companyLinks.map((l) => (
                   <li key={l.label}>
                     <a
                       href={l.href}
-                      className="text-sm transition-colors hover:text-primary"
+                      className="block py-2 text-sm transition-colors hover:text-primary"
                     >
                       {l.label}
                     </a>
                   </li>
                 ))}
               </ul>
-            </nav>
+            </FooterSection>
 
-            <nav aria-label="Quick Links">
-              <h3 className="text-sm font-semibold text-neutral-900">
-                Quick Links
-              </h3>
-              <ul className="mt-4 space-y-2.5">
+            <FooterSection title="Quick Links" ariaLabel="Quick Links">
+              <ul className="mt-2">
                 {quickLinks.map((l) => (
                   <li key={l.label}>
                     <a
                       href={l.href}
-                      className="text-sm transition-colors hover:text-primary"
+                      className="block py-2 text-sm transition-colors hover:text-primary"
                     >
                       {l.label}
                     </a>
                   </li>
                 ))}
               </ul>
-            </nav>
+            </FooterSection>
 
-            <nav aria-label="Support">
-              <h3 className="text-sm font-semibold text-neutral-900">Support</h3>
-              <ul className="mt-4 space-y-2.5">
+            <FooterSection title="Support" ariaLabel="Support">
+              <ul className="mt-2">
                 {supportLinks.map((l) => (
                   <li key={l.label}>
                     <a
                       href={l.href}
-                      className="text-sm transition-colors hover:text-primary"
+                      className="block py-2 text-sm transition-colors hover:text-primary"
                     >
                       {l.label}
                     </a>
                   </li>
                 ))}
-                <li>
+                <li className="py-2">
                   <CookieSettingsLink />
                 </li>
               </ul>
-            </nav>
+            </FooterSection>
 
-            <nav
-              aria-label="Areas we serve"
-              className="col-span-2 sm:col-span-1"
-            >
-              <h3 className="text-sm font-semibold text-neutral-900">
-                Areas We Serve
-              </h3>
-              <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2.5">
+            <FooterSection title="Areas We Serve" ariaLabel="Areas we serve">
+              <ul className="mt-2 grid grid-cols-2 gap-x-4">
                 {serviceAreas.map((area) => (
                   <li key={area.slug}>
                     <a
                       href={`/cab?area=${area.slug}`}
-                      className="text-sm transition-colors hover:text-primary"
+                      className="block py-2 text-sm transition-colors hover:text-primary"
                     >
                       {area.name}
                     </a>
                   </li>
                 ))}
               </ul>
-            </nav>
+            </FooterSection>
+
+            <FooterSection title="Our Offices" ariaLabel="Our offices">
+              <ul className="mt-2">
+                {officeLocations.map((location) => (
+                  <li
+                    key={location}
+                    className="block py-2 text-sm text-neutral-600"
+                  >
+                    {location}
+                  </li>
+                ))}
+              </ul>
+            </FooterSection>
           </div>
         </div>
 
-        {/* Partner / admin panels — de-emphasized */}
-        <nav
-          aria-label="Partner and admin panels"
-          className="mt-14 border-t border-cream-line pt-6"
-        >
-          
-        </nav>
-
         {/* Copyright + NAP */}
-        <div className="mt-8 flex flex-col gap-3 border-t border-cream-line pt-6 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-8 flex flex-col gap-4 border-t border-cream-line pt-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs text-neutral-500">
-            &copy; {new Date().getFullYear()} Aggarwal Publicity and Marketing
-            Pvt. Ltd. All rights reserved.
+            &copy; {new Date().getFullYear()} Bogie Technologies Pvt. Ltd. All
+            rights reserved.
           </p>
-          
+
+          <div className="flex flex-col gap-2 text-xs text-neutral-500 sm:flex-row sm:items-center sm:gap-5">
+            <a
+              href="mailto:support@bogie.in"
+              className="flex items-center gap-1.5 transition-colors hover:text-primary"
+            >
+              <Mail size={14} />
+              support@bogie.in
+            </a>
+            <a
+              href="tel:+917827194116"
+              className="flex items-center gap-1.5 transition-colors hover:text-primary"
+            >
+              <Phone size={14} />
+              +91 7827194116
+            </a>
+            <span className="flex items-center gap-1.5">
+              <MapPin size={14} className="flex-shrink-0" />
+              16/534 Joshi Road, Karol Bagh, New Delhi-110005, India
+            </span>
+          </div>
         </div>
       </div>
     </footer>
