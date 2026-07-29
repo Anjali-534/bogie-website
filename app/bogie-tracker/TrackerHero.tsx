@@ -1,83 +1,28 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
-import { ArrowRight } from "lucide-react";
-import {
-  MapRouteSlide,
-  DispatchGridSlide,
-  WarehouseSlide,
-  AnalyticsSlide,
-} from "./TrackerHeroSlides";
-
-// Each slide's `video` field is where a real clip drops in later —
-// TrackerHero renders it in place of Background with no other changes.
-type Slide = {
-  id: string;
-  label: string;
-  video?: string;
-  Background: React.ComponentType;
-};
-
-const slides: Slide[] = [
-  { id: "route", label: "Live route tracking", Background: MapRouteSlide },
-  { id: "grid", label: "Fleet network", Background: DispatchGridSlide },
-  { id: "warehouse", label: "Dispatch & loading", Background: WarehouseSlide },
-  { id: "analytics", label: "Reports & data", Background: AnalyticsSlide },
-];
-
-const ROTATE_MS = 5500;
+const HERO_VIDEO = "/bogietrackervideo.mp4";
 
 export default function TrackerHero() {
-  const [active, setActive] = useState(0);
-  const [paused, setPaused] = useState(false);
-
-  useEffect(() => {
-    if (paused) return;
-    const timer = setInterval(
-      () => setActive((i) => (i + 1) % slides.length),
-      ROTATE_MS
-    );
-    return () => clearInterval(timer);
-  }, [paused]);
-
-  const Current = slides[active];
-
   return (
-    <section
-      className="relative isolate overflow-hidden bg-cream pt-32 pb-20 sm:pt-40 sm:pb-28"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-    >
+    <section className="relative isolate flex min-h-[600px] flex-col justify-end overflow-hidden bg-cream sm:min-h-[680px] lg:min-h-[760px]">
       <div className="absolute inset-0 -z-20">
-        <AnimatePresence>
-          <motion.div
-            key={Current.id}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1 }}
-            className="absolute inset-0"
-          >
-            {Current.video ? (
-              <video
-                src={Current.video}
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="h-full w-full object-cover"
-              />
-            ) : (
-              <Current.Background />
-            )}
-          </motion.div>
-        </AnimatePresence>
+        <video
+          src={HERO_VIDEO}
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
       </div>
 
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-white/80 via-white/55 to-cream/85" />
+      {/* Stronger overlay on the left/bottom where text sits, so contrast
+          holds regardless of what's playing behind it at any given moment. */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-cream/95 via-white/55 to-white/20" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-white/90 via-white/45 to-transparent" />
 
-      <div className="relative mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
+      <div className="relative max-w-xl px-6 pb-14 pt-32 text-left sm:px-10 sm:pb-20 lg:px-16">
         <span className="inline-flex items-center gap-2 rounded-full bg-primary-light px-4 py-1.5 text-xs font-semibold text-primary-dark">
           Bogie Tracker · For Business
         </span>
@@ -89,24 +34,10 @@ export default function TrackerHero() {
           companies that run their own trucks. Add your drivers, create
           a shipment, and follow it live — from loading to delivery.
         </p>
-        
+
         <p className="mt-4 text-xs text-neutral-500">
           New accounts are reviewed before access is activated.
         </p>
-
-        <div className="mt-10 flex items-center justify-center gap-2">
-          {slides.map((s, i) => (
-            <button
-              key={s.id}
-              onClick={() => setActive(i)}
-              aria-label={`Show ${s.label}`}
-              aria-current={i === active}
-              className={`h-2 rounded-full transition-all ${
-                i === active ? "w-6 bg-primary" : "w-2 bg-neutral-300 hover:bg-neutral-400"
-              }`}
-            />
-          ))}
-        </div>
       </div>
     </section>
   );

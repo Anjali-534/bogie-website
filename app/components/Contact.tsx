@@ -6,8 +6,8 @@ import AnimatedSection from "./AnimatedSection";
 
 const details = [
   { icon: Mail, label: "Email", value: "support@bogie.in" },
-  { icon: Phone, label: "Phone", value: "+91 98XXX XXXXX" },
-  { icon: MapPin, label: "Location", value: "Delhi NCR, India" },
+  { icon: Phone, label: "Phone", value: "+91 7827194116" },
+  { icon: MapPin, label: "Location", value: "16/534 Joshi Road, Karol Bagh , New Delhi-110005, India." },
 ];
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

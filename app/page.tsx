@@ -6,6 +6,7 @@ import Reviews from "./components/Reviews";
 import Services from "./components/Services";
 import HowItWorks from "./components/HowItWorks";
 import DriverCta from "./components/DriverCta";
+import TrackerCta from "./components/TrackerCta";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
@@ -13,7 +14,7 @@ const orgJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "Bogie",
-  legalName: "Aggarwal Publicity and Marketing Pvt. Ltd.",
+  legalName: "Bogie Technologies Pvt. Ltd.",
   url: SITE_URL,
   description:
     "Ride hailing and logistics app for Delhi NCR — cab booking, truck logistics, and zero-commission ambulance booking in one app.",
@@ -29,12 +30,13 @@ export default function Home() {
       />
       <main className="flex-1">
         <Hero />
+        <Services />
+        <DriverCta />
+        <TrackerCta />
         <About />
         <Stats />
         <Reviews />
-        <Services />
         <HowItWorks />
-        <DriverCta />
         <Contact />
       </main>
       <Footer />

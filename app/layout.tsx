@@ -6,6 +6,7 @@ import { TrackerAuthProvider } from "./lib/TrackerAuthContext";
 import { CookieConsentProvider } from "./lib/CookieConsentContext";
 import Navbar from "./components/Navbar";
 import CookieConsentBanner from "./components/CookieConsentBanner";
+import WhatsAppButton from "./components/WhatsAppButton";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,6 +40,7 @@ export default function RootLayout({
             <CookieConsentProvider>
               <Navbar />
               {children}
+              <WhatsAppButton />
               <CookieConsentBanner />
             </CookieConsentProvider>
           </TrackerAuthProvider>

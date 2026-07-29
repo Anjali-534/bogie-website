@@ -84,6 +84,70 @@ export async function apiRiderProfile(token: string): Promise<RiderProfile> {
   return body as unknown as RiderProfile;
 }
 
+export type DriverSignupFields = {
+  email: string;
+  name: string;
+  password: string;
+  phone: string;
+  vehicle_type: string;
+  vehicle_category: string;
+  vehicle_number: string;
+  vehicle_model: string;
+  bank_account_holder: string;
+  bank_account_number: string;
+  bank_ifsc: string;
+  bank_name: string;
+  upi_id?: string;
+  mvag_declaration_accepted: boolean;
+  date_of_birth?: string;
+  address?: string;
+};
+
+export type DriverSignupResponse = {
+  user_id: string;
+  driver_id: string;
+  message: string;
+};
+
+export async function apiDriverSignup(
+  fields: DriverSignupFields
+): Promise<DriverSignupResponse> {
+  const res = await fetch(`${API_BASE}/gogoo/driver/signup`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(fields),
+  });
+  const body = await parseJsonSafe(res);
+  if (!res.ok) {
+    throw new Error((body?.error as string) || "Something went wrong. Please try again.");
+  }
+  return body as unknown as DriverSignupResponse;
+}
+
+export async function uploadDriverDocument(
+  token: string,
+  driverId: string,
+  docType: string,
+  file: File,
+  docNumber?: string,
+  expiryDate?: string
+): Promise<void> {
+  const form = new FormData();
+  form.append("doc_type", docType);
+  if (docNumber) form.append("doc_number", docNumber);
+  if (expiryDate) form.append("expiry_date", expiryDate);
+  form.append("file", file);
+  const res = await fetch(`${API_BASE}/gogoo/drivers/${driverId}/documents`, {
+    method: "POST",
+    headers: { Authorization: `Bearer ${token}` },
+    body: form,
+  });
+  if (!res.ok) {
+    const body = await parseJsonSafe(res);
+    throw new Error((body?.error as string) || `Failed to upload document: ${docType}`);
+  }
+}
+
 export type ServiceType = {
   id: string;
   name: string;

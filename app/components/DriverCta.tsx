@@ -1,44 +1,48 @@
-import { ArrowRight, Wallet, Clock3 } from "lucide-react";
+import Image from "next/image";
 import AnimatedSection from "./AnimatedSection";
+
+const DRIVER_APP_URL = "https://gogobackend-production.up.railway.app/driver-app";
+const DRIVER_PARTNER_PAGE = "/driver-partner";
 
 export default function DriverCta() {
   return (
-    <section className="py-24">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <AnimatedSection>
-          <div className="relative overflow-hidden rounded-3xl bg-cream-deep ring-1 ring-cream-line px-8 py-14 sm:px-16 sm:py-16">
-            <div className="pointer-events-none absolute -top-16 -right-16 h-72 w-72 rounded-full bg-primary/20 blur-3xl" />
-            <div className="relative flex flex-col items-start gap-8 sm:flex-row sm:items-center sm:justify-between">
-              <div className="max-w-xl">
-                <p className="text-sm font-semibold uppercase tracking-wide text-primary">
-                  Become a driver
-                </p>
-                <h2 className="mt-3 text-3xl sm:text-4xl font-extrabold tracking-tight text-neutral-900">
-                  Drive with Bogie. Earn on your terms.
-                </h2>
-                <div className="mt-6 flex flex-wrap gap-6 text-sm text-neutral-600">
-                  <span className="flex items-center gap-2">
-                    <Wallet size={16} className="text-primary" />
-                    Daily payouts
-                  </span>
-                  <span className="flex items-center gap-2">
-                    <Clock3 size={16} className="text-primary" />
-                    Flexible hours
-                  </span>
-                </div>
-              </div>
-
-              <a
-                href="https://gogobackend-production.up.railway.app/driver-app"
-                className="inline-flex flex-shrink-0 items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-primary/30 transition-all hover:bg-primary-dark hover:scale-[1.03] active:scale-[0.98]"
-              >
-                Start driving
-                <ArrowRight size={18} />
-              </a>
-            </div>
+    <section className="bg-cream-deep pb-24 pt-10 sm:pt-12">
+      <AnimatedSection>
+        <div className="overflow-hidden bg-white shadow-[0_20px_45px_-12px_rgba(154,52,18,0.28),0_8px_18px_-8px_rgba(154,52,18,0.18)] ring-1 ring-cream-line">
+          <div className="relative h-72 sm:h-80 lg:h-[600px] w-full">
+            <Image
+              src="/bogiedriverpartner.png"
+              alt="Become a Bogie driver partner — cabs, trucks, ambulances & parcel delivery, all in one app"
+              fill
+              priority
+              className="object-cover object-top"
+              sizes="100vw"
+            />
           </div>
-        </AnimatedSection>
-      </div>
+
+          <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-3 px-5 py-6 sm:gap-4 sm:px-8">
+            <a
+              href={DRIVER_APP_URL}
+              aria-label="Get it on Google Play"
+              className="inline-flex items-center transition-opacity hover:opacity-80"
+            >
+              <Image
+                src="/google-play-badge.png"
+                alt="Get it on Google Play"
+                width={646}
+                height={250}
+                className="h-11 w-auto sm:h-12"
+              />
+            </a>
+            <a
+              href={DRIVER_PARTNER_PAGE}
+              className="inline-flex items-center rounded-lg border border-neutral-300 px-6 py-2.5 text-sm font-semibold text-neutral-800 transition-colors hover:border-primary hover:text-primary sm:py-3 sm:text-base"
+            >
+              Know More
+            </a>
+          </div>
+        </div>
+      </AnimatedSection>
     </section>
   );
 }

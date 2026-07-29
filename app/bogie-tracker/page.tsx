@@ -80,7 +80,7 @@ export default function BogieTrackerPage() {
     name: "Bogie Tracker",
     provider: {
       "@type": "Organization",
-      name: "Aggarwal Publicity and Marketing Pvt. Ltd.",
+      name: "Bogie Technologies Pvt. Ltd.",
       url: SITE_URL,
     },
     areaServed: "India",
@@ -163,7 +163,7 @@ export default function BogieTrackerPage() {
           </div>
         </section>
 
-        <section className="bg-neutral-50 py-16">
+        {/* <section className="bg-neutral-50 py-16">
           <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
             <AnimatedSection>
               <div className="flex flex-col items-center gap-6 rounded-2xl bg-white p-8 shadow-sm ring-1 ring-neutral-100 sm:flex-row sm:justify-between">
@@ -192,7 +192,7 @@ export default function BogieTrackerPage() {
               </div>
             </AnimatedSection>
           </div>
-        </section>
+        </section> */}
 
         <section className="py-20">
           <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -223,17 +223,7 @@ export default function BogieTrackerPage() {
                 />
               </AnimatedSection>
             </div>
-            <AnimatedSection delay={0.16}>
-              <div className="mt-8">
-                <Image
-                  src="/storyboard.jpeg"
-                  alt="Bogie Tracker ad storyboard: from 'Where's my delivery?' to live tracking, proof of delivery, and a shareable link for the customer"
-                  width={2400}
-                  height={1792}
-                  className="w-full rounded-2xl ring-1 ring-neutral-100"
-                />
-              </div>
-            </AnimatedSection>
+           
           </div>
         </section>
 
