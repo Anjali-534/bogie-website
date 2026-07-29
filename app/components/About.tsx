@@ -31,8 +31,8 @@ export default function About() {
             Delhi NCR&apos;s ride hailing &amp; logistics app, built to actually help.
           </h2>
           <p className="mt-5 text-lg text-neutral-600">
-            Bogie is run by <strong>Aggarwal Publicity and Marketing Pvt.
-            Ltd.</strong>, based in Delhi NCR. We bring cabs, truck logistics,
+            Bogie is run by <strong>Bogie Technologies Pvt. Ltd.</strong>,
+            based in Delhi NCR. We bring cabs, truck logistics,
             and ambulance access together in one place — because switching
             between five apps for five different rides makes no sense.
           </p>

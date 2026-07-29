@@ -17,7 +17,7 @@ import Footer from "../components/Footer";
 export const metadata: Metadata = {
   title: "About Us — Bogie | Delhi NCR's Ride & Logistics App",
   description:
-    "Bogie is Delhi NCR's ride hailing and logistics app — cab booking, truck logistics, and zero-commission ambulances, run by Aggarwal Publicity and Marketing Pvt. Ltd.",
+    "Bogie is Delhi NCR's ride hailing and logistics app — cab booking, truck logistics, and zero-commission ambulances, run by Bogie Technologies Pvt. Ltd.",
 };
 
 const differentiators = [
@@ -101,7 +101,7 @@ export default function AboutPage() {
                 </div>
                 <div>
                   <p className="font-bold text-neutral-900">
-                    Aggarwal Publicity and Marketing Pvt. Ltd.
+                    Bogie Technologies Pvt. Ltd.
                   </p>
                   <p className="mt-1 text-sm text-neutral-600">
                     Headquartered in Delhi NCR, India — and now live across the region,

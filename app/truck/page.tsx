@@ -44,7 +44,7 @@ export default async function TruckPage() {
     name: "Bogie Truck",
     provider: {
       "@type": "Organization",
-      name: "Aggarwal Publicity and Marketing Pvt. Ltd.",
+      name: "Bogie Technologies Pvt. Ltd.",
       url: SITE_URL,
     },
     areaServed: "Delhi NCR",
