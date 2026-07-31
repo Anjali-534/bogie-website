@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState, type LucideIcon, type ReactNode } from "react";
+import { useMemo, useState, type ReactNode } from "react";
 import {
   Car,
   Truck,
@@ -10,6 +10,7 @@ import {
   X,
   ArrowRight,
   ArrowLeft,
+  type LucideIcon,
 } from "lucide-react";
 import { apiDriverSignup, apiLogin, uploadDriverDocument } from "../lib/api";
 

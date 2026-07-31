@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PackagePlus, Bell, ShieldCheck, ArrowRight } from "lucide-react";
 import AnimatedSection from "../components/AnimatedSection";
-import ServiceFareCard from "../components/ServiceFareCard";
+import TruckSpecCard from "../components/TruckSpecCard";
 import Footer from "../components/Footer";
 import { getServices } from "../lib/api";
 import { SITE_URL } from "../lib/serviceAreas";
@@ -50,12 +50,14 @@ export default async function TruckPage() {
     areaServed: "Delhi NCR",
     description: metadata.description,
     ...(trucks.length > 0 && {
-      offers: trucks.map((c) => ({
-        "@type": "Offer",
-        name: c.name,
-        priceCurrency: "INR",
-        price: c.base_fare,
-      })),
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Truck categories",
+        itemListElement: trucks.map((c) => ({
+          "@type": "Offer",
+          itemOffered: { "@type": "Service", name: c.name },
+        })),
+      },
     }),
   };
 
@@ -82,8 +84,8 @@ export default async function TruckPage() {
               </h1>
               <p className="mt-6 text-lg text-neutral-600">
                 From a mini truck for a parcel across town to an outstation
-                container, Bogie moves your goods with upfront pricing and real
-                delivery updates.
+                container, Bogie moves your goods with the right vehicle for
+                the job and real delivery updates.
               </p>
             </AnimatedSection>
           </div>
@@ -96,14 +98,18 @@ export default async function TruckPage() {
                 <h2 className="text-center text-2xl font-extrabold tracking-tight text-neutral-900">
                   Within the city
                 </h2>
-                <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
+                <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
                   {city.map((c) => (
-                    <ServiceFareCard
+                    <TruckSpecCard
                       key={c.id}
                       name={c.name}
-                      capacity={c.capacity}
-                      baseFare={c.base_fare}
-                      perKmRate={c.per_km_rate}
+                      slug={c.slug}
+                      scope={c.scope}
+                      weightCapacityKg={c.weight_capacity_kg}
+                      heightM={c.height_m}
+                      widthM={c.width_m}
+                      lengthM={c.length_m}
+                      fuelTypes={c.fuel_types}
                     />
                   ))}
                 </div>
@@ -119,20 +125,23 @@ export default async function TruckPage() {
                 <h2 className="text-center text-2xl font-extrabold tracking-tight text-neutral-900">
                   Outstation
                 </h2>
-                <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
+                <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
                   {outstation.map((c) => (
-                    <ServiceFareCard
+                    <TruckSpecCard
                       key={c.id}
                       name={c.name}
-                      capacity={c.capacity}
-                      baseFare={c.base_fare}
-                      perKmRate={c.per_km_rate}
+                      slug={c.slug}
+                      scope={c.scope}
+                      weightCapacityKg={c.weight_capacity_kg}
+                      heightM={c.height_m}
+                      widthM={c.width_m}
+                      lengthM={c.length_m}
+                      fuelTypes={c.fuel_types}
                     />
                   ))}
                 </div>
                 <p className="mt-4 text-center text-xs text-neutral-500">
-                  Fares shown are starting prices; your exact fare is confirmed in the
-                  app before you book.
+                  Your exact fare is confirmed in the app before you book.
                 </p>
               </AnimatedSection>
             </div>

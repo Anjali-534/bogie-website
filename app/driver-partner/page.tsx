@@ -3,8 +3,8 @@ import Link from "next/link";
 import { ArrowRight, BadgeCheck, Clock3, ShieldCheck, Wallet } from "lucide-react";
 import DriverFeatures from "./DriverFeatures";
 import DriverApplyWizard from "./DriverApplyWizard";
+import Footer from "../components/Footer";
 
-const DRIVER_APP_URL = "https://gogobackend-production.up.railway.app/driver-app";
 const HERO_VIDEO = "/bogiedriverpartnervideo.mp4";
 
 export const metadata: Metadata = {
@@ -121,29 +121,30 @@ export default function DriverPartnerPage() {
       <DriverFeatures />
 
       <section className="mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
-        <div className="rounded-3xl bg-neutral-900 px-8 py-10 text-white sm:px-10 lg:px-12">
+        <div className="rounded-3xl border border-cream-line bg-white px-8 py-10 shadow-sm sm:px-10 lg:px-12">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-2xl">
-              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-primary-light">
+              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-primary">
                 Ready to join?
               </p>
-              <h2 className="mt-3 text-3xl font-bold sm:text-4xl">
+              <h2 className="mt-3 text-3xl font-bold text-neutral-900 sm:text-4xl">
                 Sign up today and become a Bogie driver partner.
               </h2>
-              <p className="mt-4 text-base leading-7 text-neutral-300">
+              <p className="mt-4 text-base leading-7 text-neutral-600">
                 Complete the partner signup form and our team will guide you through the next steps.
               </p>
             </div>
-            <a
-              href={DRIVER_APP_URL}
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-neutral-900 transition-all hover:bg-neutral-100"
+            <DriverApplyWizard
+              label="Partner Sign Up"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:bg-primary-dark hover:scale-[1.02]"
             >
-              Open partner signup
+              Partner Sign Up
               <ArrowRight size={18} />
-            </a>
+            </DriverApplyWizard>
           </div>
         </div>
       </section>
+      <Footer />
     </main>
   );
 }

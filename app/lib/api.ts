@@ -159,6 +159,11 @@ export type ServiceType = {
   per_km_rate: number;
   surge_multiplier: number;
   capacity: number;
+  height_m?: number | null;
+  width_m?: number | null;
+  length_m?: number | null;
+  weight_capacity_kg?: number | null;
+  fuel_types?: string[] | null;
 };
 
 export async function getServices(): Promise<ServiceType[]> {
