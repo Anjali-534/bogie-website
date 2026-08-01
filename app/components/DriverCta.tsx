@@ -21,6 +21,9 @@ export default function DriverCta() {
           </div>
 
           <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-3 px-5 py-6 sm:gap-4 sm:px-8">
+            <span className="text-base font-semibold text-neutral-900">
+              Download the App
+            </span>
             <a
               href={DRIVER_APP_URL}
               aria-label="Get it on Google Play"
@@ -31,14 +34,14 @@ export default function DriverCta() {
                 alt="Get it on Google Play"
                 width={646}
                 height={250}
-                className="h-11 w-auto sm:h-12"
+                className="h-16 w-auto sm:h-20"
               />
             </a>
             <a
               href={DRIVER_PARTNER_PAGE}
               className="inline-flex items-center rounded-lg border border-neutral-300 px-6 py-2.5 text-sm font-semibold text-neutral-800 transition-colors hover:border-primary hover:text-primary sm:py-3 sm:text-base"
             >
-              Know More
+              Become a Bogie Partner
             </a>
           </div>
         </div>

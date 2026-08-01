@@ -214,14 +214,14 @@ export default function Navbar() {
         <div className="flex items-center gap-3">
           <Link
             href="/bogie-tracker"
-            className="hidden lg:inline-flex items-center text-sm font-medium text-neutral-700 hover:text-primary transition-colors"
+            className="hidden lg:inline-flex items-center rounded-full bg-[#6EE7B7] px-5 py-2.5 text-sm font-semibold text-neutral-900 shadow-sm transition-all hover:bg-[#5cd9a3] hover:scale-[1.03] active:scale-[0.98]"
           >
             Bogie Tracker
           </Link>
 
           <Link
             href={DRIVER_PARTNER_PAGE}
-            className="hidden lg:inline-flex items-center text-sm font-medium text-neutral-700 hover:text-primary transition-colors"
+            className="hidden lg:inline-flex items-center rounded-full bg-neutral-900 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-neutral-800 hover:scale-[1.03] active:scale-[0.98]"
           >
             Driver Partner
           </Link>

@@ -92,7 +92,7 @@ const CATEGORIES: Category[] = [
       "Cookies flagged so they're inaccessible to JavaScript on the page — a security measure that limits what a malicious script could steal.",
     disclosure: [
       "We don't use HTTP-only cookies for sign-in. We use localStorage instead, which is deliberately different: our web and mobile apps call our backend API cross-origin, and that API authenticates with a bearer token rather than a browser-managed session cookie — so there's no cookie for an HTTP-only flag to protect in the first place.",
-      "The honest tradeoff: this means your login token is technically readable by any JavaScript that runs on this page. We limit that risk by keeping our third-party script surface deliberately small — Ola Maps is the only third-party script we load, and we run no ad networks, trackers, or analytics scripts of any kind. We don't currently have a formal Content-Security-Policy configured; that's a hardening step we're aware of and evaluating for later, not something we want to imply we already have.",
+      "The honest tradeoff: this means your login token is technically readable by any JavaScript that runs on this page. We limit that risk by keeping our third-party script surface deliberately small — Ola Maps is the only third-party script we load by default, and we only load Google Analytics if you accept all cookies. We don't currently have a formal Content-Security-Policy configured; that's a hardening step we're aware of and evaluating for later, not something we want to imply we already have.",
     ],
     used: "used",
   },

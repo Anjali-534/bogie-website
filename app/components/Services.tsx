@@ -1,10 +1,11 @@
 import Link from "next/link";
-import { Car, Truck, Ambulance, Package, ArrowRight, BadgeCheck } from "lucide-react";
+import Image from "next/image";
+import { ArrowRight, BadgeCheck, Clock } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
 
 const services = [
   {
-    icon: Truck,
+    image: "/bogietruck.png",
     name: "Truck",
     tagline: "Logistics that keep your business moving.",
     features: [
@@ -15,9 +16,10 @@ const services = [
     infoHref: "/truck",
     bookHref: "/book/truck",
     badge: null,
+    comingSoon: false,
   },
   {
-    icon: Package,
+    image: "/bogieparcel.png",
     name: "Parcel",
     tagline: "Small loads, sent fast.",
     features: [
@@ -28,9 +30,10 @@ const services = [
     infoHref: "/truck",
     bookHref: "/book/truck",
     badge: null,
+    comingSoon: false,
   },
   {
-    icon: Car,
+    image: "/bogiecab.png",
     name: "Cab",
     tagline: "Wherever you're headed, whenever you need it.",
     features: [
@@ -41,9 +44,10 @@ const services = [
     infoHref: "/cab",
     bookHref: "/book/cab",
     badge: null,
+    comingSoon: true,
   },
   {
-    icon: Ambulance,
+    image: "/bogieambulance.png",
     name: "Ambulance",
     tagline: "Emergency care, without the price tag games.",
     features: [
@@ -54,6 +58,7 @@ const services = [
     infoHref: "/ambulance",
     bookHref: "/book/ambulance",
     badge: "0% commission",
+    comingSoon: false,
   },
 ];
 
@@ -73,54 +78,96 @@ export default function Services() {
         <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {services.map((service, i) => (
             <AnimatedSection key={service.name} delay={i * 0.12} className="h-full">
-              <div className="group relative flex h-full flex-col rounded-3xl border border-neutral-100 bg-white p-7 shadow-sm transition-all hover:-translate-y-1.5 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/10">
-                {service.badge && (
-                  <span className="absolute -top-3 right-6 inline-flex items-center gap-1 rounded-full bg-primary px-3 py-1 text-xs font-bold text-white shadow-md">
-                    <BadgeCheck size={13} />
-                    {service.badge}
+              <div
+                className={`group relative flex h-full flex-col overflow-hidden rounded-3xl border border-neutral-100 bg-white shadow-sm transition-all ${
+                  service.comingSoon
+                    ? "cursor-not-allowed"
+                    : "hover:-translate-y-1.5 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/10"
+                }`}
+              >
+                {service.comingSoon && (
+                  <span className="absolute right-5 top-5 z-10 inline-flex items-center gap-1 rounded-full bg-neutral-900 px-3 py-1 text-xs font-bold text-white shadow-md">
+                    <Clock size={13} />
+                    Coming Soon
                   </span>
                 )}
 
-                <Link
-                  href={service.infoHref}
-                  className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-primary-light text-primary transition-colors hover:bg-primary hover:text-white"
-                  aria-label={`Learn more about ${service.name}`}
+                <div
+                  className={`flex h-full flex-1 flex-col ${
+                    service.comingSoon ? "pointer-events-none opacity-65" : ""
+                  }`}
                 >
-                  <service.icon size={28} />
-                </Link>
+                  {service.badge && (
+                    <span className="absolute left-5 top-5 z-10 inline-flex items-center gap-1 rounded-full bg-primary px-3 py-1 text-xs font-bold text-white shadow-md">
+                      <BadgeCheck size={13} />
+                      {service.badge}
+                    </span>
+                  )}
 
-                <Link href={service.infoHref} className="mt-5 inline-block w-fit">
-                  <h3 className="text-xl font-extrabold text-neutral-900 transition-colors hover:text-primary">
-                    {service.name}
-                  </h3>
-                </Link>
-                <p className="mt-1.5 text-sm text-neutral-600">
-                  {service.tagline}
-                </p>
+                  <div className="relative h-44 w-full">
+                    <Image
+                      src={service.image}
+                      alt={service.name}
+                      fill
+                      className="object-cover"
+                      sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                    />
+                  </div>
 
-                <ul className="mt-5 flex-1 space-y-2.5">
-                  {service.features.map((f) => (
-                    <li key={f} className="flex items-start gap-2 text-sm text-neutral-700">
-                      <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary" />
-                      {f}
-                    </li>
-                  ))}
-                </ul>
+                  <div className="flex flex-1 flex-col p-7">
+                    {service.comingSoon ? (
+                      <h3 className="text-xl font-extrabold text-neutral-900">
+                        {service.name}
+                      </h3>
+                    ) : (
+                      <Link href={service.infoHref} className="inline-block w-fit">
+                        <h3 className="text-xl font-extrabold text-neutral-900 transition-colors hover:text-primary">
+                          {service.name}
+                        </h3>
+                      </Link>
+                    )}
+                    <p className="mt-1.5 text-sm text-neutral-600">
+                      {service.tagline}
+                    </p>
 
-                <div className="mt-6 flex items-center justify-between gap-4">
-                  <Link
-                    href={service.bookHref}
-                    className="inline-flex items-center gap-1.5 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-primary-dark hover:shadow-md"
-                  >
-                    Book Now
-                    <ArrowRight size={15} />
-                  </Link>
-                  <Link
-                    href={service.infoHref}
-                    className="text-sm font-medium text-neutral-500 transition-colors hover:text-primary"
-                  >
-                    Learn more
-                  </Link>
+                    <ul className="mt-5 flex-1 space-y-2.5">
+                      {service.features.map((f) => (
+                        <li key={f} className="flex items-start gap-2 text-sm text-neutral-700">
+                          <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary" />
+                          {f}
+                        </li>
+                      ))}
+                    </ul>
+
+                    <div className="mt-6 flex items-center justify-between gap-4">
+                      {service.comingSoon ? (
+                        <span className="inline-flex items-center gap-1.5 rounded-full bg-neutral-200 px-5 py-2.5 text-sm font-semibold text-neutral-500">
+                          Book Now
+                          <ArrowRight size={15} />
+                        </span>
+                      ) : (
+                        <Link
+                          href={service.bookHref}
+                          className="inline-flex items-center gap-1.5 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-primary-dark hover:shadow-md"
+                        >
+                          Book Now
+                          <ArrowRight size={15} />
+                        </Link>
+                      )}
+                      {service.comingSoon ? (
+                        <span className="text-sm font-medium text-neutral-400">
+                          Learn more
+                        </span>
+                      ) : (
+                        <Link
+                          href={service.infoHref}
+                          className="text-sm font-medium text-neutral-500 transition-colors hover:text-primary"
+                        >
+                          Learn more
+                        </Link>
+                      )}
+                    </div>
+                  </div>
                 </div>
               </div>
             </AnimatedSection>

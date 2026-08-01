@@ -1,27 +1,24 @@
 import Link from "next/link";
-import { MapPin, ArrowRight, Truck, PhoneOff, LayoutGrid } from "lucide-react";
+import { MapPin, ArrowRight, UserPlus, BellRing, Share2, Gift } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
+
+const TRACKER_URL = "/bogie-tracker";
 
 const highlights = [
   {
-    title: "Your fleet, always visible.",
-    text: "Track every vehicle you own, live on the map.",
-    icon: MapPin,
+    title: "Add your fleet and assign drivers in minutes.",
+    text: "Onboard vehicles and drivers, ready to dispatch right away.",
+    icon: UserPlus,
   },
   {
-    title: "Every shipment, accounted for.",
-    text: "Once a transporter books, you see it move — pickup to delivery.",
-    icon: Truck,
+    title: "Get instant alerts if a shipment goes off-route.",
+    text: "Real-time deviation alerts so nothing slips through unnoticed.",
+    icon: BellRing,
   },
   {
-    title: "No more “where is it?” calls.",
-    text: "Real-time location, not guesswork.",
-    icon: PhoneOff,
-  },
-  {
-    title: "One map. Every vehicle. Every shipment.",
-    text: "See your whole operation at a glance.",
-    icon: LayoutGrid,
+    title: "Share a live tracking link with your customer.",
+    text: "One tap to share — no calls, no back-and-forth updates.",
+    icon: Share2,
   },
 ];
 
@@ -29,12 +26,14 @@ export default function TrackerCta() {
   return (
     <section className="py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <AnimatedSection className="max-w-2xl">
+        <AnimatedSection>
           <p className="text-sm font-semibold uppercase tracking-wide text-primary">
             For businesses
           </p>
           <h2 className="mt-3 text-3xl sm:text-4xl font-extrabold tracking-tight text-neutral-900">
-            Bogie Tracker- India's first shipment tracking dashboard for companies that run their own trucks.
+            <span className="text-4xl sm:text-5xl text-primary">Bogie Tracker</span>{" "}
+             -track all your shipments in one place with India's first
+            logistics tracking panel
           </h2>
         </AnimatedSection>
 
@@ -98,6 +97,22 @@ export default function TrackerCta() {
                 </div>
               );
             })}
+
+            <Link
+              href={TRACKER_URL}
+              className="group rounded-2xl border border-primary bg-primary-light px-5 py-6 text-left transition-all hover:bg-primary hover:shadow-md"
+            >
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-white group-hover:bg-white group-hover:text-primary">
+                <Gift size={16} />
+              </div>
+              <h3 className="mt-3 text-sm font-semibold text-neutral-900 group-hover:text-white">
+                Get a free demo for a month
+              </h3>
+              <p className="mt-1 flex items-center gap-1 text-sm font-medium leading-6 text-primary-dark group-hover:text-white">
+                Try it free, no commitment
+                <ArrowRight size={14} />
+              </p>
+            </Link>
           </div>
         </AnimatedSection>
       </div>

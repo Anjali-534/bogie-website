@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "motion/react";
-import { ArrowRight } from "lucide-react";
 
 const DRIVER_APP_URL = "https://gogobackend-production.up.railway.app/driver-app";
 
@@ -104,14 +103,10 @@ export default function Hero() {
             </div>
           </div>
 
-          <div className="flex w-full flex-wrap items-center justify-end gap-4 lg:ml-auto lg:w-auto">
-            <a
-              href="/book"
-              className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:bg-primary-dark hover:scale-[1.03] active:scale-[0.98]"
-            >
-              Book a ride
-              <ArrowRight size={18} />
-            </a>
+          <div className="flex w-full flex-col items-center gap-2 lg:ml-auto lg:w-auto">
+            <span className="text-base font-semibold text-neutral-900">
+              Download the App
+            </span>
             <a
               href={DRIVER_APP_URL}
               aria-label="Get it on Google Play"

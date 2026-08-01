@@ -1,14 +1,8 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { Mail, Phone, MapPin, Send, Loader2 } from "lucide-react";
+import { Send, Loader2 } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
-
-const details = [
-  { icon: Mail, label: "Email", value: "support@bogie.in" },
-  { icon: Phone, label: "Phone", value: "+91 7827194116" },
-  { icon: MapPin, label: "Location", value: "16/534 Joshi Road, Karol Bagh , New Delhi-110005, India." },
-];
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -69,38 +63,15 @@ export default function Contact() {
   return (
     <section id="contact" className="scroll-mt-16 bg-neutral-50 py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <AnimatedSection className="max-w-2xl">
-          <p className="text-sm font-semibold uppercase tracking-wide text-primary">
-            Get in touch
-          </p>
-          <h2 className="mt-3 text-3xl sm:text-4xl font-extrabold tracking-tight text-neutral-900">
-            Questions? We&apos;re here.
+        <AnimatedSection className="text-center">
+          
+          <h2 className="mt-3 text-4xl sm:text-5xl lg:text-6xl font-extrabold text-primary tracking-tight ">
+            Let&apos;s Get In Touch
           </h2>
         </AnimatedSection>
 
-        <div className="mt-14 grid grid-cols-1 gap-10 lg:grid-cols-5">
-          <AnimatedSection className="lg:col-span-2">
-            <div className="flex h-full flex-col gap-5">
-              {details.map((d) => (
-                <div
-                  key={d.label}
-                  className="flex items-center gap-4 rounded-2xl bg-white p-5 shadow-sm ring-1 ring-neutral-100"
-                >
-                  <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-primary-light text-primary">
-                    <d.icon size={20} />
-                  </div>
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-wide text-neutral-500">
-                      {d.label}
-                    </p>
-                    <p className="font-semibold text-neutral-900">{d.value}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </AnimatedSection>
-
-          <AnimatedSection delay={0.1} className="lg:col-span-3">
+        <div className="mt-14">
+          <AnimatedSection delay={0.1} className="w-full">
             <form
               onSubmit={handleSubmit}
               className="rounded-3xl bg-white p-7 shadow-sm ring-1 ring-neutral-100 sm:p-8"

@@ -69,9 +69,9 @@ export default function CookieConsentBanner() {
                 Required for booking to work; there&apos;s no toggle for this.
               </li>
               <li>
-                <strong className="text-neutral-800">Analytics</strong> — none.
-                We don&apos;t run Google Analytics or any other tracker on this
-                site.
+                <strong className="text-neutral-800">Analytics</strong> — optional.
+                We only load Google Analytics after you choose to accept all
+                cookies.
               </li>
               <li>
                 <strong className="text-neutral-800">Marketing</strong> — none.

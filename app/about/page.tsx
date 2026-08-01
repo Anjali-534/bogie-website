@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Zap,
   ShieldCheck,
@@ -60,6 +61,14 @@ const services = [
     href: "/ambulance",
     badge: "0% commission",
   },
+];
+
+const teamPeople = [
+  { photo: "/ANILBOGIE.png", name: "Anil Garg", designation: "Director", featured: true },
+  { photo: "/MADHUBOGIE.png", name: "Madhu Garg", designation: "Director", featured: true },
+  { photo: "/ANJALI%20BOGIE.png", name: "Anjali Aggarwal", designation: "Co-Founder & Engineer", featured: false },
+  { photo: "/DHRITIBOGIE.png", name: "Dhriti Aggarwal", designation: "CFO", featured: false },
+  { photo: "/TUSHARBOGIE.png", name: "Tushar Aggarwal", designation: "", featured: false },
 ];
 
 export default function AboutPage() {
@@ -133,6 +142,68 @@ export default function AboutPage() {
                     </div>
                     <h3 className="mt-4 font-bold text-neutral-900">{d.title}</h3>
                     <p className="mt-2 text-sm text-neutral-600">{d.text}</p>
+                  </div>
+                </AnimatedSection>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="py-24">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <AnimatedSection className="max-w-2xl">
+              <p className="text-sm font-semibold uppercase tracking-wide text-primary">
+                Our team
+              </p>
+              <h2 className="mt-3 text-3xl sm:text-4xl font-extrabold tracking-tight text-neutral-900">
+                The people behind Bogie.
+              </h2>
+            </AnimatedSection>
+
+            <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-3 lg:grid-cols-5">
+              {teamPeople.map((person, i) => (
+                <AnimatedSection key={person.name} delay={i * 0.1}>
+                  <div
+                    className={
+                      person.featured
+                        ? "flex h-full flex-col items-center rounded-3xl border border-primary/20 bg-primary-light/40 p-8 text-center shadow-sm transition-all hover:-translate-y-1.5 hover:shadow-lg"
+                        : "flex h-full flex-col items-center rounded-3xl border border-neutral-100 bg-white p-7 text-center shadow-sm transition-all hover:-translate-y-1.5 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/10"
+                    }
+                  >
+                    {person.featured && (
+                      <span className="inline-flex items-center rounded-full bg-primary px-3 py-1 text-xs font-bold text-white">
+                        Director
+                      </span>
+                    )}
+                    <div
+                      className={
+                        person.featured
+                          ? "relative mt-5 h-32 w-32 overflow-hidden rounded-full ring-4 ring-white shadow-md"
+                          : "relative h-24 w-24 overflow-hidden rounded-full ring-4 ring-neutral-50 shadow-sm"
+                      }
+                    >
+                      <Image
+                        src={person.photo}
+                        alt={person.name}
+                        fill
+                        className="object-cover"
+                        sizes={person.featured ? "128px" : "96px"}
+                      />
+                    </div>
+                    <h3
+                      className={
+                        person.featured
+                          ? "mt-5 text-xl font-extrabold text-neutral-900"
+                          : "mt-4 text-lg font-extrabold text-neutral-900"
+                      }
+                    >
+                      {person.name}
+                    </h3>
+                    {person.designation && (
+                      <p className="mt-1 text-sm font-medium text-neutral-600">
+                        {person.designation}
+                      </p>
+                    )}
                   </div>
                 </AnimatedSection>
               ))}

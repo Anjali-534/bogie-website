@@ -426,7 +426,22 @@
       "Bash(npx --yes tsx --version)",
       "Bash(npx --yes tsx debug-truck-temp.mjs)",
       "Bash(curl -s https://gogobackend-production.up.railway.app/gogoo/services --max-time 15)",
-      "Bash(curl -s https://gogobackend-production.up.railway.app/gogoo/services --max-time 15 -o \"C:/Users/ADMIN/OneDrive/Desktop/bogie/scratch-services.json\")"
+      "Bash(curl -s https://gogobackend-production.up.railway.app/gogoo/services --max-time 15 -o \"C:/Users/ADMIN/OneDrive/Desktop/bogie/scratch-services.json\")",
+      "Bash(git stash *)",
+      "Bash(cat /tmp/dev.log 2>&1 | tail -100; echo ---; cat /tmp/home.html 2>&1 | head -50)",
+      "Bash(pkill -f \"next dev\")",
+      "Bash(tail -60 /tmp/build_check5.log)",
+      "Bash(cat /tmp/build_check5.log)",
+      "Bash(curl -s -o /dev/null -w \"HTTP:%{http_code}\\\\n\" http://localhost:3000/ --max-time 5)",
+      "Bash(powershell -Command \"Stop-Process -Id 18852 -Force -ErrorAction SilentlyContinue\")",
+      "Bash(grep -n \"Compiled\\\\|error TS\\\\|Type error\" /tmp/build_check6.log)",
+      "Bash(curl -s -o /dev/null -w \"HTTP:%{http_code}\\\\n\" http://localhost:3000/ --max-time 8)",
+      "Bash(cat /tmp/dev_server.log)",
+      "Bash(curl -s -o /dev/null -w \"HTTP:%{http_code}\\\\n\" http://localhost:3000/ --max-time 20)",
+      "Bash(tail -60 /tmp/build_check9.log)",
+      "Bash(powershell -Command \"Stop-Process -Id 9620 -Force -ErrorAction SilentlyContinue\")",
+      "Bash(powershell -Command \"Stop-Process -Id 7432 -Force -ErrorAction SilentlyContinue\")",
+      "Bash(tail -40 /tmp/build_check11.log)"
     ],
     "additionalDirectories": [
       "c:\\Users\\ADMIN\\OneDrive\\Desktop\\gogoo\\backend\\internal\\api\\handlers",
