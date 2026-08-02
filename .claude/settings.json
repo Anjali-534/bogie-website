@@ -483,7 +483,15 @@
       "Bash(rm -f build.log)",
       "Bash(timeout 170 tail -f \"C:\\\\Users\\\\ADMIN\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-ADMIN-OneDrive-Desktop-bogie\\\\84974dfc-c4b1-4d93-8b08-4687fb6c159e\\\\tasks\\\\b1tnfnsxw.output\")",
       "Bash(cat /tmp/build_out.log; echo \"---\"; cat c:/Users/ADMIN/OneDrive/Desktop/bogie/eslint.config.mjs 2>&1 | head -20; echo \"---git diff eslint---\"; cd c:/Users/ADMIN/OneDrive/Desktop/bogie && git diff --stat eslint.config.mjs package.json 2>&1)",
-      "Bash(cat /tmp/build_out.log)"
+      "Bash(cat /tmp/build_out.log)",
+      "Bash(cat /tmp/build_about2.log | grep -E \"about|✓|⨯|EXIT|Route\")",
+      "Bash(cat /tmp/build_about3.log | grep -E \"about|✓|⨯|EXIT|Route\")",
+      "Bash(cat /tmp/build_about4.log | grep -E \"about|✓|⨯|EXIT|Route\")",
+      "Bash(cat /tmp/build_about5.log | grep -E \"about|✓|⨯|EXIT|Route\")",
+      "Bash(cat /tmp/build_about6.log | grep -E \"about|✓|⨯|EXIT|Route\")",
+      "Bash(cat /tmp/build_about7.log 2>/dev/null | tail -20; echo \"---\"; ps aux | grep -i node | grep -v grep)",
+      "Bash(cat /tmp/build_about7.log 2>/dev/null | tail -20)",
+      "Bash(cat /tmp/build_about7.log | grep -E \"about|✓|⨯|EXIT|Route\")"
     ],
     "additionalDirectories": [
       "c:\\Users\\ADMIN\\OneDrive\\Desktop\\gogoo\\backend\\internal\\api\\handlers",

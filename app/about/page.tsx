@@ -1,19 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import {
-  Zap,
-  ShieldCheck,
-  HeartHandshake,
-  Car,
-  Truck,
-  Ambulance,
-  ArrowRight,
-  BadgeCheck,
-  MapPin,
-} from "lucide-react";
+import { Zap, ShieldCheck, HeartHandshake, ArrowRight, MapPin } from "lucide-react";
 import AnimatedSection from "../components/AnimatedSection";
 import Footer from "../components/Footer";
+import Services from "../components/Services";
 
 export const metadata: Metadata = {
   title: "About Us — Bogie | Delhi NCR's Ride & Logistics App",
@@ -39,48 +30,31 @@ const differentiators = [
   },
 ];
 
-const services = [
-  {
-    icon: Car,
-    name: "Cab",
-    description: "2 wheeler, auto, mini, SUV, and hourly rentals — live tracking and upfront fares across Delhi NCR.",
-    href: "/cab",
-    badge: null,
-  },
-  {
-    icon: Truck,
-    name: "Truck",
-    description: "Within-city and outstation logistics, loading/unloading add-ons, and delivery updates for the receiver.",
-    href: "/truck",
-    badge: null,
-  },
-  {
-    icon: Ambulance,
-    name: "Ambulance",
-    description: "Free rides via registered NGOs, or paid BLS/ALS via partner hospitals — zero commission, either way.",
-    href: "/ambulance",
-    badge: "0% commission",
-  },
-];
-
 const teamPeople = [
   { photo: "/ANILBOGIE.png", name: "Anil Garg", designation: "Director", featured: true },
   { photo: "/MADHUBOGIE.png", name: "Madhu Garg", designation: "Director", featured: true },
   { photo: "/ANJALI%20BOGIE.png", name: "Anjali Aggarwal", designation: "Co-Founder & Engineer", featured: false },
   { photo: "/DHRITIBOGIE.png", name: "Dhriti Aggarwal", designation: "CFO", featured: false },
-  { photo: "/TUSHARBOGIE.png", name: "Tushar Aggarwal", designation: "", featured: false },
+  { photo: "/TUSHARBOGIE.png", name: "Tushar Aggarwal", designation: "PEON Head", featured: false },
+  { photo: "/ANUJBOGIE.png", name: "kunal Garg", designation: "Mareting Head", featured: false },  
 ];
 
 export default function AboutPage() {
   return (
     <>
       <main>
-        <section className="relative overflow-hidden pt-32 pb-20 sm:pt-40 sm:pb-24">
-          <div className="pointer-events-none absolute inset-0 -z-10">
-            <div className="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-primary/10 blur-3xl" />
-            <div className="absolute top-1/2 -left-32 h-80 w-80 rounded-full bg-primary/5 blur-3xl" />
-          </div>
+        <section className="relative aspect-[3/2] w-full">
+          <Image
+            src="/aboutbogiehero.png"
+            alt="Bogie on the road in Delhi NCR"
+            fill
+            priority
+            className="object-cover"
+            sizes="100vw"
+          />
+        </section>
 
+        <section className="bg-cream pt-16 pb-20 sm:pt-20 sm:pb-24">
           <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
             <AnimatedSection>
               <span className="inline-flex items-center gap-2 rounded-full bg-primary-light px-4 py-1.5 text-xs font-semibold text-primary-dark">
@@ -97,6 +71,35 @@ export default function AboutPage() {
                 every second counts. One login, one app, three services that actually
                 talk to each other.
               </p>
+            </AnimatedSection>
+          </div>
+        </section>
+
+        <section className="py-16">
+          <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+            <AnimatedSection className="max-w-2xl">
+              <p className="text-sm font-semibold uppercase tracking-wide text-primary">
+                What drives us
+              </p>
+            </AnimatedSection>
+
+            <AnimatedSection className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2">
+              <div className="rounded-3xl bg-white p-7 shadow-sm ring-1 ring-neutral-100">
+                <h2 className="text-lg font-bold text-neutral-900">Our Mission</h2>
+                <p className="mt-3 text-sm text-neutral-600">
+                  To make every kind of movement — a daily commute, an emergency, a
+                  business shipment — simple, transparent, and fair for the people who
+                  need it and the drivers who deliver it.
+                </p>
+              </div>
+              <div className="rounded-3xl bg-white p-7 shadow-sm ring-1 ring-neutral-100">
+                <h2 className="text-lg font-bold text-neutral-900">Our Vision</h2>
+                <p className="mt-3 text-sm text-neutral-600">
+                  To become India&apos;s most trusted movement platform, where one app
+                  connects cabs, trucks, parcels, and ambulances — built on live
+                  tracking, upfront pricing, and zero unfair commissions.
+                </p>
+              </div>
             </AnimatedSection>
           </div>
         </section>
@@ -164,119 +167,81 @@ export default function AboutPage() {
               {teamPeople.map((person, i) => (
                 <AnimatedSection key={person.name} delay={i * 0.1}>
                   <div
-                    className={
+                    className={`flex h-full flex-col items-center rounded-3xl border p-7 text-center shadow-sm transition-all hover:-translate-y-1.5 hover:shadow-xl hover:shadow-primary/10 ${
                       person.featured
-                        ? "flex h-full flex-col items-center rounded-3xl border border-primary/20 bg-primary-light/40 p-8 text-center shadow-sm transition-all hover:-translate-y-1.5 hover:shadow-lg"
-                        : "flex h-full flex-col items-center rounded-3xl border border-neutral-100 bg-white p-7 text-center shadow-sm transition-all hover:-translate-y-1.5 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/10"
-                    }
+                        ? "border-primary/20 border-t-4 bg-white"
+                        : "border-neutral-100 hover:border-primary/30 bg-white"
+                    }`}
                   >
-                    {person.featured && (
-                      <span className="inline-flex items-center rounded-full bg-primary px-3 py-1 text-xs font-bold text-white">
-                        Director
-                      </span>
-                    )}
-                    <div
-                      className={
+                    {/* <span
+                      className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-bold ${
                         person.featured
-                          ? "relative mt-5 h-32 w-32 overflow-hidden rounded-full ring-4 ring-white shadow-md"
-                          : "relative h-24 w-24 overflow-hidden rounded-full ring-4 ring-neutral-50 shadow-sm"
-                      }
+                          ? "bg-primary text-white"
+                          : "invisible"
+                      }`}
                     >
+                      Director
+                    </span> */}
+                    <div className="relative mt-4 h-24 w-24 overflow-hidden rounded-full ring-4 ring-neutral-50 shadow-sm">
                       <Image
                         src={person.photo}
                         alt={person.name}
                         fill
                         className="object-cover"
-                        sizes={person.featured ? "128px" : "96px"}
+                        sizes="96px"
                       />
                     </div>
-                    <h3
-                      className={
-                        person.featured
-                          ? "mt-5 text-xl font-extrabold text-neutral-900"
-                          : "mt-4 text-lg font-extrabold text-neutral-900"
-                      }
-                    >
+                    <h3 className="mt-4 text-lg font-extrabold text-neutral-900">
                       {person.name}
                     </h3>
-                    {person.designation && (
-                      <p className="mt-1 text-sm font-medium text-neutral-600">
-                        {person.designation}
-                      </p>
-                    )}
-                  </div>
-                </AnimatedSection>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="py-24">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <AnimatedSection className="max-w-2xl">
-              <p className="text-sm font-semibold uppercase tracking-wide text-primary">
-                Our services
-              </p>
-              <h2 className="mt-3 text-3xl sm:text-4xl font-extrabold tracking-tight text-neutral-900">
-                Three services. One app. Zero hassle.
-              </h2>
-            </AnimatedSection>
-
-            <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-3">
-              {services.map((service, i) => (
-                <AnimatedSection key={service.name} delay={i * 0.12} className="h-full">
-                  <div className="group relative flex h-full flex-col rounded-3xl border border-neutral-100 bg-white p-7 shadow-sm transition-all hover:-translate-y-1.5 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/10">
-                    {service.badge && (
-                      <span className="absolute -top-3 right-6 inline-flex items-center gap-1 rounded-full bg-primary px-3 py-1 text-xs font-bold text-white shadow-md">
-                        <BadgeCheck size={13} />
-                        {service.badge}
-                      </span>
-                    )}
-                    <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-primary-light text-primary transition-colors group-hover:bg-primary group-hover:text-white">
-                      <service.icon size={28} />
-                    </div>
-                    <h3 className="mt-5 text-xl font-extrabold text-neutral-900">
-                      {service.name}
-                    </h3>
-                    <p className="mt-2 flex-1 text-sm text-neutral-600">
-                      {service.description}
+                    <p className="mt-1 text-sm font-medium text-neutral-600">
+                      {person.designation || " "}
                     </p>
-                    <Link
-                      href={service.href}
-                      className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-transform group-hover:gap-2.5"
-                    >
-                      Explore {service.name}
-                      <ArrowRight size={16} />
-                    </Link>
                   </div>
                 </AnimatedSection>
               ))}
             </div>
           </div>
         </section>
+
+        <Services />
 
         <section className="border-y border-cream-line bg-cream-deep py-24 text-neutral-900">
-          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-            <AnimatedSection>
-              <p className="text-sm font-semibold uppercase tracking-wide text-primary">
-                The ambulance difference
-              </p>
-              <h2 className="mt-3 text-3xl sm:text-4xl font-extrabold tracking-tight">
-                Zero-commission ambulances, explained.
-              </h2>
-              <p className="mt-6 text-neutral-600">
-                When you request an ambulance through Bogie, we first check for a free
-                ride via our network of registered NGOs and sewa organisations operating
-                in your area. If one's available, that's what you get — no charge, no
-                catch.
-              </p>
-              <p className="mt-4 text-neutral-600">
-                If none are free at that moment, we connect you to BLS/ALS ambulances via
-                partner hospitals, billed directly by the hospital. Either way, Bogie's
-                cut is exactly zero rupees — we don't add a platform fee or a convenience
-                charge to emergency transport, ever.
-              </p>
-            </AnimatedSection>
+          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
+              <AnimatedSection className="order-2 lg:order-1">
+                <p className="text-sm font-semibold uppercase tracking-wide text-primary">
+                  The ambulance difference
+                </p>
+                <h2 className="mt-3 text-3xl sm:text-4xl font-extrabold tracking-tight">
+                  Zero-commission ambulances, explained.
+                </h2>
+                <p className="mt-6 text-neutral-600">
+                  When you request an ambulance through Bogie, we first check for a free
+                  ride via our network of registered NGOs and sewa organisations operating
+                  in your area. If one's available, that's what you get — no charge, no
+                  catch.
+                </p>
+                <p className="mt-4 text-neutral-600">
+                  If none are free at that moment, we connect you to BLS/ALS ambulances via
+                  partner hospitals, billed directly by the hospital. Either way, Bogie's
+                  cut is exactly zero rupees — we don't add a platform fee or a convenience
+                  charge to emergency transport, ever.
+                </p>
+              </AnimatedSection>
+
+              <AnimatedSection className="order-1 lg:order-2">
+                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl shadow-sm">
+                  <Image
+                    src="/bogieambulance.png"
+                    alt="Bogie ambulance"
+                    fill
+                    className="object-cover"
+                    sizes="(min-width: 1024px) 50vw, 100vw"
+                  />
+                </div>
+              </AnimatedSection>
+            </div>
           </div>
         </section>
 
