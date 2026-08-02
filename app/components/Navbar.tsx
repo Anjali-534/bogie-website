@@ -11,6 +11,7 @@ import {
   Car,
   Truck,
   Ambulance,
+  Package,
   Info,
   Briefcase,
   Newspaper,
@@ -33,6 +34,7 @@ const companyLinks = [
 const serviceLinks = [
   { href: "/cab", label: "Cab", icon: Car },
   { href: "/truck", label: "Truck", icon: Truck },
+  { href: "/truck", label: "Parcel", icon: Package },
   { href: "/ambulance", label: "Ambulance", icon: Ambulance },
   { href: "/fare-estimator", label: "Fare Estimator", icon: Calculator },
 ];
@@ -65,7 +67,7 @@ function NavDropdown({ label, items }: { label: string; items: DropdownLink[] })
         <div className="absolute left-0 mt-3 w-48 rounded-2xl bg-white p-1.5 shadow-lg ring-1 ring-neutral-100">
           {items.map((item) => (
             <Link
-              key={item.href}
+              key={item.label}
               href={item.href}
               onClick={() => setOpen(false)}
               className="flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-sm font-medium text-neutral-700 hover:bg-primary-light hover:text-primary"
@@ -111,7 +113,7 @@ function MobileAccordion({
         <div className="flex flex-col gap-0.5 pb-2">
           {items.map((item) => (
             <a
-              key={item.href}
+              key={item.label}
               href={item.href}
               onClick={onNavigate}
               className="flex min-h-11 items-center gap-2.5 rounded-lg px-3 py-3 text-sm font-medium text-neutral-700 hover:bg-primary-light hover:text-primary transition-colors"
@@ -214,7 +216,7 @@ export default function Navbar() {
         <div className="flex items-center gap-3">
           <Link
             href="/bogie-tracker"
-            className="hidden lg:inline-flex items-center rounded-full bg-[#6EE7B7] px-5 py-2.5 text-sm font-semibold text-neutral-900 shadow-sm transition-all hover:bg-[#5cd9a3] hover:scale-[1.03] active:scale-[0.98]"
+            className="hidden lg:inline-flex items-center rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-all hover:bg-primary-dark hover:scale-[1.03] active:scale-[0.98]"
           >
             Bogie Tracker
           </Link>

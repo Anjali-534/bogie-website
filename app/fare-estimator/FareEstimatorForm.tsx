@@ -6,6 +6,7 @@ import { Bike, Car, CarFront, CarTaxiFront, ArrowRight, Sparkles, type LucideIco
 import LocationAutocomplete, { type SelectedLocation } from "../components/LocationAutocomplete";
 import { useAuth } from "../lib/AuthContext";
 import type { ServiceType } from "../lib/api";
+import { CAB_COMING_SOON } from "../lib/featureFlags";
 
 const VEHICLE_ICONS: Record<string, LucideIcon> = {
   cab_2w: Bike,
@@ -77,13 +78,20 @@ export default function FareEstimatorForm({ services }: { services: ServiceType[
                 </p>
                 <p className="text-xs text-neutral-500">+ ₹{s.per_km_rate}/km</p>
 
-                <Link
-                  href={bookHref}
-                  className="mt-5 inline-flex items-center justify-center gap-1.5 rounded-full bg-primary px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-dark"
-                >
-                  Book this
-                  <ArrowRight size={15} />
-                </Link>
+                {CAB_COMING_SOON ? (
+                  <span className="mt-5 inline-flex cursor-not-allowed items-center justify-center gap-1.5 rounded-full bg-neutral-200 px-4 py-2.5 text-sm font-semibold text-neutral-500">
+                    Coming Soon
+                    <ArrowRight size={15} />
+                  </span>
+                ) : (
+                  <Link
+                    href={bookHref}
+                    className="mt-5 inline-flex items-center justify-center gap-1.5 rounded-full bg-primary px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-dark"
+                  >
+                    Book this
+                    <ArrowRight size={15} />
+                  </Link>
+                )}
               </div>
             );
           })}

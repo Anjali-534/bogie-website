@@ -14,7 +14,7 @@ const orgJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "Bogie",
-  legalName: "Bogie Technologies Pvt. Ltd.",
+  legalName: "Bogie AI Technologies Pvt Ltd",
   url: SITE_URL,
   description:
     "Ride hailing and logistics app for Delhi NCR — cab booking, truck logistics, and zero-commission ambulance booking in one app.",

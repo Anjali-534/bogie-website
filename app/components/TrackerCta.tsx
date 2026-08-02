@@ -57,14 +57,9 @@ export default function TrackerCta() {
                   Bogie Tracker · For Business
                 </span>
                 <h2 className="mt-4 text-3xl sm:text-4xl font-extrabold tracking-tight text-neutral-900">
-                  Know where every dispatch is, in real time.
+                  Know where every shipment is, in real time.
                 </h2>
-                <p className="mt-4 text-neutral-600">
-                  Running a business with your own fleet? Bogie Tracker is a
-                  shipment tracking dashboard built for companies that run
-                  their own trucks — add your drivers, create a shipment,
-                  and follow it live from loading to delivery.
-                </p>
+              
               </div>
 
               <Link
@@ -109,7 +104,7 @@ export default function TrackerCta() {
                 Get a free demo for a month
               </h3>
               <p className="mt-1 flex items-center gap-1 text-sm font-medium leading-6 text-primary-dark group-hover:text-white">
-                Try it free, no commitment
+                Try it free
                 <ArrowRight size={14} />
               </p>
             </Link>

@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, BadgeCheck, Clock } from "lucide-react";
 import AnimatedSection from "./AnimatedSection";
+import { CAB_COMING_SOON } from "../lib/featureFlags";
 
 const services = [
   {
@@ -44,7 +45,7 @@ const services = [
     infoHref: "/cab",
     bookHref: "/book/cab",
     badge: null,
-    comingSoon: true,
+    comingSoon: CAB_COMING_SOON,
   },
   {
     image: "/bogieambulance.png",
@@ -68,7 +69,7 @@ export default function Services() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="max-w-2xl">
           <p className="text-sm font-semibold uppercase tracking-wide text-primary">
-            Our services
+            Our services-Book Now
           </p>
           <h2 className="mt-3 text-3xl sm:text-4xl font-extrabold tracking-tight text-neutral-900">
             One app. Every kind of move.

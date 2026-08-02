@@ -80,7 +80,7 @@ export default function BogieTrackerPage() {
     name: "Bogie Tracker",
     provider: {
       "@type": "Organization",
-      name: "Bogie Technologies Pvt. Ltd.",
+      name: "Bogie AI Technologies Pvt Ltd",
       url: SITE_URL,
     },
     areaServed: "India",

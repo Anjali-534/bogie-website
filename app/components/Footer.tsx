@@ -2,14 +2,23 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { ChevronDown, Mail, MapPin, Phone, X } from "lucide-react";
+import { ChevronDown, Mail, MapPin, X } from "lucide-react";
 import { serviceAreas } from "../lib/serviceAreas";
 import { PRIVACY_POLICY_URL, TERMS_URL } from "../lib/policies";
+import { WHATSAPP_URL } from "../lib/whatsapp";
 import CookieSettingsLink from "./CookieSettingsLink";
 
 const DRIVER_APP_URL =
   "https://gogobackend-production.up.railway.app/driver-app";
 const DRIVER_PARTNER_PAGE = "/driver-partner";
+
+function WhatsAppIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+      <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.92 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0 0 12.04 2Zm0 18.17h-.01a8.24 8.24 0 0 1-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.22 8.22 0 0 1-1.26-4.4c0-4.55 3.71-8.26 8.27-8.26 2.21 0 4.28.86 5.84 2.42a8.2 8.2 0 0 1 2.42 5.85c0 4.55-3.71 8.25-8.27 8.25Zm4.53-6.19c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.13-.17.24-.64.81-.78.97-.14.17-.29.19-.53.06-.25-.12-1.04-.38-1.99-1.22-.73-.66-1.23-1.46-1.37-1.71-.14-.24-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.24-.41.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.42-.14-.01-.31-.01-.48-.01-.17 0-.44.06-.67.31-.23.24-.87.85-.87 2.08 0 1.22.89 2.4 1.01 2.57.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.55.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.1-.23-.16-.48-.28Z" />
+    </svg>
+  );
+}
 
 function InstagramIcon({ className }: { className?: string }) {
   return (
@@ -102,6 +111,7 @@ const companyLinks = [
 const quickLinks = [
   { label: "Cab", href: "/cab" },
   { label: "Truck", href: "/truck" },
+  { label: "Parcel", href: "/truck" },
   { label: "Ambulance", href: "/ambulance" },
   { label: "Fare Estimator", href: "/fare-estimator" },
   { label: "Bogie Tracker", href: "/bogie-tracker" },
@@ -183,42 +193,31 @@ export default function Footer() {
                 className="h-10 w-auto"
               />
             </a>
-            <p className="mt-2 text-xs uppercase tracking-widest text-neutral-500">
-              Delivering more than just parcels
+            
+            <p className="mt-1 text-xs uppercase font-semibold tracking-widest text-neutral-500">
+              AI Technologies Pvt Ltd
             </p>
 
-            <div className="mt-8 border-t border-dashed border-cream-line pt-8">
-              <p className="text-sm font-semibold text-neutral-900">Follow us on</p>
-              <div className="mt-4 flex items-center gap-3">
-                {socialLinks.map(({ name, href, Icon }) => (
-                  <a
-                    key={name}
-                    href={href}
-                    aria-label={`Follow Bogie on ${name}`}
-                    className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-neutral-600 ring-1 ring-cream-line transition-colors hover:bg-primary hover:text-white hover:ring-primary"
-                  >
-                    <Icon className="h-4 w-4" />
-                  </a>
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-8 border-t border-dashed border-cream-line pt-8">
-              <p className="text-sm font-semibold text-neutral-900">
-                Download our app now!
+            <div className="mt-8 flex flex-col gap-3 border-t border-dashed border-cream-line pt-8 text-sm">
+              <p className="flex items-start gap-2 text-neutral-600">
+                <MapPin size={16} className="mt-0.5 flex-shrink-0" />
+                16/534 Joshi Road, Karol Bagh, New Delhi-110005, India
               </p>
               <a
-                href={DRIVER_APP_URL}
-                aria-label="Get it on Google Play"
-                className="mt-4 -ml-[11.5px] inline-flex items-center transition-opacity hover:opacity-80"
+                href="mailto:support@bogie.in"
+                className="flex items-center gap-2 text-neutral-600 transition-colors hover:text-primary"
               >
-                <Image
-                  src="/google-play-badge.png"
-                  alt="Get it on Google Play"
-                  width={646}
-                  height={250}
-                  className="h-16 w-auto sm:h-20"
-                />
+                <Mail size={16} className="flex-shrink-0" />
+                support@bogie.in
+              </a>
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-1 inline-flex w-fit items-center gap-2 rounded-full bg-[#25D366] px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all hover:scale-[1.03] hover:brightness-95 active:scale-[0.98]"
+              >
+                <WhatsAppIcon className="h-4 w-4" />
+                Chat on WhatsApp
               </a>
             </div>
           </div>
@@ -299,36 +298,47 @@ export default function Footer() {
                   </li>
                 ))}
               </ul>
+
+              <div className="mt-4">
+                <p className="text-sm font-semibold text-neutral-900">
+                  Download the app now!
+                </p>
+                <a
+                  href={DRIVER_APP_URL}
+                  aria-label="Get it on Google Play"
+                  className="mt-4 -ml-[11.5px] inline-flex items-center transition-opacity hover:opacity-80"
+                >
+                  <Image
+                    src="/google-play-badge.png"
+                    alt="Get it on Google Play"
+                    width={646}
+                    height={250}
+                    className="h-16 w-auto sm:h-20"
+                  />
+                </a>
+              </div>
             </FooterSection>
           </div>
         </div>
 
-        {/* Copyright + NAP */}
+        {/* Copyright */}
         <div className="mt-8 flex flex-col gap-4 border-t border-cream-line pt-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs text-neutral-500">
-            &copy; {new Date().getFullYear()} Bogie Technologies Pvt. Ltd. All
+            &copy; {new Date().getFullYear()} Bogie AI Technologies Pvt Ltd. All
             rights reserved.
           </p>
 
-          <div className="flex flex-col gap-2 text-xs text-neutral-500 sm:flex-row sm:items-center sm:gap-5">
-            <a
-              href="mailto:support@bogie.in"
-              className="flex items-center gap-1.5 transition-colors hover:text-primary"
-            >
-              <Mail size={14} />
-              support@bogie.in
-            </a>
-            <a
-              href="tel:+917827194116"
-              className="flex items-center gap-1.5 transition-colors hover:text-primary"
-            >
-              <Phone size={14} />
-              +91 7827194116
-            </a>
-            <span className="flex items-center gap-1.5">
-              <MapPin size={14} className="flex-shrink-0" />
-              16/534 Joshi Road, Karol Bagh, New Delhi-110005, India
-            </span>
+          <div className="flex items-center gap-2.5">
+            {socialLinks.map(({ name, href, Icon }) => (
+              <a
+                key={name}
+                href={href}
+                aria-label={`Follow Bogie on ${name}`}
+                className="flex h-7 w-7 items-center justify-center rounded-full bg-white text-neutral-600 ring-1 ring-cream-line transition-colors hover:bg-primary hover:text-white hover:ring-primary"
+              >
+                <Icon className="h-3.5 w-3.5" />
+              </a>
+            ))}
           </div>
         </div>
       </div>

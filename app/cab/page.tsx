@@ -6,6 +6,7 @@ import ServiceFareCard from "../components/ServiceFareCard";
 import Footer from "../components/Footer";
 import { getServices } from "../lib/api";
 import { SITE_URL } from "../lib/serviceAreas";
+import { CAB_COMING_SOON } from "../lib/featureFlags";
 
 export const metadata: Metadata = {
   title: "Cab Booking in Delhi NCR — Bogie",
@@ -42,7 +43,7 @@ export default async function CabPage() {
     name: "Bogie Cab",
     provider: {
       "@type": "Organization",
-      name: "Bogie Technologies Pvt. Ltd.",
+      name: "Bogie AI Technologies Pvt Ltd",
       url: SITE_URL,
     },
     areaServed: "Delhi NCR",
@@ -142,13 +143,20 @@ export default async function CabPage() {
                 Book right here in your browser — upfront fares, live tracking,
                 done in under a minute.
               </p>
-              <Link
-                href="/book/cab"
-                className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-3 text-sm font-semibold text-white shadow-sm transition-all hover:bg-primary-dark hover:scale-[1.02] active:scale-[0.98]"
-              >
-                Book a cab
-                <ArrowRight size={16} />
-              </Link>
+              {CAB_COMING_SOON ? (
+                <span className="mt-6 inline-flex cursor-not-allowed items-center justify-center gap-2 rounded-full bg-neutral-200 px-7 py-3 text-sm font-semibold text-neutral-500">
+                  Coming Soon
+                  <ArrowRight size={16} />
+                </span>
+              ) : (
+                <Link
+                  href="/book/cab"
+                  className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-3 text-sm font-semibold text-white shadow-sm transition-all hover:bg-primary-dark hover:scale-[1.02] active:scale-[0.98]"
+                >
+                  Book a cab
+                  <ArrowRight size={16} />
+                </Link>
+              )}
             </AnimatedSection>
           </div>
         </section>
