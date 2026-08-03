@@ -200,7 +200,7 @@ export default function Footer() {
 
             <div className="mt-8 flex flex-col gap-3 border-t border-dashed border-cream-line pt-8 text-sm">
               <p className="flex items-start gap-2 text-neutral-600">
-                <MapPin size={16} className="mt-0.5 flex-shrink-0" />
+                <MapPin size={16} className="mt-0.5 flex-shrink-0" /><h3 className="text-xs text-neutral-500">Cooperate Address:</h3>
                 16/534 Joshi Road, Karol Bagh, New Delhi-110005, India
               </p>
               <a

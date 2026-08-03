@@ -3,8 +3,17 @@ import nodemailer from "nodemailer";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+const ALLOWED_RECIPIENTS = ["bogielogistics@gmail.com", "careers@bogie.in"] as const;
+const DEFAULT_RECIPIENT = ALLOWED_RECIPIENTS[0];
+
 export async function POST(request: Request) {
-  let body: { name?: string; email?: string; message?: string; phone?: string };
+  let body: {
+    name?: string;
+    email?: string;
+    message?: string;
+    phone?: string;
+    recipient?: string;
+  };
   try {
     body = await request.json();
   } catch {
@@ -18,6 +27,11 @@ export async function POST(request: Request) {
   const email = body.email?.trim() ?? "";
   const message = body.message?.trim() ?? "";
   const phone = body.phone?.trim() ?? "";
+  const recipient = ALLOWED_RECIPIENTS.includes(
+    body.recipient as (typeof ALLOWED_RECIPIENTS)[number]
+  )
+    ? (body.recipient as (typeof ALLOWED_RECIPIENTS)[number])
+    : DEFAULT_RECIPIENT;
 
   if (!name || !email || !message) {
     return NextResponse.json(
@@ -52,9 +66,12 @@ export async function POST(request: Request) {
   try {
     await transporter.sendMail({
       from: user,
-      to: "bogielogistics@gmail.com",
+      to: recipient,
       replyTo: email,
-      subject: `New contact form message from ${name}`,
+      subject:
+        recipient === "careers@bogie.in"
+          ? `New internship application from ${name}`
+          : `New contact form message from ${name}`,
       text: [
         `Name: ${name}`,
         `Email: ${email}`,

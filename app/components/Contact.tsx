@@ -8,7 +8,21 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 type Status = "idle" | "loading" | "success" | "error";
 
-export default function Contact() {
+type ContactProps = {
+  recipient?: "bogielogistics@gmail.com" | "careers@bogie.in";
+  sectionId?: string;
+  heading?: string;
+  successTitle?: string;
+  successMessage?: string;
+};
+
+export default function Contact({
+  recipient = "bogielogistics@gmail.com",
+  sectionId = "contact",
+  heading = "Let's Get In Touch",
+  successTitle = "Message sent!",
+  successMessage = "We'll get back to you shortly.",
+}: ContactProps = {}) {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
 
@@ -41,7 +55,7 @@ export default function Contact() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, message }),
+        body: JSON.stringify({ name, email, message, recipient }),
       });
 
       const result = await res.json();
@@ -61,12 +75,12 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="scroll-mt-16 bg-neutral-50 py-24">
+    <section id={sectionId} className="scroll-mt-16 bg-neutral-50 py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="text-center">
-          
+
           <h2 className="mt-3 text-4xl sm:text-5xl lg:text-6xl font-extrabold text-primary tracking-tight ">
-            Let&apos;s Get In Touch
+            {heading}
           </h2>
         </AnimatedSection>
 
@@ -82,10 +96,10 @@ export default function Contact() {
                     <Send size={24} />
                   </div>
                   <p className="mt-4 text-lg font-bold text-neutral-900">
-                    Message sent!
+                    {successTitle}
                   </p>
                   <p className="mt-1 text-sm text-neutral-600">
-                    We&apos;ll get back to you shortly.
+                    {successMessage}
                   </p>
                 </div>
               ) : (

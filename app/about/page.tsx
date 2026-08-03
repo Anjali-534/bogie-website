@@ -7,9 +7,9 @@ import Footer from "../components/Footer";
 import Services from "../components/Services";
 
 export const metadata: Metadata = {
-  title: "About Us — Bogie | Delhi NCR's Ride & Logistics App",
+  title: "About Bogie | India's First AI-Powered Logistics Startup",
   description:
-    "Bogie is Delhi NCR's ride hailing and logistics app — cab booking, truck logistics, and zero-commission ambulances, run by Bogie AI Technologies Pvt Ltd.",
+    "Bogie AI Technologies — India's first startup for cab rides, truck shipments, and zero-commission ambulance logistics, built in Delhi NCR.",
 };
 
 const differentiators = [
@@ -34,22 +34,22 @@ const teamPeople = [
   { photo: "/ANILBOGIE.png", name: "Anil Garg", designation: "Director", featured: true },
   { photo: "/MADHUBOGIE.png", name: "Madhu Garg", designation: "Director", featured: true },
   { photo: "/ANJALI%20BOGIE.png", name: "Anjali Aggarwal", designation: "Co-Founder & Engineer", featured: false },
-  { photo: "/DHRITIBOGIE.png", name: "Dhriti Aggarwal", designation: "CFO", featured: false },
-  { photo: "/TUSHARBOGIE.png", name: "Tushar Aggarwal", designation: "PEON Head", featured: false },
-  { photo: "/ANUJBOGIE.png", name: "kunal Garg", designation: "Mareting Head", featured: false },  
+  { photo: "/DHRITIBOGIE.png", name: "Dhriti Aggarwal", designation: "Co-Founder & CFO", featured: false },
+  { photo: "/TUSHARBOGIE.png", name: "Tushar Aggarwal", designation: "Co-Founder", featured: false },
+  { photo: "/ANUJBOGIE.png", name: "kunal Garg", designation: "Marketing Head", featured: false },  
 ];
 
 export default function AboutPage() {
   return (
     <>
       <main>
-        <section className="relative aspect-[3/2] w-full">
+        <section className="relative aspect-[3/2] w-full max-w-[100vw] overflow-hidden bg-neutral-100">
           <Image
             src="/aboutbogiehero.png"
             alt="Bogie on the road in Delhi NCR"
             fill
             priority
-            className="object-cover"
+            className="object-contain"
             sizes="100vw"
           />
         </section>
@@ -67,7 +67,7 @@ export default function AboutPage() {
               </h1>
               <p className="mt-6 text-lg text-neutral-600">
                 Bogie is an all-in-one ride and logistics app — cabs when you need to get
-                somewhere, trucks when you need to move something, and ambulances when
+                somewhere, trucks when you need to move a shipment, and ambulances when
                 every second counts. One login, one app, three services that actually
                 talk to each other.
               </p>
@@ -116,8 +116,9 @@ export default function AboutPage() {
                     Bogie AI Technologies Pvt Ltd
                   </p>
                   <p className="mt-1 text-sm text-neutral-600">
-                    Headquartered in Delhi NCR, India — and now live across the region,
-                    with cabs, trucks, and ambulances running from the same app.
+                    Headquartered in Delhi NCR, India — Bogie AI Technologies is
+                    building India&apos;s first startup to unify cab, truck, and
+                    ambulance logistics in one app, now live across the region.
                   </p>
                 </div>
               </div>
@@ -240,6 +241,42 @@ export default function AboutPage() {
                     sizes="(min-width: 1024px) 50vw, 100vw"
                   />
                 </div>
+              </AnimatedSection>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-24">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
+              <AnimatedSection>
+                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl shadow-sm">
+                  <Image
+                    src="/Hamara_Book_Bank_Poster.jpg"
+                    alt="Hamara Book Bank"
+                    fill
+                    className="object-cover"
+                    sizes="(min-width: 1024px) 50vw, 100vw"
+                  />
+                </div>
+              </AnimatedSection>
+
+              <AnimatedSection>
+                <p className="text-sm font-semibold uppercase tracking-wide text-primary">
+                  Giving back
+                </p>
+                <h2 className="mt-3 text-3xl sm:text-4xl font-extrabold tracking-tight text-neutral-900">
+                 We feel proud to be a part of the noble cause
+
+                </h2>
+                <p className="mt-6 text-neutral-600">
+                  Bogie&apos;s team is closely involved with Hamara Book Bank, an NGO
+                  working to make books and learning resources accessible to students
+                  who couldn&apos;t otherwise afford them. From collecting and
+                  redistributing books to running the donation platform behind the
+                  scenes, it&apos;s part of how we think about movement — not just of
+                  people and packages, but of opportunity.
+                </p>
               </AnimatedSection>
             </div>
           </div>

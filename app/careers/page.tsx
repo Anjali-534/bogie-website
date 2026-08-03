@@ -1,62 +1,82 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { Hammer, ArrowRight, Mail } from "lucide-react";
+import { PenSquare, Megaphone, CalendarClock } from "lucide-react";
 import AnimatedSection from "../components/AnimatedSection";
 import Footer from "../components/Footer";
+import Contact from "../components/Contact";
 
 export const metadata: Metadata = {
-  title: "Careers — Bogie",
+  title: "Careers at Bogie | Join India's First AI Logistics Startup",
   description:
-    "Careers at Bogie is coming soon. Want to be part of the story early? Get in touch.",
-  robots: { index: false, follow: true },
+    "Join Bogie AI Technologies, India's first AI-powered logistics startup — we're hiring Marketing & Social Media interns for our Delhi NCR mobility platform.",
 };
+
+const responsibilities = [
+  {
+    icon: PenSquare,
+    text: "Content creation — posts, captions, short-form video for Bogie's social channels.",
+  },
+  {
+    icon: Megaphone,
+    text: "Campaign support — helping plan and run promos across cabs, trucks, and ambulances.",
+  },
+  {
+    icon: CalendarClock,
+    text: "Social scheduling — keeping our posting calendar consistent and on-brand.",
+  },
+];
 
 export default function CareersPage() {
   return (
     <>
       <main>
-        <section className="relative flex min-h-[70vh] items-center overflow-hidden pt-32 pb-20 sm:pt-40">
-          <div className="pointer-events-none absolute inset-0 -z-10">
-            <div className="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-primary/10 blur-3xl" />
-            <div className="absolute top-1/2 -left-32 h-80 w-80 rounded-full bg-primary/5 blur-3xl" />
-          </div>
-
-          <div className="mx-auto max-w-2xl px-4 text-center sm:px-6 lg:px-8">
+        <section className="bg-cream pt-32 pb-16 sm:pt-40 sm:pb-20">
+          <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
             <AnimatedSection>
-              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-primary-light text-primary">
-                <Hammer size={30} />
-              </div>
-              <span className="mt-6 inline-flex items-center gap-2 rounded-full bg-primary-light px-4 py-1.5 text-xs font-semibold text-primary-dark">
-                Coming soon
+              <span className="inline-flex items-center gap-2 rounded-full bg-primary-light px-4 py-1.5 text-xs font-semibold text-primary-dark">
+                Careers
               </span>
               <h1 className="mt-6 text-4xl sm:text-5xl font-extrabold tracking-tight text-neutral-900 leading-[1.05]">
-                We&apos;re building our careers page.
+                Join Bogie as an Intern.
               </h1>
               <p className="mt-6 text-lg text-neutral-600">
-                Bogie is a small, fast-growing team based in Delhi NCR — and we&apos;re
-                not quite ready to list open roles yet. But if you want to be part of
-                the Bogie story early, we&apos;d genuinely like to hear from you.
+                We&apos;re currently looking for interns in Marketing and Social
+                Media to join us in Delhi NCR. It&apos;s hands-on work with Bogie AI
+                Technologies, a small, fast-moving startup building ride-hailing and
+                logistics tech — you&apos;ll see your work go live, not sit in a deck.
+                If that sounds like your kind of internship, we&apos;d love to hear
+                from you.
               </p>
+            </AnimatedSection>
+          </div>
+        </section>
 
-              <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
-                <Link
-                  href="/#contact"
-                  className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3 text-sm font-semibold text-white shadow-sm transition-all hover:bg-primary-dark hover:scale-[1.02] active:scale-[0.98]"
-                >
-                  Get in touch
-                  <ArrowRight size={16} />
-                </Link>
-                <a
-                  href="mailto:support@bogie.in"
-                  className="inline-flex items-center gap-2 rounded-full border border-neutral-200 px-7 py-3 text-sm font-semibold text-neutral-700 transition-colors hover:border-primary hover:text-primary"
-                >
-                  <Mail size={16} />
-                  support@bogie.in
-                </a>
+        <section className="py-16 sm:py-20">
+          <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+            <AnimatedSection>
+              <h2 className="text-lg font-bold text-neutral-900">
+                What you&apos;d be doing
+              </h2>
+              <div className="mt-6 space-y-5">
+                {responsibilities.map((item) => (
+                  <div key={item.text} className="flex items-start gap-3.5">
+                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-primary-light text-primary">
+                      <item.icon size={18} />
+                    </div>
+                    <p className="pt-2 text-sm text-neutral-600">{item.text}</p>
+                  </div>
+                ))}
               </div>
             </AnimatedSection>
           </div>
         </section>
+
+        <Contact
+          recipient="careers@bogie.in"
+          sectionId="apply"
+          heading="Apply for the internship"
+          successTitle="Application sent!"
+          successMessage="We'll get back to you shortly."
+        />
       </main>
       <Footer />
     </>
