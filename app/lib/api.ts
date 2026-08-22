@@ -84,6 +84,17 @@ export async function apiRiderProfile(token: string): Promise<RiderProfile> {
   return body as unknown as RiderProfile;
 }
 
+export async function deleteRiderAccount(token: string): Promise<void> {
+  const res = await fetch(`${API_BASE}/gogoo/rider/account`, {
+    method: "DELETE",
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  if (!res.ok) {
+    const body = await parseJsonSafe(res);
+    throw new Error((body?.error as string) || "Couldn't delete your account. Please try again.");
+  }
+}
+
 export type DriverSignupFields = {
   email: string;
   name: string;

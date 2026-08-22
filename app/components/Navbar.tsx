@@ -8,6 +8,7 @@ import {
   X,
   ChevronDown,
   LogOut,
+  Trash2,
   Car,
   Truck,
   Ambulance,
@@ -254,7 +255,7 @@ export default function Navbar() {
                 <ChevronDown size={16} />
               </button>
               {accountOpen && (
-                <div className="absolute right-0 mt-2 w-40 rounded-2xl bg-white p-1.5 shadow-lg ring-1 ring-neutral-100">
+                <div className="absolute right-0 mt-2 w-48 rounded-2xl bg-white p-1.5 shadow-lg ring-1 ring-neutral-100">
                   <button
                     onClick={() => {
                       logout();
@@ -265,6 +266,14 @@ export default function Navbar() {
                     <LogOut size={16} />
                     Log Out
                   </button>
+                  <Link
+                    href="/delete-account"
+                    onClick={() => setAccountOpen(false)}
+                    className="flex w-full items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium text-red-600 hover:bg-red-50"
+                  >
+                    <Trash2 size={16} />
+                    Delete Account
+                  </Link>
                 </div>
               )}
             </div>
@@ -353,16 +362,26 @@ export default function Navbar() {
                 )}
 
                 {!isLoading && user && (
-                  <button
-                    onClick={() => {
-                      logout();
-                      setOpen(false);
-                    }}
-                    className="flex min-h-11 items-center justify-center gap-2 rounded-full border border-neutral-200 px-5 py-3 text-sm font-semibold text-neutral-700"
-                  >
-                    <LogOut size={16} />
-                    Log Out ({user.name.split(" ")[0]})
-                  </button>
+                  <>
+                    <button
+                      onClick={() => {
+                        logout();
+                        setOpen(false);
+                      }}
+                      className="flex min-h-11 items-center justify-center gap-2 rounded-full border border-neutral-200 px-5 py-3 text-sm font-semibold text-neutral-700"
+                    >
+                      <LogOut size={16} />
+                      Log Out ({user.name.split(" ")[0]})
+                    </button>
+                    <Link
+                      href="/delete-account"
+                      onClick={() => setOpen(false)}
+                      className="flex min-h-11 items-center justify-center gap-2 rounded-full border border-red-200 px-5 py-3 text-sm font-semibold text-red-600"
+                    >
+                      <Trash2 size={16} />
+                      Delete Account
+                    </Link>
+                  </>
                 )}
               </div>
             </div>

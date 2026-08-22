@@ -29,6 +29,7 @@ type AuthContextValue = {
   login: (email: string, password: string) => Promise<AuthResult>;
   signup: (fields: RiderSignupFields) => Promise<AuthResult>;
   logout: () => void;
+  getToken: () => string | null;
 };
 
 const AuthContext = createContext<AuthContextValue | null>(null);
@@ -108,8 +109,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setUser(null);
   }
 
+  function getToken() {
+    return localStorage.getItem(TOKEN_KEY);
+  }
+
   return (
-    <AuthContext.Provider value={{ user, isLoading, login, signup, logout }}>
+    <AuthContext.Provider value={{ user, isLoading, login, signup, logout, getToken }}>
       {children}
     </AuthContext.Provider>
   );
