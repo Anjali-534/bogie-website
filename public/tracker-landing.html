@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bogie Tracker — Live Dispatch Tracking for Logistics Teams</title>
+<meta name="description" content="Purpose-built dispatch tracking for Indian logistics teams. Live GPS per shipment, shareable customer tracking links, e-way bill capture, and proof of delivery — all in one dashboard.">
+<style>
+  :root {
+    --primary: #ff6b2b;
+    --primary-dark: #e2551c;
+    --primary-light: #fff1ea;
+    --cream: #faf6f0;
+    --cream-deep: #f4ebe0;
+    --cream-line: #e9ddcc;
+    --ink: #171717;
+    --ink-soft: #5C5346;
+    --ink-mute: #8a7f6c;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--cream-deep);
+    color: var(--ink);
+    font-family: Arial, Helvetica, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    padding: 40px 16px;
+  }
+  h1, h2 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: bold;
+    margin: 0;
+    color: var(--ink);
+  }
+  p { margin: 0; }
+  a { text-decoration: none; }
+  img { max-width: 100%; display: block; }
+
+  /* Card shell */
+  .card {
+    max-width: 720px;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 30px 70px -30px rgba(23,23,23,0.28);
+    border: 1px solid var(--cream-line);
+  }
+  .card-banner {
+    background: var(--primary-light);
+    padding: 22px 40px 20px;
+    text-align: center;
+  }
+  .logo {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: bold;
+    font-size: 22px;
+    color: var(--ink);
+  }
+  .logo span { color: var(--primary-dark); }
+  .card-body { padding: 44px 40px 40px; }
+
+  /* Hero */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    font-size: 12.5px;
+    font-weight: bold;
+    letter-spacing: 0.2px;
+    padding: 7px 14px;
+    border-radius: 999px;
+  }
+  .badge .star { font-size: 11px; }
+  h1 {
+    font-size: 32px;
+    line-height: 1.2;
+    margin-top: 18px;
+  }
+  h1 .accent { color: var(--primary-dark); }
+  .subhead {
+    margin-top: 16px;
+    font-size: 15.5px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+  }
+  .cta-row {
+    margin-top: 26px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+  }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--primary);
+    color: #fff;
+    font-size: 14.5px;
+    font-weight: bold;
+    letter-spacing: 0.3px;
+    padding: 15px 30px;
+    border-radius: 999px;
+    box-shadow: 0 10px 30px -10px rgba(255, 107, 43, 0.55);
+    transition: background 0.15s ease, transform 0.15s ease;
+  }
+  .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
+  .cta-note { font-size: 12.5px; color: var(--ink-mute); }
+  .hero-shot {
+    margin-top: 28px;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 16px 32px rgba(23,23,23,0.18);
+    border: 1px solid var(--cream-line);
+  }
+  .hero-shot img { width: 100%; height: auto; }
+
+  /* Feature list — same pattern as the promo email: icon + bold label + short line */
+  .features {
+    margin-top: 36px;
+    padding-top: 32px;
+    border-top: 1px solid var(--cream-line);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .features li {
+    list-style: none;
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+  .features strong { font-weight: bold; }
+
+  /* Final CTA band */
+  .final-cta {
+    margin-top: 36px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    border-radius: 18px;
+    padding: 36px 28px;
+    text-align: center;
+    color: #fff;
+  }
+  .final-cta h2 {
+    color: #fff;
+    font-size: 22px;
+    line-height: 1.25;
+  }
+  .final-cta p {
+    margin-top: 10px;
+    font-size: 14.5px;
+    color: rgba(255,255,255,0.9);
+  }
+  .final-cta .btn-primary {
+    margin-top: 22px;
+    background: #fff;
+    color: var(--primary-dark);
+    box-shadow: 0 12px 30px -12px rgba(0,0,0,0.35);
+  }
+  .final-cta .btn-primary:hover { background: #fff5ef; }
+  .final-cta-note {
+    margin-top: 14px;
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.85);
+  }
+
+  /* Footer */
+  .footer {
+    padding: 22px 40px 28px;
+    text-align: center;
+    border-top: 1px solid var(--cream-line);
+  }
+  .footer p {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 11.5px;
+    color: var(--ink-mute);
+    line-height: 1.8;
+  }
+  .footer a { color: var(--ink); }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    body { padding: 0; }
+    .card { border-radius: 0; border: none; max-width: 100%; }
+    .card-body { padding: 32px 22px 28px; }
+    .card-banner { padding: 20px 22px 18px; }
+    h1 { font-size: 26px; }
+    .subhead { font-size: 14.5px; }
+    .btn-primary { width: 100%; justify-content: center; padding: 15px 24px; }
+    .cta-row { flex-direction: column; align-items: stretch; }
+    .final-cta { padding: 28px 20px; }
+    .footer { padding: 20px 22px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="card-banner">
+    <span class="logo">bogie <span>tracker</span></span>
+  </div>
+
+  <div class="card-body">
+    <span class="badge"><span class="star">★</span>India's first dispatch tracking panel built for logistics teams</span>
+
+    <h1>Stop calling drivers to ask <span class="accent">"where's the shipment."</span></h1>
+
+    <p class="subhead">
+      Bogie Tracker replaces the daily round of driver calls with one live
+      dashboard — built for logistics companies, transporters, and
+      distributors who need every shipment visible, from pickup to proof
+      of delivery.
+    </p>
+
+    <div class="cta-row">
+      <a class="btn-primary" href="https://bogie.in/bogie-tracker#pricing">Get Started →</a>
+      <span class="cta-note">New accounts are reviewed before access is activated.</span>
+    </div>
+
+    <div class="hero-shot">
+      <img src="/bogie-tracker-demo.gif" alt="Illustration of a live location pin tracking a route" loading="lazy">
+    </div>
+
+    <ul class="features">
+      <li><strong>📍 Live GPS shipment tracking</strong> — see every vehicle move on one map, zero guesswork, zero follow-up calls</li>
+      <li><strong>🔗 Share a tracking link, not a phone number</strong> — your customers track their own delivery in real time</li>
+      <li><strong>📦 Proof of delivery, captured on the spot</strong> — delivery confirmation happens automatically, no more "was it delivered or not"</li>
+      <li><strong>📄 E-way bill &amp; document management, built in</strong> — upload invoices, e-way bills, and LRs directly against each shipment</li>
+      <li><strong>🚛 Multi-stop dispatch tracking</strong> — one truck, multiple deliveries — track every stop of a part-shipment route in one place</li>
+      <li><strong>👥 Multi-user staff access</strong> — add your dispatch team with role-based logins, so everyone sees what they need to</li>
+      <li><strong>🖥️ Your fleet. Your panel.</strong> A dedicated dispatch tracking platform built for Indian logistics companies.</li>
+    </ul>
+
+    <div class="final-cta">
+      <h2>Purpose-built dispatch tracking for Indian logistics teams.</h2>
+      <p>Sign up your company and get approved to start tracking — most teams are live within a day.</p>
+      <a class="btn-primary" href="https://bogie.in/bogie-tracker#pricing">Get Started →</a>
+      <p class="final-cta-note">Or call us at <a href="tel:+917827194116" style="color:#fff; font-weight:bold;">78271 94116</a></p>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>
+      Bogie Tracker &middot; <a href="https://bogie.in">bogie.in</a><br>
+      Questions? <a href="mailto:hello@bogie.in">hello@bogie.in</a>
+    </p>
+  </div>
+</div>
+
+</body>
+</html>

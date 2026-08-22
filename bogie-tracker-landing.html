@@ -52,13 +52,18 @@
       <table role="presentation" cellpadding="0" cellspacing="0" border="0" align="center">
         <tr>
           <td align="center">
-            <!-- NOTE: local public/logo.png was cropped to a tight bounding box around the wordmark (1058x332, ~3.19:1) — the old 1536x1024 canvas had a lot of transparent glow padding above/below the mark. The currently-live https://bogie.in/logo.png is a different, square (716x716) image — deploy the new logo.png before sending or this will render squashed. -->
+            <!-- NOTE: this still points at https://bogie.in/logo.png — that URL is
+                 correct, but the FILE currently live at that URL is the old square
+                 (716x716) version. Deploy the cropped wordmark (1058x332, ~3.19:1)
+                 to that same path on bogie.in before sending, or the logo will
+                 render squashed. This is a hosting/deploy step, not something
+                 fixable inside this HTML file. -->
             <img src="https://bogie.in/logo.png" width="190" height="66" alt="Bogie" style="display:block; border:0;">
           </td>
         </tr>
       </table>
       <div style="margin-top:-4px; font-family:Georgia, 'Times New Roman', serif; font-weight:bold; font-size:22px; color:#171717; line-height:1.3; text-align:center;">
-        Track your fleet, live.
+        
       </div>
     </td>
   </tr>
@@ -76,29 +81,22 @@
   <tr>
     <td align="center" class="px" style="padding:14px 32px 0;">
       <p style="margin:0; font-family:Arial, Helvetica, sans-serif; font-size:15px; line-height:1.6; color:#5C5346; text-align:center;">
-        Stop calling your drivers to ask <em>"where's the shipment."</em> Bogie Tracker gives you a complete control panel for your logistics team — and a better relationship with your customers.
+        Stop calling your drivers to ask <em>"where's the shipment."</em> Bogie Tracker gives you a complete dispatch tracking dashboard for your logistics team — real-time GPS tracking, e-way bill management, and a better relationship with your customers.
       </p>
     </td>
   </tr>
 
-  <!--
-    DESIGN MISMATCH — flagging, not fixing: this dashboard mockup uses a bright
-    orange/gradient SaaS aesthetic (glossy laptop chrome, gradient blobs, rounded
-    stat cards) that doesn't match the rest of this email's kraft-paper/manifest/
-    navy-and-orange design system used elsewhere on the page. Left un-recolored per
-    instructions — Anjali may want to either swap in an on-brand mockup later, or
-    restyle the rest of the email to match this image's look instead.
-  -->
-  <!-- dashboard showcase -->
+  <!-- hero illustration — replaces the earlier hero-dashboard.png mockup, which
+       carried a fabricated stats bar (10,000+ Happy Customers / 50,000+ Vehicles
+       Tracked / 1M+ Trips Completed / 99.9% Uptime) that did not reflect Bogie's
+       actual numbers. This is the same on-brand pin/route illustration used on
+       the standalone tracker landing page — no invented figures on it.
+       Requires public/bogie-tracker-demo.gif to be deployed at that path on
+       bogie.in. GIF animation degrades gracefully to a static first frame in
+       clients that don't animate (e.g. Outlook desktop) — no broken image either way. -->
   <tr>
     <td align="center" class="px" style="padding:28px 32px 0;">
-      <!-- NOTE: src is a LOCAL relative path for browser preview only — this is an
-           email, so no mail client will resolve images/hero-dashboard.png. Before
-           actually sending, swap src to the hosted URL, e.g.
-           https://bogie.in/images/hero-dashboard.png (file is ready to deploy there).
-           Also: Outlook ignores border-radius/box-shadow on <img> — this degrades
-           gracefully to a plain square-cornered image there, full effect elsewhere. -->
-      <img src="images/hero-dashboard.png" width="496" height="331" alt="Bogie Tracker dashboard showing live vehicle tracking, analytics and fleet management" loading="lazy" class="dashboard-img" style="display:block; width:100%; max-width:496px; height:auto; border:0; border-radius:8px; box-shadow:0 16px 32px rgba(23,23,23,0.18);">
+      <img src="https://bogie.in/bogie-tracker-demo.gif" width="496" height="172" alt="Illustration of a live location pin tracking a route" loading="lazy" class="dashboard-img" style="display:block; width:100%; max-width:496px; height:auto; border:0; border-radius:8px; box-shadow:0 16px 32px rgba(23,23,23,0.18);">
     </td>
   </tr>
 
@@ -108,27 +106,37 @@
       <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td style="padding:8px 0; font-family:Arial, Helvetica, sans-serif; font-size:14.5px; color:#171717; line-height:1.6;">
-            <strong>📍 See it move</strong> — live map, every vehicle, zero guesswork
+            <strong>📍 Live GPS shipment tracking</strong> — see every vehicle move on one map, zero guesswork, zero follow-up calls
           </td>
         </tr>
         <tr>
           <td style="padding:8px 0; font-family:Arial, Helvetica, sans-serif; font-size:14.5px; color:#171717; line-height:1.6;">
-            <strong>🔗 Send a link, not a call</strong> — customers track their own delivery
+            <strong>🔗 Share a tracking link, not a phone number</strong> — your customers track their own delivery in real time
           </td>
         </tr>
         <tr>
           <td style="padding:8px 0; font-family:Arial, Helvetica, sans-serif; font-size:14.5px; color:#171717; line-height:1.6;">
-            <strong>📦 Delivered isn't a rumor</strong> — proof captured on the spot
+            <strong>📦 Proof of delivery, captured on the spot</strong> — delivery confirmation happens automatically, no more "was it delivered or not"
           </td>
         </tr>
         <tr>
           <td style="padding:8px 0; font-family:Arial, Helvetica, sans-serif; font-size:14.5px; color:#171717; line-height:1.6;">
-            <strong>💬 Talk to the driver mid-route</strong> — right inside the tracking link
+            <strong>📄 E-way bill &amp; document management, built in</strong> — upload invoices, e-way bills, and LRs directly against each shipment
           </td>
         </tr>
         <tr>
           <td style="padding:8px 0; font-family:Arial, Helvetica, sans-serif; font-size:14.5px; color:#171717; line-height:1.6;">
-            <strong>🖥️ Your fleet. Your panel.</strong> Nobody else's.
+            <strong>🚛 Multi-stop dispatch tracking</strong> — one truck, multiple deliveries — track every stop of a part-shipment route in one place
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:8px 0; font-family:Arial, Helvetica, sans-serif; font-size:14.5px; color:#171717; line-height:1.6;">
+            <strong>👥 Multi-user staff access</strong> — add your dispatch team with role-based logins, so everyone sees what they need to
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:8px 0; font-family:Arial, Helvetica, sans-serif; font-size:14.5px; color:#171717; line-height:1.6;">
+            <strong>🖥️ Your fleet. Your panel.</strong> A dedicated dispatch tracking platform built for Indian logistics companies.
           </td>
         </tr>
       </table>
@@ -167,10 +175,15 @@
       <p style="margin:0; font-family:'Courier New', Courier, monospace; font-size:11px; font-weight:bold; letter-spacing:1px; color:#8a7f6c; text-align:center; text-transform:uppercase;">
         Free to set up &middot; Live in minutes
       </p>
+      <p style="margin:8px 0 0; font-family:Arial, Helvetica, sans-serif; font-size:12.5px; color:#8a7f6c; text-align:center;">
+        Built for logistics companies across Delhi NCR — from single-truck operators to multi-vehicle fleets.
+      </p>
     </td>
   </tr>
 
-  <!-- social media buttons — PLACEHOLDER LINKS: replace href="#" with actual Facebook/LinkedIn/Instagram profile URLs before sending -->
+  <!-- social media buttons — STILL PLACEHOLDER LINKS (href="#"): real Facebook/
+       LinkedIn/Instagram profile URLs were not provided, so these were left as
+       placeholders rather than guessed. Replace before sending. -->
   <tr>
     <td align="center" style="padding:26px 32px 0;">
       <table role="presentation" cellpadding="0" cellspacing="0" border="0">
@@ -193,7 +206,8 @@
   <tr>
     <td align="center" class="px" style="padding:28px 32px 34px; border-top:1px solid #e9ddcc; margin-top:20px;">
       <p style="margin:20px 0 0; font-family:'Courier New', Courier, monospace; font-size:11px; color:#8a7f6c; text-align:center; line-height:1.8;">
-        Bogie Tracker &middot; <a href="https://bogie.in" style="color:#171717;">bogie.in</a><br>
+        Bogie Tracker — a product by Bogie AI Technologies Pvt Ltd<br>
+        Dispatch tracking software for logistics &amp; transport companies in India<br>
         Questions? Write to <a href="mailto:hello@bogie.in" style="color:#171717;">hello@bogie.in</a><br>
         <a href="mailto:hello@bogie.in?subject=Unsubscribe" style="color:#8a7f6c; text-decoration:underline;">Unsubscribe</a>
       </p>

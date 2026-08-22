@@ -101,7 +101,7 @@ export default function TrackerCta() {
                 <Gift size={16} />
               </div>
               <h3 className="mt-3 text-sm font-semibold text-neutral-900 group-hover:text-white">
-                Get a free demo for a month
+                Get a free trial for a month
               </h3>
               <p className="mt-1 flex items-center gap-1 text-sm font-medium leading-6 text-primary-dark group-hover:text-white">
                 Try it free
