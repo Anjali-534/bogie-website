@@ -202,15 +202,13 @@ export default function CookiesPage() {
                 Policy.
               </p>
               <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
-                <a
+                <Link
                   href={PRIVACY_POLICY_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-3 text-sm font-semibold text-white shadow-sm transition-all hover:bg-primary-dark hover:scale-[1.02] active:scale-[0.98]"
                 >
                   Read Privacy Policy
                   <ArrowRight size={16} />
-                </a>
+                </Link>
                 <Link
                   href="/help"
                   className="inline-flex items-center justify-center gap-2 rounded-full border border-neutral-200 px-7 py-3 text-sm font-semibold text-neutral-700 transition-colors hover:border-primary hover:text-primary"
