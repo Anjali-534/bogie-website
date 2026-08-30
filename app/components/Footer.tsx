@@ -95,10 +95,10 @@ function YouTubeIcon({ className }: { className?: string }) {
 
 const socialLinks = [
   { name: "Instagram", href: "#", Icon: InstagramIcon },
-  { name: "Facebook", href: "#", Icon: FacebookIcon },
+  { name: "Facebook", href: "https://www.facebook.com/profile.php?id=61593835924412", Icon: FacebookIcon },
   { name: "X (Twitter)", href: "#", Icon: X },
   { name: "LinkedIn", href: "#", Icon: LinkedInIcon },
-  { name: "YouTube", href: "#", Icon: YouTubeIcon },
+  { name: "YouTube", href: "https://www.youtube.com/@bogieIndia", Icon: YouTubeIcon },
 ];
 
 const companyLinks = [
@@ -333,6 +333,8 @@ export default function Footer() {
               <a
                 key={name}
                 href={href}
+                target={href.startsWith("http") ? "_blank" : undefined}
+                rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
                 aria-label={`Follow Bogie on ${name}`}
                 className="flex h-7 w-7 items-center justify-center rounded-full bg-white text-neutral-600 ring-1 ring-cream-line transition-colors hover:bg-primary hover:text-white hover:ring-primary"
               >
