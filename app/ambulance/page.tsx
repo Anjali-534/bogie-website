@@ -1,8 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { HeartPulse, BadgeCheck, PhoneCall, ArrowRight } from "lucide-react";
+import Image from "next/image";
+import {
+  HeartPulse,
+  BadgeCheck,
+  PhoneCall,
+  ArrowRight,
+  Ambulance,
+  Siren,
+  ShieldCheck,
+} from "lucide-react";
 import AnimatedSection from "../components/AnimatedSection";
-import ServiceFareCard from "../components/ServiceFareCard";
+import AmbulanceSpecCard from "../components/AmbulanceSpecCard";
 import Footer from "../components/Footer";
 import NearbyHospitals from "./NearbyHospitals";
 import { getServices } from "../lib/api";
@@ -13,6 +22,24 @@ export const metadata: Metadata = {
   description:
     "Book an emergency ambulance in Delhi NCR — free ambulance rides via registered NGOs, or paid BLS/ALS ambulances from partner hospitals. Zero commission, always.",
 };
+
+const heroBullets = [
+  {
+    icon: BadgeCheck,
+    title: "Zero Commission",
+    text: "No platform fee, ever",
+  },
+  {
+    icon: Siren,
+    title: "Fast Response",
+    text: "NGO or hospital-dispatched",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Verified Medical Staff",
+    text: "EMT-certified crews",
+  },
+];
 
 export default async function AmbulancePage() {
   const services = await getServices();
@@ -47,30 +74,36 @@ export default async function AmbulancePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <main>
-        <section className="relative overflow-hidden pt-32 pb-16 sm:pt-40">
-          <div className="pointer-events-none absolute inset-0 -z-10">
-            <div className="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-primary/10 blur-3xl" />
-            <div className="absolute top-1/2 -left-32 h-80 w-80 rounded-full bg-primary/5 blur-3xl" />
+        <section className="relative isolate flex min-h-[600px] flex-col justify-end overflow-hidden sm:min-h-[680px] lg:min-h-[760px]">
+          <div className="absolute inset-0 -z-20">
+            <Image
+              src="/ambulance.png"
+              alt="Bogie ambulance ready for emergency dispatch"
+              fill
+              priority
+              className="object-contain object-right"
+              sizes="100vw"
+            />
           </div>
 
-          <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
-            <AnimatedSection>
-              <span className="inline-flex items-center gap-2 rounded-full bg-primary px-4 py-1.5 text-xs font-bold text-white shadow-md">
-                <BadgeCheck size={14} />
-                0% commission
+          <div className="absolute inset-0 -z-10 bg-gradient-to-t from-cream/95 via-white/55 to-white/20" />
+          <div className="absolute inset-0 -z-10 bg-gradient-to-r from-white/90 via-white/45 to-transparent" />
+
+          <div className="relative px-4 pb-14 pt-32 sm:px-6 sm:pb-20 lg:px-8 lg:pr-16">
+            <AnimatedSection className="max-w-xl text-left">
+              <span className="inline-flex items-center gap-2 rounded-full bg-primary-light px-4 py-1.5 text-xs font-semibold text-primary-dark">
+                <Ambulance size={14} />
+                AMBULANCE
               </span>
               <h1 className="mt-6 text-4xl sm:text-5xl font-extrabold tracking-tight text-neutral-900 leading-[1.05]">
-                Emergency care, <span className="text-primary">without</span> the
-                price tag games.
+                Emergency care, <span className="text-primary">zero commission</span>, every time.
               </h1>
               <p className="mt-6 text-lg text-neutral-600">
-                Free ambulance rides via registered NGOs, or paid BLS/ALS transport
-                via partner hospitals across Delhi NCR — Bogie never takes a cut of
-                either.
+                Free ambulance rides via registered NGOs, or paid BLS/ALS
+                transport from partner hospitals across Delhi NCR — Bogie
+                never takes a cut of either.
               </p>
-            </AnimatedSection>
 
-            <AnimatedSection delay={0.1}>
               <div className="mt-6 inline-flex items-center gap-2 rounded-2xl bg-primary-light px-5 py-3 text-sm font-semibold text-neutral-900 ring-1 ring-primary/20">
                 <PhoneCall size={16} className="text-primary" />
                 Life-threatening emergency? Call{" "}
@@ -78,6 +111,30 @@ export default async function AmbulancePage() {
                   108
                 </a>{" "}
                 first.
+              </div>
+
+              <div className="mt-8 flex flex-wrap items-center gap-4">
+                <Link
+                  href="/book/ambulance"
+                  className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3 text-sm font-semibold text-white shadow-sm transition-all hover:bg-primary-dark hover:scale-[1.02] active:scale-[0.98]"
+                >
+                  Book Ambulance
+                  <ArrowRight size={16} />
+                </Link>
+              </div>
+
+              <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-3">
+                {heroBullets.map((b) => (
+                  <div key={b.title} className="flex items-start gap-3">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary-light text-primary">
+                      <b.icon size={18} />
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-neutral-900">{b.title}</p>
+                      <p className="text-xs text-neutral-500">{b.text}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </AnimatedSection>
           </div>
@@ -101,14 +158,16 @@ export default async function AmbulancePage() {
               </div>
               <div className="rounded-3xl bg-white p-7 shadow-sm ring-1 ring-neutral-100">
                 <h2 className="text-lg font-bold text-neutral-900">
-                  Paid BLS/ALS, via partner hospitals
+                  Paid ambulances — BLS, ALS, or Patient Transport
                 </h2>
                 <p className="mt-3 text-sm text-neutral-600">
                   If no free ride is available, we connect you to BLS/ALS-equipped
                   ambulances dispatched directly by partner hospitals, billed by the
-                  hospital. Either way, Bogie&apos;s cut is exactly zero rupees — we
-                  don&apos;t add a platform fee or convenience charge to emergency
-                  transport, ever.
+                  hospital. For a stable patient who doesn&apos;t need medical support
+                  en route — a discharge, a scheduled appointment, an inter-facility
+                  move — a Patient Transport vehicle covers it instead. Either way,
+                  Bogie&apos;s cut is exactly zero rupees — we don&apos;t add a
+                  platform fee or convenience charge to ambulance transport, ever.
                 </p>
               </div>
             </AnimatedSection>
@@ -119,24 +178,25 @@ export default async function AmbulancePage() {
           <section className="bg-neutral-50 py-16">
             <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
               <AnimatedSection>
-                <h2 className="text-center text-2xl font-extrabold tracking-tight text-neutral-900">
-                  Paid ambulance options
-                </h2>
+                <div className="text-center">
+                  <h2 className="inline-block text-2xl font-extrabold tracking-tight text-neutral-900">
+                    Paid ambulance options
+                  </h2>
+                  <div className="mx-auto mt-2 h-1 w-12 rounded-full bg-primary" />
+                </div>
                 <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
                   {ambulances.map((a) => (
-                    <ServiceFareCard
+                    <AmbulanceSpecCard
                       key={a.id}
                       name={a.name}
+                      slug={a.slug}
                       capacity={a.capacity}
-                      baseFare={a.base_fare}
-                      perKmRate={a.per_km_rate}
                     />
                   ))}
                 </div>
                 <p className="mt-4 text-center text-xs text-neutral-500">
-                  Fares apply to paid hospital-dispatched rides only. Fares shown are
-                  starting prices; your exact fare is confirmed in the app before you
-                  book.
+                  Your exact fare — based on distance — is confirmed in the app
+                  before you book.
                 </p>
               </AnimatedSection>
             </div>

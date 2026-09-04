@@ -15,6 +15,7 @@ import {
   Building2,
   Flower2,
   HeartPulse,
+  HeartHandshake,
   Activity,
   HandHeart,
   BadgeCheck,
@@ -35,7 +36,12 @@ import {
 } from "../../lib/api";
 
 type Step = "type" | "purpose" | "location" | "patient" | "review";
-type Purpose = "" | "patient_transfer" | "emergency" | "dead_body";
+type Purpose =
+  | ""
+  | "patient_transfer"
+  | "non_emergency_transfer"
+  | "emergency"
+  | "dead_body";
 type SubType = "" | "bls" | "als";
 
 const MED_NOTES_MAX = 300;
@@ -53,6 +59,12 @@ const PURPOSES: {
     sub: "Shifting a patient between hospitals or home",
   },
   {
+    key: "non_emergency_transfer",
+    icon: HeartHandshake,
+    label: "Non-Emergency Transfer",
+    sub: "Stable patient — discharge, appointment, or inter-facility move",
+  },
+  {
     key: "emergency",
     icon: Siren,
     label: "Emergency",
@@ -68,6 +80,7 @@ const PURPOSES: {
 
 const PURPOSE_LABELS: Record<string, string> = {
   patient_transfer: "Patient Transfer",
+  non_emergency_transfer: "Non-Emergency Transfer",
   emergency: "Emergency",
   dead_body: "Dead Body Transfer",
 };
@@ -246,9 +259,9 @@ export default function AmbulanceBookingFlow({
   const needsSubType = purpose === "patient_transfer" || purpose === "emergency";
 
   // BLS/ALS drive pricing for transfers and emergencies; dead-body transfers
-  // always go on the patient-transport vehicle.
+  // and non-emergency transfers both ride on the patient-transport vehicle.
   const service: ServiceType | null =
-    purpose === "dead_body"
+    purpose === "dead_body" || purpose === "non_emergency_transfer"
       ? services.find((s) => s.slug === "ambulance_transport") || services[0] || null
       : subType === "als"
         ? services.find((s) => s.slug === "ambulance_als") || services[0] || null
@@ -629,6 +642,25 @@ export default function AmbulanceBookingFlow({
                   </a>{" "}
                   (National Ambulance Service).
                 </p>
+              </div>
+            )}
+
+            {purpose === "non_emergency_transfer" && (
+              <div className="mt-4 rounded-2xl border border-neutral-200 bg-neutral-50 p-3.5">
+                <p className="text-sm font-semibold text-neutral-800">
+                  Non-emergency patient transfer, comfortable and safe
+                </p>
+                <ul className="mt-2.5 flex flex-wrap gap-2">
+                  {["Wheelchair", "Stretcher", "Attendant"].map((item) => (
+                    <li
+                      key={item}
+                      className="inline-flex items-center gap-1.5 rounded-full bg-white px-2.5 py-1 text-xs font-medium text-neutral-600 ring-1 ring-neutral-200"
+                    >
+                      <CheckCircle2 size={12} className="text-primary" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
               </div>
             )}
 
