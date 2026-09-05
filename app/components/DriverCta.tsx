@@ -9,13 +9,13 @@ export default function DriverCta() {
     <section className="bg-cream-deep pb-24 pt-10 sm:pt-12">
       <AnimatedSection>
         <div className="overflow-hidden bg-white shadow-[0_20px_45px_-12px_rgba(154,52,18,0.28),0_8px_18px_-8px_rgba(154,52,18,0.18)] ring-1 ring-cream-line">
-          <div className="relative h-72 sm:h-80 lg:h-[600px] w-full">
+          <div className="relative aspect-[1672/831] w-full">
             <Image
               src="/bogiedriverpartner.png"
               alt="Become a Bogie driver partner — cabs, trucks, ambulances & parcel delivery, all in one app"
               fill
               priority
-              className="object-cover object-top"
+              className="object-cover"
               sizes="100vw"
             />
           </div>
