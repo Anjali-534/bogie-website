@@ -58,6 +58,19 @@ export async function apiLogin(email: string, password: string): Promise<AuthRes
   return body as unknown as AuthResponse;
 }
 
+export async function apiGoogleLogin(idToken: string): Promise<AuthResponse> {
+  const res = await fetch(`${API_BASE}/auth/google`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ id_token: idToken }),
+  });
+  const body = await parseJsonSafe(res);
+  if (!res.ok) {
+    throw new Error((body?.error as string) || "Google sign-in failed.");
+  }
+  return body as unknown as AuthResponse;
+}
+
 export async function apiRiderSignup(
   fields: RiderSignupFields
 ): Promise<RiderSignupResponse> {

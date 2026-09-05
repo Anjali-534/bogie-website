@@ -1,11 +1,41 @@
 "use client";
 
-import { useState, type FormEvent, type ReactNode } from "react";
+import { useEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import Script from "next/script";
 import { Eye, EyeOff, ArrowRight, Loader2 } from "lucide-react";
 import { useAuth } from "../lib/AuthContext";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const GOOGLE_CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
+
+type GoogleCredentialResponse = { credential: string };
+
+declare global {
+  interface Window {
+    google?: {
+      accounts: {
+        id: {
+          initialize: (config: {
+            client_id: string;
+            callback: (response: GoogleCredentialResponse) => void;
+          }) => void;
+          renderButton: (
+            parent: HTMLElement,
+            options: {
+              type?: string;
+              theme?: string;
+              size?: string;
+              width?: number;
+              text?: string;
+              shape?: string;
+            }
+          ) => void;
+        };
+      };
+    };
+  }
+}
 
 type Tab = "login" | "signup";
 type Status = "idle" | "loading" | "error";
@@ -25,19 +55,62 @@ function Field({ label, children }: { label: string; children: ReactNode }) {
 export default function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { login, signup } = useAuth();
+  const { login, loginWithGoogle, signup } = useAuth();
   const redirectTo = searchParams.get("redirect") || "/";
 
   const [tab, setTab] = useState<Tab>("login");
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [googleScriptLoaded, setGoogleScriptLoaded] = useState(false);
+  const googleButtonRef = useRef<HTMLDivElement>(null);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [referredByCode, setReferredByCode] = useState("");
+
+  async function handleGoogleCredential(response: GoogleCredentialResponse) {
+    setStatus("loading");
+    setError("");
+    const result = await loginWithGoogle(response.credential);
+    if (!result.success) {
+      setError(result.error || "Google sign-in failed.");
+      setStatus("error");
+      return;
+    }
+    router.push(redirectTo);
+  }
+
+  useEffect(() => {
+    if (!googleScriptLoaded || !GOOGLE_CLIENT_ID) return;
+    const container = googleButtonRef.current;
+    if (!container || !window.google) return;
+
+    window.google.accounts.id.initialize({
+      client_id: GOOGLE_CLIENT_ID,
+      callback: handleGoogleCredential,
+    });
+
+    function renderButton() {
+      if (!container) return;
+      container.innerHTML = "";
+      const width = Math.min(400, Math.max(200, container.clientWidth));
+      window.google!.accounts.id.renderButton(container, {
+        theme: "outline",
+        size: "large",
+        text: "continue_with",
+        shape: "pill",
+        width,
+      });
+    }
+
+    renderButton();
+    window.addEventListener("resize", renderButton);
+    return () => window.removeEventListener("resize", renderButton);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [googleScriptLoaded]);
 
   function switchTab(next: Tab) {
     if (status === "loading") return;
@@ -150,6 +223,25 @@ export default function LoginForm() {
             </button>
           ))}
         </div>
+
+        {GOOGLE_CLIENT_ID && (
+          <>
+            <Script
+              src="https://accounts.google.com/gsi/client"
+              strategy="afterInteractive"
+              onLoad={() => setGoogleScriptLoaded(true)}
+            />
+            <div ref={googleButtonRef} className="flex w-full justify-center" />
+
+            <div className="my-5 flex items-center gap-3">
+              <div className="h-px flex-1 bg-neutral-200" />
+              <span className="text-xs font-medium uppercase tracking-wide text-neutral-400">
+                or
+              </span>
+              <div className="h-px flex-1 bg-neutral-200" />
+            </div>
+          </>
+        )}
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4" noValidate>
           {tab === "signup" && (

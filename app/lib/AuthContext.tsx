@@ -8,6 +8,7 @@ import {
   type ReactNode,
 } from "react";
 import {
+  apiGoogleLogin,
   apiLogin,
   apiRiderProfile,
   apiRiderSignup,
@@ -27,6 +28,7 @@ type AuthContextValue = {
   user: RiderSession | null;
   isLoading: boolean;
   login: (email: string, password: string) => Promise<AuthResult>;
+  loginWithGoogle: (idToken: string) => Promise<AuthResult>;
   signup: (fields: RiderSignupFields) => Promise<AuthResult>;
   logout: () => void;
   getToken: () => string | null;
@@ -95,6 +97,25 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }
 
+  async function loginWithGoogle(idToken: string): Promise<AuthResult> {
+    try {
+      const res = await apiGoogleLogin(idToken);
+      persistSession(res.access_token, res.user);
+      setUser(res.user);
+
+      apiRiderProfile(res.access_token)
+        .then((profile) => setUser((prev) => (prev ? { ...prev, ...profile } : prev)))
+        .catch(() => {});
+
+      return { success: true };
+    } catch (err) {
+      return {
+        success: false,
+        error: err instanceof Error ? err.message : "Google sign-in failed.",
+      };
+    }
+  }
+
   async function signup(fields: RiderSignupFields): Promise<AuthResult> {
     try {
       await apiRiderSignup(fields);
@@ -114,7 +135,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   return (
-    <AuthContext.Provider value={{ user, isLoading, login, signup, logout, getToken }}>
+    <AuthContext.Provider
+      value={{ user, isLoading, login, loginWithGoogle, signup, logout, getToken }}
+    >
       {children}
     </AuthContext.Provider>
   );
