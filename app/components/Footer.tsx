@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { ChevronDown, Mail, MapPin, X } from "lucide-react";
+import { ChevronDown, Globe, Mail, MapPin, X } from "lucide-react";
 import { serviceAreas } from "../lib/serviceAreas";
 import { PRIVACY_POLICY_URL, TERMS_URL } from "../lib/policies";
 import { WHATSAPP_URL } from "../lib/whatsapp";
@@ -92,6 +92,29 @@ function YouTubeIcon({ className }: { className?: string }) {
     </svg>
   );
 }
+
+function GitHubIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+    </svg>
+  );
+}
+
+const anjaliLinks = [
+  { name: "LinkedIn", href: "https://www.linkedin.com/in/anjali-aggarwal-a32a84236/", Icon: LinkedInIcon },
+  { name: "GitHub", href: "https://github.com/Anjali-534", Icon: GitHubIcon },
+  { name: "Portfolio", href: "https://my-portfolio-chi-sooty-11.vercel.app/", Icon: Globe },
+];
 
 const socialLinks = [
   { name: "Instagram", href: "#", Icon: InstagramIcon },
@@ -342,6 +365,23 @@ export default function Footer() {
               </a>
             ))}
           </div>
+        </div>
+
+        <div className="mt-4 flex items-center gap-2.5 sm:justify-end">
+          <span className="text-xs text-neutral-500">Anjali Aggarwal</span>
+          {anjaliLinks.map(({ name, href, Icon }) => (
+            <a
+              key={name}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Anjali Aggarwal on ${name}`}
+              title={`Anjali Aggarwal — ${name}`}
+              className="flex h-7 w-7 items-center justify-center rounded-full bg-white text-neutral-600 ring-1 ring-cream-line transition-colors hover:bg-primary hover:text-white hover:ring-primary"
+            >
+              <Icon className="h-3.5 w-3.5" />
+            </a>
+          ))}
         </div>
       </div>
     </footer>
