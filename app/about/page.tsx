@@ -1,16 +1,70 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { Zap, ShieldCheck, HeartHandshake, ArrowRight, MapPin } from "lucide-react";
+import { Zap, ShieldCheck, HeartHandshake, ArrowRight, MapPin, Globe } from "lucide-react";
 import AnimatedSection from "../components/AnimatedSection";
 import Footer from "../components/Footer";
 import Services from "../components/Services";
 
 export const metadata: Metadata = {
-  title: "About Bogie | India's First AI-Powered Logistics Startup",
+  title: "About Bogie | Meet Anjali Aggarwal & the Team",
   description:
-    "Bogie AI Technologies — India's first startup for cab rides, truck shipments, and zero-commission ambulance logistics, built in Delhi NCR.",
+    "Bogie AI Technologies is a Delhi NCR startup building mobility and logistics software. Meet the team, including co-founder and lead engineer Anjali Aggarwal.",
+  alternates: { canonical: "https://bogie.in/about" },
 };
+
+const ORG_ID = "https://bogie.in/#organization";
+const ANJALI_ID = "https://bogie.in/about#anjali-aggarwal";
+
+const anjaliLinks = {
+  linkedin: "https://www.linkedin.com/in/anjali-aggarwal-a32a84236/",
+  github: "https://github.com/Anjali-534",
+  portfolio: "https://my-portfolio-chi-sooty-11.vercel.app/",
+};
+
+const teamJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": ANJALI_ID,
+      name: "Anjali Aggarwal",
+      jobTitle: "Co-Founder & Lead Engineer",
+      worksFor: { "@id": ORG_ID },
+      url: anjaliLinks.portfolio,
+      sameAs: [anjaliLinks.linkedin, anjaliLinks.github, anjaliLinks.portfolio],
+      knowsAbout: [
+        "Go",
+        "Next.js",
+        "React Native",
+        "PostgreSQL",
+        "Logistics software",
+        "Mobility technology",
+      ],
+    },
+    {
+      "@type": "Organization",
+      "@id": ORG_ID,
+      founder: { "@id": ANJALI_ID },
+    },
+  ],
+};
+
+function LinkedInIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.125 2.062 2.062 0 0 1 0 4.125zM7.119 20.452H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+    </svg>
+  );
+}
+
+function GitHubIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+      <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+    </svg>
+  );
+}
 
 const differentiators = [
   {
@@ -33,15 +87,29 @@ const differentiators = [
 const teamPeople = [
   { photo: "/ANILBOGIE.png", name: "Anil Garg", designation: "Director", featured: true },
   { photo: "/MADHUBOGIE.png", name: "Madhu Garg", designation: "Director", featured: true },
-  { photo: "/ANJALI%20BOGIE.png", name: "Anjali Aggarwal", designation: "Co-Founder & Engineer", featured: false },
+  {
+    photo: "/ANJALI%20BOGIE.png",
+    name: "Anjali Aggarwal",
+    designation: "Co-Founder & Lead Engineer",
+    featured: false,
+    bio: "Co-founder and lead engineer at Bogie AI Technologies, building mobility and logistics software from Delhi NCR.",
+    links: [
+      { href: anjaliLinks.linkedin, label: "LinkedIn", icon: <LinkedInIcon /> },
+      { href: anjaliLinks.github, label: "GitHub", icon: <GitHubIcon /> },
+      { href: anjaliLinks.portfolio, label: "Portfolio", icon: <Globe size={16} aria-hidden="true" /> },
+    ],
+  },
   { photo: "/DHRITIBOGIE.png", name: "Dhriti Aggarwal", designation: "Co-Founder & CFO", featured: false },
   { photo: "/TUSHARBOGIE.png", name: "Tushar Aggarwal", designation: "Co-Founder", featured: false },
-  { photo: "/ANUJBOGIE.png", name: "kunal Garg", designation: "Marketing Head", featured: false },  
 ];
 
 export default function AboutPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(teamJsonLd) }}
+      />
       <main>
         <section className="relative aspect-[3/2] w-full max-w-[100vw] overflow-hidden bg-neutral-100">
           <Image
@@ -164,7 +232,7 @@ export default function AboutPage() {
               </h2>
             </AnimatedSection>
 
-            <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-3 lg:grid-cols-5">
+            <div className="mt-14 grid grid-cols-1 gap-6 sm:flex sm:flex-wrap sm:justify-center sm:[&>*]:w-[calc((100%-3rem)/3)] lg:grid lg:grid-cols-5 lg:[&>*]:w-auto">
               {teamPeople.map((person, i) => (
                 <AnimatedSection key={person.name} delay={i * 0.1}>
                   <div
@@ -198,6 +266,26 @@ export default function AboutPage() {
                     <p className="mt-1 text-sm font-medium text-neutral-600">
                       {person.designation || " "}
                     </p>
+                    {person.bio && (
+                      <p className="mt-3 text-xs text-neutral-500">{person.bio}</p>
+                    )}
+                    {person.links && (
+                      <div className="mt-4 flex items-center justify-center gap-2">
+                        {person.links.map((link) => (
+                          <a
+                            key={link.label}
+                            href={link.href}
+                            target="_blank"
+                            rel="noopener noreferrer me"
+                            aria-label={link.label}
+                            title={link.label}
+                            className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-neutral-50 text-neutral-500 ring-1 ring-neutral-100 transition-colors hover:bg-primary-light hover:text-primary"
+                          >
+                            {link.icon}
+                          </a>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </AnimatedSection>
               ))}

@@ -13,6 +13,7 @@ import Footer from "./components/Footer";
 const orgJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": "https://bogie.in/#organization",
   name: "Bogie",
   legalName: "Bogie AI Technologies Pvt Ltd",
   url: SITE_URL,
